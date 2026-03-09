@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEAD CIRCLE — Official</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Barlow+Condensed:wght@300;400;700;900&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#e63946;--red2:#ff2d3a;--teal:#4ecdc4;--gold:#f4a261;
+  --purple:#c77dff;--green:#a8e063;
+  --bg:#050709;--card:rgba(10,14,20,0.97);
+  --text:rgba(255,255,255,0.85);--muted:rgba(255,255,255,0.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;overflow-x:hidden;cursor:none;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:#e63946;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s;box-shadow:0 0 10px rgba(230,57,70,0.8),0 0 20px rgba(230,57,70,0.4);}
+#curR{position:fixed;width:36px;height:36px;border:2px solid rgba(230,57,70,0.7);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .12s;box-shadow:0 0 8px rgba(230,57,70,0.3);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:linear-gradient(180deg,rgba(5,7,9,.97) 0%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid rgba(230,57,70,.08);}
+.nav-logo{font-family:'Bebas Neue',cursive;font-size:24px;letter-spacing:6px;color:#fff;text-decoration:none;}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:28px;}
+.nav-links a{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .2s;cursor:none;}
+.nav-links a:hover{color:var(--red);}
+.lang-row{display:flex;gap:6px;}
+.lbtn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;background:none;border:1px solid rgba(255,255,255,.15);color:var(--muted);padding:4px 10px;border-radius:2px;cursor:none;transition:all .2s;}
+.lbtn.on,.lbtn:hover{border-color:var(--red);color:var(--red);}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+#hCvs{position:absolute;inset:0;width:100%;height:100%;}
+.hero-wrap{position:relative;z-index:2;text-align:center;padding:20px;}
+.hero-tag{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:8px;color:var(--red);margin-bottom:20px;opacity:0;animation:fadeUp .8s .3s forwards;}
+.hero-title{font-family:'Bebas Neue',cursive;font-size:clamp(72px,14vw,170px);letter-spacing:10px;line-height:.88;color:#fff;opacity:0;animation:fadeUp .8s .5s forwards;text-shadow:0 0 80px rgba(230,57,70,.25);}
+.hero-title .r{color:var(--red);}
+.hero-sub{font-family:'Barlow Condensed',sans-serif;font-weight:300;font-size:clamp(13px,1.8vw,19px);letter-spacing:7px;color:var(--muted);margin-top:14px;text-transform:uppercase;opacity:0;animation:fadeUp .8s .7s forwards;}
+.hero-btns{display:flex;gap:14px;justify-content:center;margin-top:44px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards;}
+.btn-p{font-family:'Bebas Neue',cursive;font-size:17px;letter-spacing:5px;background:var(--red);color:#fff;border:none;padding:13px 38px;cursor:none;transition:all .25s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));text-decoration:none;display:inline-block;}
+.btn-p:hover{background:var(--red2);box-shadow:0 0 30px rgba(230,57,70,.5);transform:translateY(-2px);}
+.btn-s{font-family:'Bebas Neue',cursive;font-size:17px;letter-spacing:5px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.25);padding:13px 38px;cursor:none;transition:all .25s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));text-decoration:none;display:inline-block;}
+.btn-s:hover{border-color:var(--red);color:var(--red);}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp .8s 1.2s forwards;}
+.scroll-hint span{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:var(--muted);}
+.scroll-line{width:1px;height:44px;background:linear-gradient(180deg,var(--red),transparent);animation:spulse 2s infinite;}
+
+/* SECTIONS */
+.sec{padding:90px 48px;max-width:1200px;margin:0 auto;}
+.sec-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--red);margin-bottom:10px;}
+.sec-title{font-family:'Bebas Neue',cursive;font-size:clamp(34px,5.5vw,62px);letter-spacing:6px;color:#fff;margin-bottom:0;position:relative;display:inline-block;}
+.sec-title::after{content:'';position:absolute;left:0;bottom:-6px;width:56px;height:3px;background:var(--red);box-shadow:0 0 10px var(--red);}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(230,57,70,.25),transparent);}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:56px;align-items:center;}
+.about-text p{font-size:15px;line-height:1.9;color:rgba(255,255,255,.55);margin-bottom:16px;}
+.about-text strong{color:var(--red);}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.stat-box{background:var(--card);border:1px solid rgba(255,255,255,.06);padding:22px 18px;text-align:center;transition:all .3s;}
+.stat-box:hover{border-color:rgba(230,57,70,.3);background:rgba(230,57,70,.04);}
+.stat-n{font-family:'Bebas Neue',cursive;font-size:44px;color:var(--red);line-height:1;}
+.stat-l{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:4px;}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:2px;margin-top:56px;}
+.feat-card{background:var(--card);border:1px solid rgba(255,255,255,.05);padding:28px 24px;transition:all .3s;position:relative;overflow:hidden;}
+.feat-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--ac,var(--red));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.feat-card:hover::after{transform:scaleX(1);}
+.feat-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.4);}
+.feat-icon{font-size:28px;margin-bottom:14px;}
+.feat-title{font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#fff;margin-bottom:8px;}
+.feat-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.4);}
+
+/* CHARS */
+.chars-row{display:flex;gap:10px;margin-top:56px;overflow-x:auto;padding-bottom:10px;}
+.chars-row::-webkit-scrollbar{height:3px;}.chars-row::-webkit-scrollbar-thumb{background:var(--red);}
+.char-card{flex-shrink:0;width:196px;background:var(--card);border:1px solid rgba(255,255,255,.07);transition:all .3s;cursor:none;overflow:hidden;}
+.char-card:hover{border-color:rgba(230,57,70,.5);transform:translateY(-5px);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 25px rgba(230,57,70,.12);}
+.char-cvs-wrap{width:100%;height:200px;background:linear-gradient(180deg,rgba(230,57,70,.07),transparent);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(230,57,70,.12);}
+.char-info{padding:13px 15px;}
+.char-nm{font-family:'Bebas Neue',cursive;font-size:15px;letter-spacing:3px;color:#fff;}
+.char-cls{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--red);margin-top:2px;}
+.char-abl{font-size:11px;color:rgba(255,255,255,.38);margin-top:7px;line-height:1.6;}
+
+/* TECH */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-top:56px;}
+.tech-card{background:var(--card);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--ac,var(--red));padding:22px 20px;transition:all .3s;}
+.tech-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.tech-card-title{font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:4px;color:var(--ac,var(--red));margin-bottom:12px;}
+.tech-tag{display:inline-block;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;border-radius:2px;margin:2px 2px 2px 0;}
+.tech-list{list-style:none;}
+.tech-list li{font-size:13px;color:rgba(255,255,255,.45);line-height:2;display:flex;gap:10px;align-items:center;}
+.tech-list li::before{content:"→";color:var(--ac,var(--red));font-size:11px;}
+
+/* DEVLOG */
+.timeline{margin-top:56px;position:relative;}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--red),transparent);}
+.tl-entry{padding-left:34px;padding-bottom:44px;position:relative;}
+.tl-entry::before{content:'';position:absolute;left:-5px;top:6px;width:11px;height:11px;background:var(--red);border-radius:50%;box-shadow:0 0 12px var(--red);}
+.tl-date{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--red);margin-bottom:6px;}
+.tl-title{font-family:'Bebas Neue',cursive;font-size:21px;letter-spacing:4px;color:#fff;margin-bottom:8px;}
+.tl-desc{font-size:13px;line-height:1.8;color:rgba(255,255,255,.42);max-width:580px;}
+.tl-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px;}
+.tl-tag{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;background:rgba(230,57,70,.09);border:1px solid rgba(230,57,70,.22);color:var(--red);padding:2px 8px;border-radius:2px;}
+.tl-wip{background:rgba(78,205,196,.09);border-color:rgba(78,205,196,.3);color:var(--teal);}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-top:56px;}
+.tm-card{background:var(--card);border:1px solid rgba(255,255,255,.07);overflow:hidden;transition:all .3s;cursor:none;}
+.tm-card:hover{transform:translateY(-4px);border-color:var(--mc,rgba(230,57,70,.4));box-shadow:0 16px 36px rgba(0,0,0,.4);}
+.tm-top{height:4px;background:var(--mc,var(--red));}
+.tm-body{padding:22px 18px;}
+.tm-avatar{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;border:2px solid rgba(255,255,255,.08);}
+.tm-nick{font-family:'Bebas Neue',cursive;font-size:22px;letter-spacing:4px;color:var(--mc,var(--red));}
+.tm-name{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-bottom:4px;}
+.tm-role{font-size:12px;font-weight:600;color:rgba(255,255,255,.6);margin-bottom:8px;}
+.tm-desc{font-size:11px;color:rgba(255,255,255,.32);line-height:1.7;}
+/* Lead card */
+.tm-lead{grid-column:span 2;background:linear-gradient(135deg,rgba(10,14,20,.98),rgba(18,6,30,.98));}
+.tm-lead .tm-body{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;}
+.lead-av{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#1a003b,#4a00aa);display:flex;align-items:center;justify-content:center;font-size:38px;position:relative;border:2px solid rgba(199,125,255,.3);flex-shrink:0;}
+.lead-badge{position:absolute;bottom:-4px;right:-4px;background:var(--purple);color:#000;font-family:'Bebas Neue',cursive;font-size:9px;letter-spacing:2px;padding:2px 6px;border-radius:2px;}
+.lead-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;}
+.lead-tag{background:rgba(199,125,255,.09);border:1px solid rgba(199,125,255,.22);color:var(--purple);font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border-radius:2px;}
+.lead-quote{margin-top:10px;padding:7px 10px;background:rgba(199,125,255,.05);border-left:3px solid var(--purple);font-size:12px;color:rgba(255,255,255,.38);font-style:italic;}
+
+/* SOCIAL */
+#social{text-align:center;}
+.social-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:44px;}
+.soc-btn{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.65);text-decoration:none;padding:14px 28px;transition:all .25s;cursor:none;font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:4px;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.soc-btn:hover{background:rgba(230,57,70,.08);border-color:var(--red);color:#fff;transform:translateY(-3px);}
+.soc-btn.play{border-color:rgba(230,57,70,.4);color:var(--red);}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,.05);padding:36px;text-align:center;}
+.foot-logo{font-family:'Bebas Neue',cursive;font-size:30px;letter-spacing:8px;color:rgba(255,255,255,.15);}
+.foot-logo span{color:rgba(230,57,70,.35);}
+.foot-sub{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.12);margin-top:6px;}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s;}
+.rev.vis{opacity:1;transform:none;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+@keyframes spulse{0%,100%{opacity:.3;}50%{opacity:1;}}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .sec{padding:60px 20px;}
+  .about-grid{grid-template-columns:1fr;gap:36px;}
+  .tm-lead{grid-column:span 1;}
+  .tm-lead .tm-body{grid-template-columns:1fr;}
+}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.3;}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="curR"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">DEAD <span>CIRCLE</span></a>
+  <div class="nav-links">
+    <a href="#about" class="sr">O IGRI</a><a href="#about" class="en" style="display:none">ABOUT</a>
+    <a href="#chars" class="sr">KARAKTERI</a><a href="#chars" class="en" style="display:none">CHARACTERS</a>
+    <a href="#tech" class="sr">TEHNIČKO</a><a href="#tech" class="en" style="display:none">TECH</a>
+    <a href="#devlog">DEVLOG</a>
+    <a href="#team" class="sr">TIM</a><a href="#team" class="en" style="display:none">TEAM</a>
+  </div>
+  <div class="lang-row">
+    <button class="lbtn on" onclick="setLang('sr')">SR</button>
+    <button class="lbtn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <canvas id="hCvs"></canvas>
+  <div class="hero-wrap">
+    <div class="hero-tag sr">2D TOP-DOWN SURVIVAL ARENA &nbsp;·&nbsp; WEB IGRA &nbsp;·&nbsp; 2026</div>
+    <div class="hero-tag en" style="display:none">2D TOP-DOWN SURVIVAL ARENA &nbsp;·&nbsp; WEB GAME &nbsp;·&nbsp; 2026</div>
+    <div class="hero-title">DEAD<br><span class="r">CIRCLE</span></div>
+    <div class="hero-sub sr">Jedna arena &nbsp;·&nbsp; Nema bekstva &nbsp;·&nbsp; Samo jedan ostaje</div>
+    <div class="hero-sub en" style="display:none">One arena &nbsp;·&nbsp; No escape &nbsp;·&nbsp; Only one remains</div>
+    <div class="hero-btns">
+      <a href="game.html" class="btn-p sr">🎮 PRIDRUŽI SE IGRI</a>
+      <a href="game.html" class="btn-p en" style="display:none">🎮 JOIN THE GAME</a>
+      <a href="#about" class="btn-s sr">SAZNAJ VIŠE</a>
+      <a href="#about" class="btn-s en" style="display:none">LEARN MORE</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="sr">SKROLUJ</span><span class="en" style="display:none">SCROLL</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about" class="sec">
+  <div class="rev">
+    <div class="sec-label sr">O IGRI</div><div class="sec-label en" style="display:none">ABOUT</div>
+    <div class="sec-title sr">ŠTA JE<br>DEAD CIRCLE?</div>
+    <div class="sec-title en" style="display:none">WHAT IS<br>DEAD CIRCLE?</div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text rev">
+      <p class="sr"><strong>DEAD CIRCLE</strong> je 2D top-down survival arena igra napravljena kao jedna HTML datoteka. Bez instalacije — otvoriš u browseru i igraš.</p>
+      <p class="sr">Preživiš <strong>10 talasa neprijatelja</strong> dok se zona sužava. Skupljaj oružja, aktiviraj sposobnosti i oslobodi saveznike iz kaveza.</p>
+      <p class="sr">5 unikatnih karaktera, 3 mape, 4 tipa neprijatelja, companion AI, cutscene, dinamičan dan/noć ciklus — sve u <strong>jednom fajlu od 230KB</strong>.</p>
+      <p class="en" style="display:none"><strong>DEAD CIRCLE</strong> is a 2D top-down survival arena built as a single HTML file. No install needed — just open in browser and play.</p>
+      <p class="en" style="display:none">Survive <strong>10 enemy waves</strong> as the zone shrinks. Collect weapons, use your fighter's abilities and free allied prisoners.</p>
+      <p class="en" style="display:none">5 unique characters, 3 maps, 4 enemy types, companion AI, cutscene, day/night cycle — all in a <strong>single 230KB file</strong>.</p>
+    </div>
+    <div class="stats-grid rev">
+      <div class="stat-box"><div class="stat-n">~5K</div><div class="stat-l sr">LINIJA KODA</div><div class="stat-l en" style="display:none">LINES OF CODE</div></div>
+      <div class="stat-box"><div class="stat-n">5</div><div class="stat-l sr">KARAKTERA</div><div class="stat-l en" style="display:none">CHARACTERS</div></div>
+      <div class="stat-box"><div class="stat-n">3</div><div class="stat-l sr">MAPE</div><div class="stat-l en" style="display:none">MAPS</div></div>
+      <div class="stat-box"><div class="stat-n">10</div><div class="stat-l sr">TALASA</div><div class="stat-l en" style="display:none">WAVES</div></div>
+      <div class="stat-box"><div class="stat-n">230<span style="font-size:20px">KB</span></div><div class="stat-l sr">CELA IGRA</div><div class="stat-l en" style="display:none">WHOLE GAME</div></div>
+      <div class="stat-box"><div class="stat-n">20+</div><div class="stat-l sr">SATI RAZVOJA</div><div class="stat-l en" style="display:none">DEV HOURS</div></div>
+      <div class="stat-box"><div class="stat-n">7K</div><div class="stat-l sr">SVET PX</div><div class="stat-l en" style="display:none">WORLD PX</div></div>
+      <div class="stat-box"><div class="stat-n">1</div><div class="stat-l">HTML</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="sec">
+  <div class="rev">
+    <div class="sec-label sr">MEHANIKE</div><div class="sec-label en" style="display:none">FEATURES</div>
+    <div class="sec-title sr">ŠTA IGRA NUDI</div>
+    <div class="sec-title en" style="display:none">WHAT IT OFFERS</div>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card rev" style="--ac:#e63946"><div class="feat-icon">⚔️</div>
+      <div class="feat-title sr">5 UNIKATNIH BORACA</div><div class="feat-title en" style="display:none">5 UNIQUE FIGHTERS</div>
+      <div class="feat-desc sr">Sopstveni sprite, statistike i Q sposobnost. Vanja dinosaurus, Petar nevidljivost, Sava nokaut, Uroš ledena oluja, Šimun berserker.</div>
+      <div class="feat-desc en" style="display:none">Own sprite, stats and Q ability. Vanja dinosaur, Petar invisibility, Sava knockout, Uroš ice storm, Šimun berserker.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#4ecdc4"><div class="feat-icon">🤖</div>
+      <div class="feat-title">ENEMY AI</div>
+      <div class="feat-desc sr">4 tipa sa state machine AI: Grunt prati i puca, Heavy spor ali jak, Sniper drži distancu, Rusher jurišnik izbliza.</div>
+      <div class="feat-desc en" style="display:none">4 types with state machine AI: Grunt follows and shoots, Heavy slow but strong, Sniper keeps distance, Rusher charges close range.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#f4a261"><div class="feat-icon">🗺️</div>
+      <div class="feat-title sr">3 MAPE</div><div class="feat-title en" style="display:none">3 MAPS</div>
+      <div class="feat-desc sr">Fabrika, Šuma i Grad — svaka unikatna vizuelno i taktički. 7000×7000px svet sa proceduralnim preprekama.</div>
+      <div class="feat-desc en" style="display:none">Factory, Forest and City — each unique visually and tactically. 7000×7000px world with procedural obstacles.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#c77dff"><div class="feat-icon">🦴</div>
+      <div class="feat-title sr">SAVEZNICI</div><div class="feat-title en" style="display:none">ALLIES</div>
+      <div class="feat-desc sr">Sekula i Dubonjac u kavezima čekaju oslobađanje. Imaju sopstveni AI, prate te i automatski napadaju.</div>
+      <div class="feat-desc en" style="display:none">Sekula and Dubonjac wait in cages to be freed. They have their own AI, follow you and attack automatically.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#a8e063"><div class="feat-icon">⚡</div>
+      <div class="feat-title sr">NASUMIČNI DOGAĐAJI</div><div class="feat-title en" style="display:none">RANDOM EVENTS</div>
+      <div class="feat-desc sr">Gas napad, električni udar, loot drop između talasa. Nikad isti run dva puta.</div>
+      <div class="feat-desc en" style="display:none">Gas attack, electric strike, loot drop between waves. Never the same run twice.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#e63946"><div class="feat-icon">🎬</div>
+      <div class="feat-title sr">CUTSCENE + MUZIKA</div><div class="feat-title en" style="display:none">CUTSCENE + MUSIC</div>
+      <div class="feat-desc sr">Cinematična uvodna scena sa Epic Celtic Battle muzikom. Kinematski barovi, titlovi, atmosferski efekti.</div>
+      <div class="feat-desc en" style="display:none">Cinematic intro with Epic Celtic Battle music. Cinematic bars, subtitles, atmospheric effects.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHARS -->
+<section id="chars" class="sec">
+  <div class="rev">
+    <div class="sec-label sr">BORCI</div><div class="sec-label en" style="display:none">FIGHTERS</div>
+    <div class="sec-title sr">IZABERI SVOG BORCA</div>
+    <div class="sec-title en" style="display:none">CHOOSE YOUR FIGHTER</div>
+  </div>
+  <div class="chars-row rev">
+    <div class="char-card">
+      <div class="char-cvs-wrap" style="background:linear-gradient(160deg,#2d5a2722,#1a3a1644);flex-direction:column;gap:6px;">
+        <div style="font-size:56px;filter:drop-shadow(0 0 12px #2d5a27);">🦕</div>
+        <div style="display:flex;gap:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">
+          <span>HP <span style="color:#e63946">140</span></span>
+          <span>SH <span style="color:#4ecdc4">80</span></span>
+          <span>SPD <span style="color:#f4a261">2.9</span></span>
+        </div>
+      </div>
+      <div class="char-info">
+        <div class="char-nm">VANJA GAJIĆ</div>
+        <div class="char-cls sr">DINOSAURUS KLASA</div><div class="char-cls en" style="display:none">DINOSAUR CLASS</div>
+        <div class="char-abl sr">⚡ Q: Transformacija — Soul Mace ubija sve u krugu 200px</div>
+        <div class="char-abl en" style="display:none">⚡ Q: Transform — Soul Mace kills in 200px radius</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-cvs-wrap" style="background:linear-gradient(160deg,#c8a88222,#4a302044);flex-direction:column;gap:6px;">
+        <div style="font-size:56px;filter:drop-shadow(0 0 12px #c8a882);">🥩</div>
+        <div style="display:flex;gap:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">
+          <span>HP <span style="color:#e63946">85</span></span>
+          <span>SH <span style="color:#4ecdc4">30</span></span>
+          <span>SPD <span style="color:#f4a261">4.2</span></span>
+        </div>
+      </div>
+      <div class="char-info">
+        <div class="char-nm">PETAR MESAR</div>
+        <div class="char-cls sr">MESAR KLASA</div><div class="char-cls en" style="display:none">BUTCHER CLASS</div>
+        <div class="char-abl sr">⚡ Q: Nevidljivost 3s — potpuno neranljiv</div>
+        <div class="char-abl en" style="display:none">⚡ Q: Invisibility 3s — fully invulnerable</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-cvs-wrap" style="background:linear-gradient(160deg,#1a4a8a22,#2a2a2a44);flex-direction:column;gap:6px;">
+        <div style="font-size:56px;filter:drop-shadow(0 0 12px #1a4a8a);">👊</div>
+        <div style="display:flex;gap:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">
+          <span>HP <span style="color:#e63946">110</span></span>
+          <span>SH <span style="color:#4ecdc4">50</span></span>
+          <span>SPD <span style="color:#f4a261">3.5</span></span>
+        </div>
+      </div>
+      <div class="char-info">
+        <div class="char-nm">SAVA JOVIČIĆ</div>
+        <div class="char-cls sr">ULIČNI BORAC</div><div class="char-cls en" style="display:none">STREET FIGHTER</div>
+        <div class="char-abl sr">⚡ Q: Nokaut — omamljuje sve u krugu 200px</div>
+        <div class="char-abl en" style="display:none">⚡ Q: Knockout — stuns all in 200px radius</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-cvs-wrap" style="background:linear-gradient(160deg,#2a3a5a22,#1a2a4a44);flex-direction:column;gap:6px;">
+        <div style="font-size:56px;filter:drop-shadow(0 0 12px #2a3a5a);">❄️</div>
+        <div style="display:flex;gap:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">
+          <span>HP <span style="color:#e63946">130</span></span>
+          <span>SH <span style="color:#4ecdc4">120</span></span>
+          <span>SPD <span style="color:#f4a261">3.0</span></span>
+        </div>
+      </div>
+      <div class="char-info">
+        <div class="char-nm">UROŠ PRVOVENCANI</div>
+        <div class="char-cls sr">LEDENI VITEZ</div><div class="char-cls en" style="display:none">ICE KNIGHT</div>
+        <div class="char-abl sr">⚡ Q: Ledena oluja — zaledi sve u 280px</div>
+        <div class="char-abl en" style="display:none">⚡ Q: Ice Storm — freezes all in 280px</div>
+      </div>
+    </div>
+    <div class="char-card">
+      <div class="char-cvs-wrap" style="background:linear-gradient(160deg,#e0e0e022,#1a1a3a44);flex-direction:column;gap:6px;">
+        <div style="font-size:56px;filter:drop-shadow(0 0 12px #e0e0e0);">💪</div>
+        <div style="display:flex;gap:8px;font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.4);">
+          <span>HP <span style="color:#e63946">200</span></span>
+          <span>SH <span style="color:#4ecdc4">20</span></span>
+          <span>SPD <span style="color:#f4a261">2.5</span></span>
+        </div>
+      </div>
+      <div class="char-info">
+        <div class="char-nm">ŠIMUN IZ BG</div>
+        <div class="char-cls sr">NABILDOVANI</div><div class="char-cls en" style="display:none">BUILT CLASS</div>
+        <div class="char-abl sr">⚡ Q: Berserker 5s — 2.5× damage</div>
+        <div class="char-abl en" style="display:none">⚡ Q: Berserker 5s — 2.5× damage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TECH -->
+<section id="tech" class="sec">
+  <div class="rev">
+    <div class="sec-label sr">TEHNIČKO</div><div class="sec-label en" style="display:none">TECHNICAL</div>
+    <div class="sec-title sr">KAKO JE NAPRAVLJENO</div>
+    <div class="sec-title en" style="display:none">HOW IT WAS BUILT</div>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card rev" style="--ac:#4ecdc4">
+      <div class="tech-card-title">🛠️ <span class="sr">ALATI</span><span class="en" style="display:none">TOOLS</span></div>
+      <ul class="tech-list">
+        <li>Unity — <span class="sr">razvoj igre</span><span class="en" style="display:none">game development</span></li>
+        <li>HTML5 / CSS3 / Vanilla JavaScript</li>
+        <li>Canvas API 2D — <span class="sr">sav rendering</span><span class="en" style="display:none">all rendering</span></li>
+        <li>Web Audio API — <span class="sr">zvuk</span><span class="en" style="display:none">audio</span></li>
+        <li>YouTube IFrame API — <span class="sr">muzika u cutscene</span><span class="en" style="display:none">cutscene music</span></li>
+        <li>Chrome DevTools — debugging</li>
+      </ul>
+    </div>
+    <div class="tech-card rev" style="--ac:#e63946">
+      <div class="tech-card-title">⚙️ <span class="sr">SISTEMI</span><span class="en" style="display:none">SYSTEMS</span></div>
+      <div>
+        <span class="tech-tag">Game Loop</span><span class="tech-tag">Camera</span><span class="tech-tag">Collision</span>
+        <span class="tech-tag">Enemy AI</span><span class="tech-tag">State Machine</span><span class="tech-tag">Bullet Physics</span>
+        <span class="tech-tag">5 Karaktera</span><span class="tech-tag">Q Abilities</span><span class="tech-tag">Dodge Roll</span>
+        <span class="tech-tag">Reload</span><span class="tech-tag">Zone Shrink</span><span class="tech-tag">Companion AI</span>
+        <span class="tech-tag">Particles</span><span class="tech-tag">Procedural Maps</span><span class="tech-tag">Day/Night</span>
+        <span class="tech-tag">Level-Up</span><span class="tech-tag">Cutscene</span><span class="tech-tag">Minimap</span>
+      </div>
+    </div>
+    <div class="tech-card rev" style="--ac:#f4a261">
+      <div class="tech-card-title">📐 <span class="sr">ARHITEKTURA</span><span class="en" style="display:none">ARCHITECTURE</span></div>
+      <ul class="tech-list" style="font-family:'Share Tech Mono',monospace;font-size:11px;">
+        <li>dead_circle.html</li>
+        <li style="padding-left:14px">├── CSS (UI, screens)</li>
+        <li style="padding-left:14px">├── HTML (5 screens)</li>
+        <li style="padding-left:14px">└── JS ~5000 lines</li>
+        <li style="padding-left:28px">├── Rendering Engine</li>
+        <li style="padding-left:28px">├── Physics & AI</li>
+        <li style="padding-left:28px">├── Player Systems</li>
+        <li style="padding-left:28px">└── Wave & Events</li>
+      </ul>
+    </div>
+    <div class="tech-card rev" style="--ac:#c77dff">
+      <div class="tech-card-title">💡 <span class="sr">NAUČENO</span><span class="en" style="display:none">LEARNED</span></div>
+      <ul class="tech-list">
+        <li>Canvas API rendering pipeline</li>
+        <li class="sr">AI state machine za igre</li><li class="en" style="display:none">AI state machine for games</li>
+        <li class="sr">Organizacija velikog koda</li><li class="en" style="display:none">Large codebase organization</li>
+        <li class="sr">Collision detection algoritmi</li><li class="en" style="display:none">Collision detection algorithms</li>
+        <li class="sr">Balansiranje mehanika</li><li class="en" style="display:none">Balancing game mechanics</li>
+        <li class="sr">Proceduralno generisanje</li><li class="en" style="display:none">Procedural generation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEVLOG -->
+<section id="devlog" class="sec">
+  <div class="rev">
+    <div class="sec-label">DEVLOG</div>
+    <div class="sec-title sr">ISTORIJA RAZVOJA</div>
+    <div class="sec-title en" style="display:none">DEV HISTORY</div>
+  </div>
+  <div class="timeline">
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 01</div>
+      <div class="tl-title sr">PROTOTIP — PRVE LINIJE KODA</div>
+      <div class="tl-title en" style="display:none">PROTOTYPE — FIRST LINES</div>
+      <div class="tl-desc sr">Game loop, WASD kretanje, pucanje mišem, prva kolizija. Jedna arena, jedna mapa, jedan tip neprijatelja.</div>
+      <div class="tl-desc en" style="display:none">Game loop, WASD movement, mouse shooting, first collision. One arena, one map, one enemy type.</div>
+      <div class="tl-tags"><span class="tl-tag">GAME LOOP</span><span class="tl-tag">MOVEMENT</span><span class="tl-tag">SHOOTING</span></div>
+    </div>
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 02</div>
+      <div class="tl-title sr">CORE MEHANIKE</div>
+      <div class="tl-title en" style="display:none">CORE MECHANICS</div>
+      <div class="tl-desc sr">4 tipa neprijatelja sa AI, collision sistem, loot, 4 oružja, HP/Shield, wave sistem.</div>
+      <div class="tl-desc en" style="display:none">4 enemy types with AI, collision system, loot, 4 weapons, HP/Shield, wave system.</div>
+      <div class="tl-tags"><span class="tl-tag">ENEMY AI</span><span class="tl-tag">LOOT</span><span class="tl-tag">WEAPONS</span><span class="tl-tag">WAVES</span></div>
+    </div>
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 03</div>
+      <div class="tl-title sr">5 KARAKTERA + SPRITE SISTEM</div>
+      <div class="tl-title en" style="display:none">5 CHARACTERS + SPRITES</div>
+      <div class="tl-desc sr">Svi likovi crtani Canvas API-om. Q sposobnosti, dodge roll, melee napad. Vanja dinosaurus transformacija.</div>
+      <div class="tl-desc en" style="display:none">All characters drawn with Canvas API. Q abilities, dodge roll, melee attack. Vanja dinosaur transformation.</div>
+      <div class="tl-tags"><span class="tl-tag">CANVAS SPRITES</span><span class="tl-tag">Q ABILITIES</span><span class="tl-tag">DODGE</span><span class="tl-tag">MELEE</span></div>
+    </div>
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 04</div>
+      <div class="tl-title sr">3 MAPE — 7000×7000 SVET</div>
+      <div class="tl-title en" style="display:none">3 MAPS — 7000×7000 WORLD</div>
+      <div class="tl-desc sr">Fabrika, Šuma, Grad sa proceduralnim preprekama. Camera sistem, minimap, dan/noć ciklus.</div>
+      <div class="tl-desc en" style="display:none">Factory, Forest, City with procedural obstacles. Camera system, minimap, day/night cycle.</div>
+      <div class="tl-tags"><span class="tl-tag">3 MAPS</span><span class="tl-tag">CAMERA</span><span class="tl-tag">MINIMAP</span><span class="tl-tag">DAY/NIGHT</span></div>
+    </div>
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 05</div>
+      <div class="tl-title sr">SAVEZNICI, CUTSCENE, MUZIKA</div>
+      <div class="tl-title en" style="display:none">ALLIES, CUTSCENE, MUSIC</div>
+      <div class="tl-desc sr">Companion AI (Sekula, Dubonjac), cinematična intro scena, Epic Celtic Battle muzika via YouTube API.</div>
+      <div class="tl-desc en" style="display:none">Companion AI (Sekula, Dubonjac), cinematic intro, Epic Celtic Battle music via YouTube API.</div>
+      <div class="tl-tags"><span class="tl-tag">COMPANION AI</span><span class="tl-tag">CUTSCENE</span><span class="tl-tag">MUSIC</span></div>
+    </div>
+    <div class="tl-entry rev">
+      <div class="tl-date">FEB 2026 — FAZA 06</div>
+      <div class="tl-title sr">POLISH — UI, DIZAJN, SAJT</div>
+      <div class="tl-title en" style="display:none">POLISH — UI, DESIGN, SITE</div>
+      <div class="tl-desc sr">Brutalan char select, kompletno uputstvo sa bomb animacijom, tehnički pregled, ovaj sajt. Igra se i dalje razvija.</div>
+      <div class="tl-desc en" style="display:none">Brutal char select, complete guide with bomb animation, tech overview, this website. Game still in development.</div>
+      <div class="tl-tags"><span class="tl-tag">UI/UX</span><span class="tl-tag">WEBSITE</span><span class="tl-tag tl-wip">IN PROGRESS</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TEAM -->
+<section id="team" class="sec">
+  <div class="rev">
+    <div class="sec-label sr">TIM</div><div class="sec-label en" style="display:none">TEAM</div>
+    <div class="sec-title sr">MALI TIM · JEDNA VIZIJA</div>
+    <div class="sec-title en" style="display:none">SMALL TEAM · ONE VISION</div>
+  </div>
+  <div class="team-grid">
+    <!-- LEAD -->
+    <div class="tm-card tm-lead rev" style="--mc:#c77dff">
+      <div class="tm-top" style="background:#c77dff"></div>
+      <div class="tm-body">
+        <div>
+          <div class="lead-av">💻<div class="lead-badge">LEAD</div></div>
+        </div>
+        <div>
+          <div class="tm-nick" style="color:#c77dff">DONATELO</div>
+          <div class="tm-name">Stefan Staničić</div>
+          <div class="tm-role sr">Glavni programer & Arhitekta igre</div>
+          <div class="tm-role en" style="display:none">Lead Programmer & Game Architect</div>
+          <div class="tm-desc sr">Od praznog fajla do kompletne igre. Svaki sistem, svaka mehanika, svaki efekat.</div>
+          <div class="tm-desc en" style="display:none">From an empty file to a complete game. Every system, every mechanic, every effect.</div>
+          <div class="lead-tags">
+            <span class="lead-tag">Game Loop</span><span class="lead-tag">Enemy AI</span><span class="lead-tag">5 Karaktera</span>
+            <span class="lead-tag">Q Abilities</span><span class="lead-tag">Dodge Roll</span><span class="lead-tag">3 Mape</span>
+            <span class="lead-tag">Companion AI</span><span class="lead-tag">Cutscene</span><span class="lead-tag">Particle FX</span>
+            <span class="lead-tag">Level-Up</span><span class="lead-tag">Minimap</span><span class="lead-tag">Website</span>
+          </div>
+          <div class="lead-quote">"Od praznog fajla do kompletne igre — sve linije koda, sve mehanike, svi sistemi."</div>
+        </div>
+      </div>
+    </div>
+    <!-- Others -->
+    <div class="tm-card rev" style="--mc:#4ecdc4">
+      <div class="tm-top" style="background:#4ecdc4"></div>
+      <div class="tm-body">
+        <div class="tm-avatar" style="background:linear-gradient(135deg,#0d3b38,#1a6b66)">🎮</div>
+        <div class="tm-nick" style="color:#4ecdc4">GAJA</div>
+        <div class="tm-name">Ilija Gajić</div>
+        <div class="tm-role sr">Pomoćni programer & Content Creator</div>
+        <div class="tm-role en" style="display:none">Co-Programmer & Content Creator</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin:6px 0;">
+          <span style="background:rgba(78,205,196,0.1);border:1px solid rgba(78,205,196,0.25);color:#4ecdc4;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;">Co-Programmer</span>
+          <span style="background:rgba(78,205,196,0.1);border:1px solid rgba(78,205,196,0.25);color:#4ecdc4;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;">Ideje</span>
+          <span style="background:rgba(78,205,196,0.1);border:1px solid rgba(78,205,196,0.25);color:#4ecdc4;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;">Community</span>
+          <span style="background:rgba(78,205,196,0.1);border:1px solid rgba(78,205,196,0.25);color:#4ecdc4;font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;border-radius:2px;">Testing</span>
+        </div>
+        <div class="tm-desc sr">Pomaže u razvoju igre — predlaže mehanike, testira gameplay i daje feedback. Zadužen za prisustvo igre na društvenim mrežama i izgradnju zajednice oko Dead Circle-a.</div>
+        <div class="tm-desc en" style="display:none">Assists in game development — proposes mechanics, tests gameplay and gives feedback. Handles the game's social media presence and community building around Dead Circle.</div>
+      </div>
+    </div>
+    <div class="tm-card rev" style="--mc:#e63946">
+      <div class="tm-top" style="background:#e63946"></div>
+      <div class="tm-body">
+        <div class="tm-avatar" style="background:linear-gradient(135deg,#3b0d10,#7a1c24)">🎲</div>
+        <div class="tm-nick" style="color:#e63946">DEBELI</div>
+        <div class="tm-name">Luka Milojević</div>
+        <div class="tm-role sr">Dizajner igre</div>
+        <div class="tm-role en" style="display:none">Game Designer</div>
+        <div class="tm-desc sr">Ideja, pravila, balans mehanika.</div>
+        <div class="tm-desc en" style="display:none">Concept, rules, mechanics balance.</div>
+      </div>
+    </div>
+    <div class="tm-card rev" style="--mc:#f4a261">
+      <div class="tm-top" style="background:#f4a261"></div>
+      <div class="tm-body">
+        <div class="tm-avatar" style="background:linear-gradient(135deg,#3b2000,#7a4200)">⚙️</div>
+        <div class="tm-nick" style="color:#f4a261">DALIBOR</div>
+        <div class="tm-name">David Pavlović</div>
+        <div class="tm-role sr">Tehnička podrška</div>
+        <div class="tm-role en" style="display:none">Technical Support</div>
+        <div class="tm-desc sr">Testiranje i stabilnost igre.</div>
+        <div class="tm-desc en" style="display:none">Testing and game stability.</div>
+      </div>
+    </div>
+    <div class="tm-card rev" style="--mc:#a8e063">
+      <div class="tm-top" style="background:#a8e063"></div>
+      <div class="tm-body">
+        <div class="tm-avatar" style="background:linear-gradient(135deg,#1a3b00,#3a7a00)">🎨</div>
+        <div class="tm-nick" style="color:#a8e063">RADA</div>
+        <div class="tm-name">Radmila Petrović</div>
+        <div class="tm-role sr">2D Umetnik</div>
+        <div class="tm-role en" style="display:none">2D Artist</div>
+        <div class="tm-desc sr">Vizuelni identitet igre.</div>
+        <div class="tm-desc en" style="display:none">Visual identity of the game.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL -->
+<section id="social" class="sec" style="text-align:center">
+  <div class="rev">
+    <div class="sec-label sr">KONTAKT</div><div class="sec-label en" style="display:none">CONTACT</div>
+    <div class="sec-title sr">OSTANITE U KONTAKTU</div>
+    <div class="sec-title en" style="display:none">STAY IN TOUCH</div>
+  </div>
+  <div class="social-row rev">
+    <a href="https://www.instagram.com/game_circle2/" class="soc-btn" target="_blank">📸 INSTAGRAM</a>
+    <a href="https://www.tiktok.com/@gamecircle445" class="soc-btn" target="_blank">🎵 TIKTOK</a>
+    <a href="mailto:gamecircle999@gmail.com" class="soc-btn">✉️ EMAIL</a>
+    <a href="#" class="soc-btn play" onclick="showWIP();return false;">
+      🎮 <span class="sr">IGRAJ SADA</span><span class="en" style="display:none">PLAY NOW</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-logo">DEAD <span>CIRCLE</span></div>
+  <div class="foot-sub sr">© 2026 STEFAN STANIČIĆ · SVA PRAVA ZADRŽANA · JEDNA ARENA. NEMA BEKSTVA.</div>
+  <div class="foot-sub en" style="display:none">© 2026 STEFAN STANIČIĆ · ALL RIGHTS RESERVED · ONE ARENA. NO ESCAPE.</div>
+</footer>
+
+<script>
+// CURSOR + TRAIL
+const cur=document.getElementById('cur');
+const curR=document.getElementById('curR');
+let mx=window.innerWidth/2, my=window.innerHeight/2;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+  curR.style.left=mx+'px'; curR.style.top=my+'px';
+});
+
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    cur.style.transform='translate(-50%,-50%) scale(2.2)';
+    curR.style.transform='translate(-50%,-50%) scale(1.5)';
+    curR.style.borderColor='rgba(230,57,70,1)';
+  });
+  el.addEventListener('mouseleave',()=>{
+    cur.style.transform='translate(-50%,-50%) scale(1)';
+    curR.style.transform='translate(-50%,-50%) scale(1)';
+    curR.style.borderColor='rgba(230,57,70,0.7)';
+  });
+});
+
+// LANG
+function setLang(l){
+  document.querySelectorAll('.lbtn').forEach((b,i)=>b.classList.toggle('on',i===(l==='sr'?0:1)));
+  document.querySelectorAll('.sr').forEach(e=>e.style.display=l==='sr'?'':'none');
+  document.querySelectorAll('.en').forEach(e=>e.style.display=l==='en'?'':'none');
+}
+
+// HERO CANVAS
+const hc=document.getElementById('hCvs');
+let hT=0;
+const hPts=Array.from({length:110},()=>({
+  x:Math.random()*2000, y:Math.random()*900,
+  vx:(Math.random()-.5)*.4, vy:-Math.random()*.7-.15,
+  r:Math.random()*2.5+.4, a:Math.random()*.5+.1,
+  col:Math.random()<.6?'230,57,70':Math.random()<.5?'78,205,196':'180,180,255',
+  p:Math.random()*6.28
+}));
+(function animHero(){
+  requestAnimationFrame(animHero);
+  const W=window.innerWidth, H=window.innerHeight;
+  hc.width=W; hc.height=H;
+  const ctx=hc.getContext('2d');
+  hT+=.007;
+  ctx.fillStyle='#050709'; ctx.fillRect(0,0,W,H);
+  const HX=80;
+  for(let r=0;r<Math.ceil(H/HX)+2;r++){
+    for(let c=0;c<Math.ceil(W/(HX*1.15))+2;c++){
+      const ox=(r%2)*HX*.5, cx2=c*HX*1.15+ox-HX, cy=r*HX-HX;
+      const d=Math.sqrt((cx2-W/2)**2+(cy-H/2)**2);
+      const pulse=Math.sin(hT*1.2-d*.006)*.5+.5;
+      ctx.strokeStyle='rgba(230,57,70,'+(0.007+pulse*.016)+')';
+      ctx.lineWidth=.5; ctx.beginPath();
+      for(let k=0;k<6;k++){const a=k/6*Math.PI*2+Math.PI/6;k===0?ctx.moveTo(cx2+Math.cos(a)*HX*.5,cy+Math.sin(a)*HX*.5):ctx.lineTo(cx2+Math.cos(a)*HX*.5,cy+Math.sin(a)*HX*.5);}
+      ctx.closePath(); ctx.stroke();
+    }
+  }
+  ctx.save(); ctx.translate(W/2,H/2);
+  for(let i=0;i<28;i++){
+    const a=i/28*Math.PI*2+hT*.025;
+    ctx.strokeStyle='rgba(230,57,70,'+(0.005+Math.sin(hT+i)*.003)+')';
+    ctx.lineWidth=.8; ctx.beginPath(); ctx.moveTo(0,0);
+    ctx.lineTo(Math.cos(a)*Math.max(W,H),Math.sin(a)*Math.max(W,H)); ctx.stroke();
+  }
+  ctx.restore();
+  const vg=ctx.createRadialGradient(W/2,H/2,H*.05,W/2,H/2,H*.9);
+  vg.addColorStop(0,'transparent'); vg.addColorStop(1,'rgba(0,0,0,.9)');
+  ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
+  hPts.forEach(p=>{
+    p.x+=p.vx; p.y+=p.vy; p.p+=.04;
+    if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+    if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+    ctx.fillStyle='rgba('+p.col+','+(p.a*(.6+Math.sin(p.p)*.4))+')';
+    ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
+  });
+  const bg=ctx.createLinearGradient(0,H*.65,0,H);
+  bg.addColorStop(0,'transparent');
+  bg.addColorStop(1,'rgba(230,57,70,'+(0.055+Math.sin(hT*2)*.02)+')');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+  for(let y=0;y<H;y+=4){ctx.fillStyle='rgba(0,0,0,.025)';ctx.fillRect(0,y,W,1);}
+})();
+
+// REVEAL ON SCROLL
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+
+// WIP MODAL
+function showWIP(){
+  const m=document.getElementById('wipModal');
+  m.style.display='flex';
+  m.onclick=e=>{if(e.target===m)closeWIP();};
+}
+function closeWIP(){document.getElementById('wipModal').style.display='none';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeWIP();});
+</script>
+
+<!-- WIP MODAL -->
+<div id="wipModal" style="display:none;position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);align-items:center;justify-content:center;">
+  <div style="background:#080c12;border:1px solid rgba(230,57,70,.4);max-width:480px;width:90%;padding:48px 40px;text-align:center;position:relative;clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));box-shadow:0 0 60px rgba(230,57,70,.2);">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e63946,transparent);"></div>
+    <div style="font-size:52px;margin-bottom:16px;">🚧</div>
+    <div style="font-family:'Bebas Neue',cursive;font-size:48px;letter-spacing:8px;color:#e63946;line-height:1;">WORK IN<br>PROGRESS</div>
+    <div style="font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:5px;color:rgba(255,255,255,.3);margin-top:10px;margin-bottom:24px;">IGRA JE JOŠ U RAZVOJU</div>
+    <div style="font-size:14px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:32px;">
+      Dead Circle se aktivno razvija.<br>
+      Pratite nas na mrežama za obaveštenja<br>kada igra bude dostupna za download.
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://www.instagram.com/game_circle2/" target="_blank" style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:4px;background:rgba(230,57,70,.15);border:1px solid rgba(230,57,70,.4);color:#e63946;padding:10px 22px;text-decoration:none;transition:all .2s;cursor:none;">📸 INSTAGRAM</a>
+      <button onclick="closeWIP()" style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:4px;background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);padding:10px 22px;cursor:none;transition:all .2s;">ZATVORI</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

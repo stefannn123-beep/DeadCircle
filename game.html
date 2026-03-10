@@ -579,9 +579,9 @@ function switchHelpTab(tab){
 </div>
 
 <!-- MODE SELECT -->
-<div id="modeScreen" class="screen hidden" style="background:radial-gradient(ellipse at 30% 60%, #0d0510 0%, #050309 60%, #000 100%);">
+<div id="modeScreen" class="screen hidden" style="background:radial-gradient(ellipse at 30% 60%, #0d0510 0%, #050309 60%, #000 100%);overflow-y:auto;-webkit-overflow-scrolling:touch;justify-content:flex-start;padding:40px 20px;">
   <canvas id="modeCanvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
-  <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px;">
+  <div style="position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px;width:100%;max-width:700px;margin:0 auto;padding-bottom:40px;">
     <div>
       <div class="game-title" style="font-size:clamp(48px,8vw,90px);">DEAD CIRCLE</div>
       <div class="game-subtitle">IZABERI NAČIN IGRE</div>
@@ -3593,6 +3593,11 @@ function updatePlayer(dt){
   if(keys['KeyS']||keys['ArrowDown'])dy+=spd;
   if(keys['KeyA']||keys['ArrowLeft'])dx-=spd;
   if(keys['KeyD']||keys['ArrowRight'])dx+=spd;
+  // MOBILE JOYSTICK — inject directly into movement
+  if(joystickActive && currentPlatform==='mobile'){
+    dx += joystickDx * spd;
+    dy += joystickDy * spd;
+  }
   if(dx&&dy){dx*=0.707;dy*=0.707;}
   const nx=Math.max(20,Math.min(WORLD_W-20,player.x+dx));
   const ny=Math.max(20,Math.min(WORLD_H-20,player.y+dy));
@@ -6217,14 +6222,7 @@ function updateJoystick(cx, cy){
 const _origUpdate = typeof update === 'function' ? update : null;
 
 // Patch player movement to include joystick input
-function applyJoystickToPlayer(){
-  if(!joystickActive || !player || currentPlatform!=='mobile') return;
-  const spd = player.speed * 2.1;
-  player.x += joystickDx * spd;
-  player.y += joystickDy * spd;
-  player.x = Math.max(20, Math.min(WORLD_W-20, player.x));
-  player.y = Math.max(20, Math.min(WORLD_H-20, player.y));
-}
+// applyJoystickToPlayer — removed, joystick now handled in updatePlayer directly
 
 // ---- MOBILE AIM + SHOOT ----
 let aimTouchId = null;
@@ -6274,16 +6272,7 @@ mbShootBtn && mbShootBtn.addEventListener('touchend', e=>{
   e.preventDefault(); mouse.right=false;
 },{passive:false});
 
-// Patch gameLoop to apply joystick each frame
-const _origGameLoop = typeof gameLoop === 'function' ? gameLoop : null;
-
-// Hook into the existing update pipeline — inject joystick movement
-// We do this by patching the update function at call time
-const __nativeUpdate = window.update;
-window.update = function(dt){
-  if(typeof __nativeUpdate==='function') __nativeUpdate(dt);
-  applyJoystickToPlayer();
-};
+// window.update override removed — joystick handled in updatePlayer
 
 // Show/hide mobile controls when game starts/ends
 const _origStartGame = window.startGame;

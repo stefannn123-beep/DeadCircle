@@ -635,7 +635,41 @@ function switchHelpTab(tab){
       </div>
 
     </div>
+    <!-- PLATFORM SELECTOR -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,0.3);">PLATFORMA</div>
+      <div style="display:flex;gap:8px;">
+        <button id="pcBtn" onclick="setPlatform('pc')" style="font-family:'Bebas Neue',cursive;font-size:15px;letter-spacing:3px;padding:10px 28px;border:2px solid rgba(199,125,255,0.6);background:rgba(199,125,255,0.15);color:#c77dff;cursor:pointer;border-radius:4px;transition:all .2s;pointer-events:all;">💻 PC</button>
+        <button id="mobileBtn" onclick="setPlatform('mobile')" style="font-family:'Bebas Neue',cursive;font-size:15px;letter-spacing:3px;padding:10px 28px;border:2px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.35);cursor:pointer;border-radius:4px;transition:all .2s;pointer-events:all;">📱 MOBILNI</button>
+      </div>
+      <div id="platformHint" style="font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(199,125,255,0.5);">WASD + MIŠ + Q/SPACE/F</div>
+    </div>
+
     <button class="back-btn" onclick="showScreen('menuScreen')" style="pointer-events:all;">← NAZAD</button>
+  </div>
+</div>
+
+<!-- MOBILE CONTROLS -->
+<div id="mobileControls" style="display:none;position:fixed;inset:0;pointer-events:none;z-index:20;">
+  <!-- LEFT JOYSTICK -->
+  <div id="joystickZone" style="position:absolute;left:20px;bottom:20px;width:160px;height:160px;pointer-events:all;">
+    <div id="joystickBase" style="position:absolute;inset:0;border-radius:50%;background:rgba(255,255,255,0.06);border:2px solid rgba(255,255,255,0.15);"></div>
+    <div id="joystickKnob" style="position:absolute;width:60px;height:60px;border-radius:50%;background:rgba(199,125,255,0.5);border:2px solid rgba(199,125,255,0.9);left:50px;top:50px;transition:background .1s;box-shadow:0 0 16px rgba(199,125,255,0.4);"></div>
+  </div>
+  <!-- RIGHT AIM ZONE -->
+  <div id="aimZone" style="position:absolute;right:0;top:0;width:50%;height:100%;pointer-events:all;"></div>
+  <!-- ACTION BUTTONS - bottom right -->
+  <div style="position:absolute;right:20px;bottom:20px;display:flex;flex-direction:column;gap:10px;align-items:flex-end;pointer-events:all;">
+    <!-- SHOOT button (big) -->
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button id="mbReload" ontouchstart="startReload();event.preventDefault();" style="width:54px;height:54px;border-radius:50%;background:rgba(244,162,97,0.25);border:2px solid rgba(244,162,97,0.6);color:#f4a261;font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:1px;cursor:pointer;pointer-events:all;">R</button>
+      <button id="mbShoot" style="width:80px;height:80px;border-radius:50%;background:rgba(230,57,70,0.3);border:3px solid rgba(230,57,70,0.8);color:#fff;font-family:'Bebas Neue',cursive;font-size:13px;letter-spacing:2px;cursor:pointer;pointer-events:all;box-shadow:0 0 20px rgba(230,57,70,0.3);">PUCAJ</button>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <button id="mbMelee" ontouchstart="doMelee();event.preventDefault();" style="width:54px;height:54px;border-radius:50%;background:rgba(168,224,99,0.2);border:2px solid rgba(168,224,99,0.5);color:#a8e063;font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:1px;cursor:pointer;pointer-events:all;">F</button>
+      <button id="mbDodge" ontouchstart="doDodge();event.preventDefault();" style="width:54px;height:54px;border-radius:50%;background:rgba(78,205,196,0.2);border:2px solid rgba(78,205,196,0.5);color:#4ecdc4;font-family:'Bebas Neue',cursive;font-size:11px;letter-spacing:1px;cursor:pointer;pointer-events:all;">DASH</button>
+      <button id="mbAbility" ontouchstart="useAbility();event.preventDefault();" style="width:54px;height:54px;border-radius:50%;background:rgba(199,125,255,0.2);border:2px solid rgba(199,125,255,0.6);color:#c77dff;font-family:'Bebas Neue',cursive;font-size:13px;letter-spacing:1px;cursor:pointer;pointer-events:all;">Q</button>
+    </div>
   </div>
 </div>
 
@@ -650,12 +684,12 @@ function switchHelpTab(tab){
         TEHNIČKI PREGLED
         <div style="position:absolute;left:-5%;top:58%;width:110%;height:3px;background:#e63946;transform:rotate(-1deg);box-shadow:0 0 12px #e63946;"></div>
       </div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:5px;margin-top:14px;">DEAD CIRCLE · STEFAN STANIČIĆ · 2026</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:5px;margin-top:14px;">DEAD CIRCLE · STEFAN STANIČIĆ · 2026 · v6.0 FINAL</div>
     </div>
 
     <!-- Intro box -->
     <div style="background:rgba(230,57,70,0.07);border:1px solid rgba(230,57,70,0.25);border-radius:6px;padding:14px 18px;margin-bottom:22px;font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;text-align:center;">
-      Web igra pokretna u bilo kom browseru bez instalacije. Jedna HTML datoteka (~230KB) koja sadrži kompletnu igru — engine, AI, grafiku, zvuk, UI.
+      Web igra pokretna u bilo kom browseru bez instalacije. Jedna HTML datoteka (~280KB) koja sadrži kompletnu igru — engine, AI, grafiku, zvuk, UI, XP sistem, combo mehanika, execucija, krvave mrlje, screen shake i mobilne kontrole. Sve iz nule, bez frameworka.
     </div>
 
     <!-- Grid layout -->
@@ -681,7 +715,7 @@ function switchHelpTab(tab){
           <div style="color:rgba(255,255,255,0.3);">dead_circle.html</div>
           <div>├── CSS <span style="color:rgba(255,255,255,0.3);">(UI, ekrani, kartice)</span></div>
           <div>├── HTML <span style="color:rgba(255,255,255,0.3);">(5 ekrana)</span></div>
-          <div>└── JavaScript <span style="color:#f4a261;">~5000 linija</span></div>
+          <div>└── JavaScript <span style="color:#f4a261;">~7500 linija</span></div>
           <div style="padding-left:16px;">├── Game Loop + Delta Time</div>
           <div style="padding-left:16px;">├── Rendering Engine</div>
           <div style="padding-left:16px;">├── Physics & Collision</div>
@@ -697,7 +731,7 @@ function switchHelpTab(tab){
       <div style="background:rgba(13,17,23,0.92);border:1px solid rgba(230,57,70,0.25);border-left:3px solid #e63946;border-radius:6px;padding:16px 18px;">
         <div style="font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#e63946;margin-bottom:12px;">⚙️ IMPLEMENTIRANO OD NULE</div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;">
-          ${['Custom Game Loop','Camera System','AABB Collision','Enemy State Machine','4 Tipa Neprijatelja','Bullet Physics','5 Karaktera + Sprite','Q Sposobnosti','Dodge Roll','Reload System','Zone Shrink','Companion AI','Particle System','3 Mape (7000×7000)','Day/Night Cycle','Level-Up System','Proceduralni Tereni','Cutscene Engine','Loot Sprites','Minimap'].map(t => 
+          ${['Custom Game Loop','Camera System','AABB Collision','Enemy State Machine','4 Tipa Neprijatelja','Bullet Physics','5 Karaktera + Sprite','Q Sposobnosti','Dodge Roll','Reload System','Zone Shrink','Companion AI','Particle System','3 Mape (7000×7000)','Day/Night Cycle','Level-Up System','Proceduralni Tereni','Cutscene Engine','Loot Sprites','Minimap','XP/Level Sistem','Kritični Hitovi','Combo Sistem','Screen Shake','Execucija','Krvave Mrlje','Bullet Trails','Mobilne Kontrole'].map(t => 
             `<span style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.25);color:rgba(255,255,255,0.65);font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 7px;border-radius:3px;">${t}</span>`
           ).join('')}
         </div>
@@ -707,7 +741,7 @@ function switchHelpTab(tab){
       <div style="background:rgba(13,17,23,0.92);border:1px solid rgba(199,125,255,0.25);border-left:3px solid #c77dff;border-radius:6px;padding:16px 18px;">
         <div style="font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#c77dff;margin-bottom:12px;">📊 STATISTIKE PROJEKTA</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          ${[['~7000','LINIJA KODA'],['~260KB','VELIČINA FAJLA'],['5','EKRANA'],['5','KARAKTERA'],['4+5','NEP+BOSSOVA'],['4','ORUŽJA'],['3','MAPE'],['5','ZONA PRIČE'],['30+','SATI RADA'],['1','HTML FAJL']].map(([val,lbl]) =>
+          ${[['~7500','LINIJA KODA'],['~280KB','VELIČINA FAJLA'],['5','EKRANA'],['5','KARAKTERA'],['4+5','NEP+BOSSOVA'],['4','ORUŽJA'],['3','MAPE'],['5','ZONA PRIČE'],['40+','SATI RADA'],['1','HTML FAJL']].map(([val,lbl]) =>
             `<div style="text-align:center;background:rgba(199,125,255,0.05);border-radius:4px;padding:8px 4px;">
               <div style="font-family:'Bebas Neue',cursive;font-size:22px;color:#c77dff;">${val}</div>
               <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;">${lbl}</div>
@@ -730,6 +764,8 @@ function switchHelpTab(tab){
           <div><span style="color:#a8e063;">08.</span> Priča — zona sistem, bossovi, dijaloži, mafija gameplay</div>
           <div><span style="color:#a8e063;">09.</span> Mode Select — Story mod vs Arena survival, podeljeno uputstvo</div>
           <div><span style="color:#a8e063;">10.</span> Rank Sistem — 8 rankova (Bronza → Vanja), localStorage, progress bar</div>
+          <div><span style="color:#a8e063;">11.</span> Mega Update — XP/Level sistem, kritični hitovi, combo sistem, screen shake</div>
+          <div><span style="color:#a8e063;">12.</span> Execucija mehanika, krvave mrlje, bullet trails, mobilne kontrole (džojstik)</div>
         </div>
       </div>
 
@@ -744,6 +780,9 @@ function switchHelpTab(tab){
           <div>→ Balansiranje gameplay mehanika i boss dizajn</div>
           <div>→ Collision detection algoritmi</div>
           <div>→ Narativni dizajn i zona-bazirani gameplay</div>
+          <div>→ Game feel sistemi — screen shake, particle feedback, combo flow</div>
+          <div>→ Touch input i mobilni džojstik bez biblioteka</div>
+          <div>→ XP krive i balansiranje progresije</div>
         </div>
       </div>
 
@@ -927,7 +966,7 @@ function switchHelpTab(tab){
         <div class="dev-name">Stefan Staničić</div>
         <div class="dev-role" style="color:#c77dff">Glavni programer &amp; Arhitekta igre</div>
         <div class="dev-role-en">Lead Programmer · Game Engine · AI · UI/UX · All Systems</div>
-        <div class="dev-desc">Projektovao i kodirao kompletnu tehničku osnovu igre od nule — engine, AI, priča, mapa, UI, svi sistemi. Story mod, Arena mod, 5 bossova, kill feed, rank sistem, zone dijalozi — sve je Stefan.</div>
+        <div class="dev-desc">Projektovao i kodirao kompletnu tehničku osnovu igre od nule — engine, AI, priča, mapa, UI, svi sistemi. Story mod, Arena mod, 5 bossova, rank sistem, XP/level sistem, combo mehanika, execucija, screen shake, krvave mrlje, bullet trails, mobilne kontrole — sve je Stefan.</div>
         <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Game Loop</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Enemy AI</span>
@@ -955,9 +994,16 @@ function switchHelpTab(tab){
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Kill Feed System</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Unikatni AI Botovi</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Rank Sistem (Bronza→Vanja)</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">XP/Level Sistem</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Kritični Hitovi</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Combo Sistem</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Screen Shake</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Execucija</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Krvave Mrlje</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Mobilne Kontrole</span>
         </div>
         <div style="margin-top:10px;padding:8px 10px;background:rgba(199,125,255,0.06);border-left:3px solid #c77dff;border-radius:2px;font-size:12px;color:rgba(255,255,255,0.5);font-style:italic;">
-          "Od praznog fajla do kompletne igre sa pričom, bossovima, rank sistemom, 7000+ linija koda — sve sam kodirao sam."
+          "Od praznog fajla do kompletne igre sa pričom, bossovima, rank sistemom, XP/Level sistemom, combo mehanikom, execucijom, krvavim mrljama i mobilnim kontrolama — 7500+ linija koda, sve sam kodirao sam."
         </div>
       </div>
     </div>
@@ -1011,6 +1057,46 @@ function switchHelpTab(tab){
         <div class="help-key-row"><span class="kbd">F</span><span class="help-key-desc">Melee napad — udarac pesnicom</span></div>
         <div class="help-key-row"><span class="kbd">E</span><span class="help-key-desc">Oslobodi saveznike iz kaveza (samo Vanja)</span></div>
         <div class="help-key-row"><span class="kbd">ESC</span><span class="help-key-desc">Pauza</span></div>
+      </div>
+
+      <!-- NOVA MEHANIKA v6.0 -->
+      <div class="help-section" style="--sec-color:#c77dff">
+        <h3>🆕 v6.0 — NOVA MEHANIKA</h3>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#c77dff;margin-bottom:6px;">🏆 XP I LEVEL SISTEM</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            Svako ubojstvo donosi XP. Na levelu ↑ biraš jednu od 3 nadogradnje. Traka iskustva vidljiva na dnu ekrana — nivo raste tokom igre, svaki level zahteva više XP.
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#ffd700;margin-bottom:6px;">💥 KRITIČNI HITOVI</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            20% šansa na kritični hit — 2.2× damage, zlatni tekst, ekran se trese. Što veći combo, veća šansa za crit.
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#f4a261;margin-bottom:6px;">⚡ COMBO SISTEM</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            Ubijaj neprijatelje brzo jedan za drugim — gradi COMBO x2, x3, x4... Svaki novi ubod resetuje tajmer od 2.8s. x5 = UNSTOPPABLE! x10 = GODLIKE!
+          </div>
+        </div>
+
+        <div style="margin-bottom:14px;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#e63946;margin-bottom:6px;">⚡ EXECUCIJA <span style="color:rgba(255,255,255,0.4);font-size:11px;">[ F ]</span></div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            Kada neprijatelj ima manje od 15% HP i nalaziš se blizu — pojavljuje se oznaka <span style="color:#ffd700">⚡ F — EXECUCIJA</span>. Pritisni F za instant kill sa eksplozivnom animacijom i bonus XP.
+          </div>
+        </div>
+
+        <div style="margin-bottom:6px;">
+          <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#4ecdc4;margin-bottom:6px;">🩸 KRVAVE MRLJE</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.6);line-height:1.8;">
+            Svaki ubijeni neprijatelj ostavlja krvavu mrlju na tlu. Mapa izgleda sve gore što duže igraš.
+          </div>
+        </div>
       </div>
 
       <!-- KARAKTERI -->
@@ -1414,6 +1500,8 @@ function switchHelpTab(tab){
 </div>
 <!-- GAME CANVAS -->
 <div id="killFeed"></div>
+<div id="comboDisplay" style="position:fixed;top:50%;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',cursive;font-size:32px;letter-spacing:6px;color:#ffd700;z-index:14;opacity:0;transition:opacity 0.3s,transform 0.12s;text-shadow:0 0 20px currentColor;pointer-events:none;"></div>
+<div id="execHint" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:4px;color:#ffd700;z-index:14;opacity:0;transition:opacity 0.2s;text-shadow:0 0 12px #ffd700;pointer-events:none;">⚡ F — EXECUCIJA</div>
 <canvas id="gameCanvas" tabindex="0" style="display:none;position:fixed;top:0;left:0;outline:none;"></canvas>
 
 <!-- HUD -->
@@ -1435,7 +1523,11 @@ function switchHelpTab(tab){
       <div class="inv-slot" id="slot2"><span class="slot-num">3</span><span class="inv-name">-</span></div>
     </div>
   </div>
-  <div class="hud-tc">
+  <div id="xpBarWrap" style="position:fixed;bottom:0;left:0;width:100%;height:5px;z-index:12;background:rgba(0,0,0,0.5);">
+  <div id="xpBarFill" style="height:100%;width:0%;background:linear-gradient(90deg,#c77dff,#9b59b6);box-shadow:0 0 8px #c77dff;transition:width 0.3s;"></div>
+</div>
+<div id="xpLevelDisplay" style="position:fixed;bottom:8px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',cursive;font-size:13px;letter-spacing:3px;color:#c77dff;z-index:13;text-shadow:0 0 8px #c77dff;display:none;">LVL 1</div>
+<div class="hud-tc">
     <div class="wave-text" id="waveText">TALAS 1</div>
     <div class="kills-text" id="killsText">UBISTAVA: 0</div>
     <div class="zone-text safe" id="zoneText">ZONA: BEZBEDNA</div>
@@ -2067,7 +2159,29 @@ function updateDodge(dt){
 // MELEE
 // ================================================================
 function doMelee(){
-  if(meleeCooldown>0)return;meleeCooldown=600;var mDmg=player.meleeDmg||30;var hit=false;
+  if(meleeCooldown>0)return;
+  // EXECUTION — instant kill when enemy < 15% HP and nearby
+  let executed=false;
+  enemies.forEach(function(e){
+    if(e.dying||e.dead||executed)return;
+    if(dist(e.x,e.y,player.x,player.y)<75&&e.hp/e.maxHp<0.15){
+      executed=true;
+      // Cinematic execution
+      e.hp=0;
+      spawnParticles(e.x,e.y,40,'#e63946',0.7);
+      spawnParticles(e.x,e.y,20,'#ffd700',0.4);
+      spawnBloodPool(e.x,e.y,28);
+      triggerShake(14,350);
+      showWorldFloat('⚡ EXECUCIJA!',e.x,e.y-40,'#ffd700');
+      showBanner('☠️ EXECUCIJA — BRUTALNO!','#ffd700',2000);
+      gainXP(60);
+      registerComboKill(e.x,e.y);
+      meleeCooldown=300;
+      setTimeout(()=>{if(!e.dead)killEnemy(e);},80);
+    }
+  });
+  if(executed)return;
+  meleeCooldown=600;var mDmg=player.meleeDmg||30;var hit=false;
   // Enemies also melee-hit companions
   companions.forEach(function(c){
     if(c.dead)return;
@@ -2767,6 +2881,13 @@ const ITEMS = [
 ];
 
 let player,enemies=[],bullets=[],loot=[],particles=[],floatTexts=[],trailParticles=[];
+// ---- MEGA UPDATE VARS ----
+let screenShake={x:0,y:0,intensity:0,duration:0};
+let bloodPools=[];
+let comboCount=0,comboTimer=0,comboMaxTimer=2800;
+let weatherType='clear';
+let weatherTimer=0,weatherRainDrops=[],weatherFogAlpha=0;
+let bulletTrails=[];
 let rivals=[];
 let cages=[],companions=[];
 let camera={x:0,y:0};
@@ -2789,6 +2910,8 @@ let particlesEnabled=true;
 let abilityCooldown=0,abilityActive=false,abilityTimer=0;
 let dodgeCooldown=0,dodging=false,dodgeTimer=0,dodgeVx=0,dodgeVy=0;
 let levelUpPending=false,levelUpOptions=[];
+let playerXP=0,playerLevel=1,playerXPToNext=100;
+let xpBar=null;
 let meleeCooldown=0;
 let gameMode='arena';// 'story' or 'arena'
 let killFeed=[];// [{name, color, time}]
@@ -2854,7 +2977,7 @@ function startGame(){
     sprintAnim:false
   };
   
-  enemies=[];bullets=[];loot=[];particles=[];floatTexts=[];trailParticles=[];gasZones=[];electricZones=[];
+  enemies=[];bullets=[];loot=[];particles=[];floatTexts=[];trailParticles=[];gasZones=[];electricZones=[];bloodPools=[];bulletTrails=[];comboCount=0;comboTimer=0;screenShake={x:0,y:0,intensity:0,duration:0};weatherType='clear';weatherRainDrops=[];weatherFogAlpha=0;
   zone={cx:WORLD_W/2,cy:WORLD_H/2,r:WORLD_W*.47,targetR:WORLD_W*.08,shrinkRate:0};
   zone.shrinkRate=(zone.r-zone.targetR)/(3000*60);
   wave=1;kills=0;gameTime=0;lastTime=0;reloading=false;currentWeaponIdx=0;
@@ -2865,6 +2988,10 @@ function startGame(){
   spawnLoot(40);
   generateObstacles();
   killStreak=0;killStreakTimer=0;
+  playerXP=0;playerLevel=1;playerXPToNext=100;
+  comboCount=0;comboTimer=0;
+  screenShake={x:0,y:0,intensity:0,duration:0};
+  bloodPools=[];bulletTrails=[];
   initAudio();
   // show crosshair
   const cch=document.getElementById('crosshairCanvas');
@@ -2875,6 +3002,9 @@ function startGame(){
   paused=false;levelUpPending=false;abilityCooldown=0;abilityActive=false;dodgeCooldown=0;dodging=false;dayNightTime=Math.random();meleeCooldown=0;
   document.getElementById('pauseOverlay').classList.add('hidden');document.getElementById('levelUpOverlay').classList.add('hidden');
   var ah=document.getElementById('abilityHud');if(ah)ah.style.display='flex';
+  var xpw=document.getElementById('xpBarWrap');if(xpw)xpw.style.display='block';
+  var xpl=document.getElementById('xpLevelDisplay');if(xpl){xpl.style.display='block';xpl.textContent='LVL 1';}
+  var xpf=document.getElementById('xpBarFill');if(xpf)xpf.style.width='0%';
   if(animFrame)cancelAnimationFrame(animFrame);
   setTimeout(()=>gameCanvas&&gameCanvas.focus(),50);
   gameLoop();
@@ -3446,6 +3576,8 @@ function update(dt){
   if(paused||gameState==='levelup')return;
   updatePlayer(dt);updateEnemies(dt);updateBullets(dt);updateLoot();updateParticles(dt);updateZone(dt);updateWave(dt);updateEvents(dt);updateKillStreak(dt);
   updateAbility(dt);updateDodge(dt);updateDayNight(dt);updateAlertSystem(dt);
+  updateScreenShake(dt);updateCombo(dt);updateBulletTrails(dt);checkExecution();
+  updateScreenShake(dt);updateCombo(dt);updateBulletTrails(dt);checkExecution();
   updateRivals(dt);
   updateCompanions(dt);
   checkCageInteract();
@@ -3539,6 +3671,10 @@ function startReload(){
 }
 
 function fireBullet(src,weapon,owner){
+  // Spawn bullet trail origin
+  if(owner==='player'){
+    bulletTrails.push({x:src.x,y:src.y,angle:src.angle,color:weapon.color||'#fff',life:1,maxLife:1,len:weapon.shotCount>1?20:30});
+  }
   for(let i=0;i<weapon.shotCount;i++){
     const sm=src===player?(player.spreadMult||1):1;
     const ang=src.angle+(Math.random()-.5)*weapon.spread*2*sm+(src===player&&weapon.shotCount>1?((i/weapon.shotCount-.5)*weapon.spread*3*sm):0);
@@ -3622,7 +3758,6 @@ function updateEnemies(dt){
 }
 
 function killEnemy(e){
-  // Kill feed
   const nameMap={grunt:'Mafija Grunt',heavy:'Oklopnik',sniper:'Snajperista',rusher:'Ludi Napadač',boss:e.name||'BOSS'};
   const colorMap={grunt:'#e63946',heavy:'#9b59b6',sniper:'#3498db',rusher:'#e67e22',boss:'#ffd700'};
   const ename=nameMap[e.type]||e.name||e.type;
@@ -3631,8 +3766,18 @@ function killEnemy(e){
   kills++;
   e.dying=true;e.dyingTimer=400;e.dead=false;
   e.dyingVx=(Math.random()-.5)*3;e.dyingVy=(Math.random()-.5)*3;
-  spawnParticles(e.x,e.y,18,e.color,.55);
+  spawnParticles(e.x,e.y,e.isBoss?35:18,e.color,.55);
   if(Math.random()<.35)spawnLootAt(e.x+rand(-20,20),e.y+rand(-20,20));
+  // Blood pool
+  spawnBloodPool(e.x,e.y);
+  // Screen shake on kill
+  if(e.isBoss) triggerShake(18,600);
+  else triggerShake(4,120);
+  // XP gain
+  const xpGain = e.isBoss?200:(e.type==='heavy'?40:e.type==='sniper'?35:e.type==='rusher'?30:20);
+  gainXP(xpGain);
+  // Combo
+  registerComboKill(e.x,e.y);
   showWorldFloat('-'+Math.ceil(e.maxHp),e.x,e.y-20,'#e63946');
   playSound('death');
   registerKill();
@@ -3650,10 +3795,23 @@ function updateBullets(dt){
       for(let e of enemies){
         if(e.dead)continue;
         if(dist(b.x,b.y,e.x,e.y)<e.r+4){
-          e.hp-=b.damage;e.hitFlash=120;
-          if(particlesEnabled)spawnParticles(b.x,b.y,4,b.color,.2);
-          if(player.explodingBullets){spawnParticles(b.x,b.y,8,'#f4a261',.3);enemies.forEach(function(e2){if(e2!==e&&!e2.dead&&dist(e2.x,e2.y,b.x,b.y)<50){e2.hp-=b.damage*0.4;e2.hitFlash=80;}});}
-          showWorldFloat(b.damage,e.x,e.y-14,'#fff');
+          // Critical hit system
+          const critRoll = Math.random();
+          const critChance = 0.20 + (comboCount*0.02);
+          const isCrit = critRoll < critChance;
+          const finalDmg = isCrit ? Math.ceil(b.damage * 2.2) : b.damage;
+          const dmgMult = player.damageMult||1;
+          e.hp -= finalDmg * dmgMult;
+          e.hitFlash=120;
+          if(particlesEnabled)spawnParticles(b.x,b.y,isCrit?10:4,isCrit?'#ffd700':b.color,.2);
+          if(isCrit){
+            triggerShake(6,100);
+            showWorldFloat('💥 CRIT! '+Math.ceil(finalDmg*dmgMult),e.x,e.y-22,'#ffd700');
+          } else {
+            showWorldFloat(Math.ceil(finalDmg*dmgMult),e.x,e.y-14,'#fff');
+          }
+          if(player.explodingBullets){spawnParticles(b.x,b.y,8,'#f4a261',.3);triggerShake(8,180);enemies.forEach(function(e2){if(e2!==e&&!e2.dead&&dist(e2.x,e2.y,b.x,b.y)<50){e2.hp-=b.damage*0.4;e2.hitFlash=80;}});}
+          if(e.hp<=0&&!e.dying)killEnemy(e);
           return false;
         }
       }
@@ -3778,6 +3936,7 @@ function damagePlayer(amount,src){
     overlay.style.background='radial-gradient(ellipse at center,transparent 40%,rgba(230,57,70,0.7) 100%)';
     overlay.style.opacity='1';
     setTimeout(()=>overlay.style.opacity='0',200);
+    triggerShake(amount>20?12:6, 150);
   }
   if(player.hp<=0){endGame(false);}
   player.invincible=150;
@@ -3925,6 +4084,7 @@ function spawnBoss(zd){
   const dm=diffMult[difficulty];
   bossEnemy={x:zone.cx+rand(-150,150),y:zone.cy+rand(-150,150),hp:zd.bossHp*dm.hpMult,maxHp:zd.bossHp*dm.hpMult,speed:zd.bossSpeed*dm.speedMult,r:zd.bossSize,color:zd.bossColor,shape:'boss',type:'boss',angle:0,lastShot:0,hitFlash:0,id:'boss'+Date.now(),dead:false,dying:false,name:zd.bossName,isBoss:true};
   enemies.push(bossEnemy);
+  triggerShake(20,800);
   showBanner('💀 BOSS: '+zd.bossName,'#e63946',4000);
 }
 
@@ -4028,15 +4188,17 @@ function updateHUD(){
 function draw(){
   ctx.clearRect(0,0,gameCanvas.width,gameCanvas.height);
   ctx.save();
-  ctx.translate(gameCanvas.width/2-camera.x,gameCanvas.height/2-camera.y);
+  ctx.translate(gameCanvas.width/2-camera.x+screenShake.x,gameCanvas.height/2-camera.y+screenShake.y);
   
   drawBackground();
+  drawBloodPools();
   drawZone();
   drawGasZones();
   drawElectricZones();
   drawObstacles();
   drawTrails();
   drawLoot();
+  drawBulletTrails();
   drawBullets();
   drawEnemies();
   drawCages();
@@ -5821,6 +5983,10 @@ function endGame(won){
   document.getElementById('gameCanvas').style.display='none';document.getElementById('hud').style.display='none';
   document.getElementById('pauseOverlay').classList.add('hidden');document.getElementById('levelUpOverlay').classList.add('hidden');
   var ah=document.getElementById('abilityHud');if(ah)ah.style.display='none';
+  var xpw=document.getElementById('xpBarWrap');if(xpw)xpw.style.display='none';
+  var xpl=document.getElementById('xpLevelDisplay');if(xpl)xpl.style.display='none';
+  var cd=document.getElementById('comboDisplay');if(cd)cd.style.opacity='0';
+  var eh=document.getElementById('execHint');if(eh)eh.style.opacity='0';
   const cch=document.getElementById('crosshairCanvas');if(cch)cch.style.display='none';
   const elapsed=Math.floor((Date.now()-gameStartTime)/1000);
   const title=document.getElementById('goTitle');
@@ -5959,6 +6125,343 @@ document.addEventListener('contextmenu', e=>{
 window.addEventListener('resize',()=>{
   if(gameCanvas&&gameState==='playing'){gameCanvas.width=window.innerWidth;gameCanvas.height=window.innerHeight;}
 });
+
+// ---- PLATFORM SELECTOR ----
+let currentPlatform = 'pc';
+
+function setPlatform(p){
+  currentPlatform = p;
+  const pcBtn = document.getElementById('pcBtn');
+  const mobileBtn = document.getElementById('mobileBtn');
+  const hint = document.getElementById('platformHint');
+  if(p === 'pc'){
+    pcBtn.style.border = '2px solid rgba(199,125,255,0.8)';
+    pcBtn.style.background = 'rgba(199,125,255,0.2)';
+    pcBtn.style.color = '#c77dff';
+    mobileBtn.style.border = '2px solid rgba(255,255,255,0.15)';
+    mobileBtn.style.background = 'transparent';
+    mobileBtn.style.color = 'rgba(255,255,255,0.35)';
+    hint.textContent = 'WASD + MIŠ + Q/SPACE/F';
+    hint.style.color = 'rgba(199,125,255,0.5)';
+  } else {
+    mobileBtn.style.border = '2px solid rgba(78,205,196,0.8)';
+    mobileBtn.style.background = 'rgba(78,205,196,0.2)';
+    mobileBtn.style.color = '#4ecdc4';
+    pcBtn.style.border = '2px solid rgba(255,255,255,0.15)';
+    pcBtn.style.background = 'transparent';
+    pcBtn.style.color = 'rgba(255,255,255,0.35)';
+    hint.textContent = 'DŽOJSTIK + TOUCH DUGMAD';
+    hint.style.color = 'rgba(78,205,196,0.5)';
+  }
+}
+
+// Auto-detect mobile on load
+(function(){
+  if(/Android|iPhone|iPad|iPod|Touch/i.test(navigator.userAgent)) setPlatform('mobile');
+  else setPlatform('pc');
+})();
+
+function showMobileControls(show){
+  const mc = document.getElementById('mobileControls');
+  if(mc) mc.style.display = show ? 'block' : 'none';
+}
+
+// ---- MOBILE JOYSTICK ----
+let joystickActive = false;
+let joystickOriginX = 0, joystickOriginY = 0;
+let joystickDx = 0, joystickDy = 0;
+const JOYSTICK_MAX = 50;
+
+const joystickZone = document.getElementById('joystickZone');
+const joystickKnob = document.getElementById('joystickKnob');
+
+function getJoystickRect(){ return joystickZone ? joystickZone.getBoundingClientRect() : null; }
+
+joystickZone && joystickZone.addEventListener('touchstart', e=>{
+  e.preventDefault();
+  const t = e.touches[0];
+  const r = getJoystickRect();
+  joystickOriginX = r.left + r.width/2;
+  joystickOriginY = r.top + r.height/2;
+  joystickActive = true;
+  updateJoystick(t.clientX, t.clientY);
+},{passive:false});
+
+joystickZone && joystickZone.addEventListener('touchmove', e=>{
+  e.preventDefault();
+  if(joystickActive) updateJoystick(e.touches[0].clientX, e.touches[0].clientY);
+},{passive:false});
+
+joystickZone && joystickZone.addEventListener('touchend', e=>{
+  e.preventDefault();
+  joystickActive = false;
+  joystickDx = 0; joystickDy = 0;
+  if(joystickKnob){ joystickKnob.style.left='50px'; joystickKnob.style.top='50px'; }
+},{passive:false});
+
+function updateJoystick(cx, cy){
+  const dx = cx - joystickOriginX;
+  const dy = cy - joystickOriginY;
+  const dist = Math.sqrt(dx*dx+dy*dy);
+  const clamped = Math.min(dist, JOYSTICK_MAX);
+  const angle = Math.atan2(dy, dx);
+  joystickDx = Math.cos(angle) * (clamped/JOYSTICK_MAX);
+  joystickDy = Math.sin(angle) * (clamped/JOYSTICK_MAX);
+  if(joystickKnob){
+    joystickKnob.style.left = (50 + joystickDx*JOYSTICK_MAX - 30)+'px';
+    joystickKnob.style.top  = (50 + joystickDy*JOYSTICK_MAX - 30)+'px';
+  }
+}
+
+// Apply joystick to movement in update() — patched via override
+const _origUpdate = typeof update === 'function' ? update : null;
+
+// Patch player movement to include joystick input
+function applyJoystickToPlayer(){
+  if(!joystickActive || !player || currentPlatform!=='mobile') return;
+  const spd = player.speed * 2.1;
+  player.x += joystickDx * spd;
+  player.y += joystickDy * spd;
+  player.x = Math.max(20, Math.min(WORLD_W-20, player.x));
+  player.y = Math.max(20, Math.min(WORLD_H-20, player.y));
+}
+
+// ---- MOBILE AIM + SHOOT ----
+let aimTouchId = null;
+let aimTouchOriginX = 0, aimTouchOriginY = 0;
+let mbShooting = false;
+
+const aimZone = document.getElementById('aimZone');
+
+aimZone && aimZone.addEventListener('touchstart', e=>{
+  e.preventDefault();
+  const t = e.changedTouches[0];
+  aimTouchId = t.identifier;
+  aimTouchOriginX = t.clientX;
+  aimTouchOriginY = t.clientY;
+  mbShooting = true;
+  mouse.right = true;
+  mouse.x = t.clientX;
+  mouse.y = t.clientY;
+},{passive:false});
+
+aimZone && aimZone.addEventListener('touchmove', e=>{
+  e.preventDefault();
+  for(let i=0;i<e.changedTouches.length;i++){
+    const t=e.changedTouches[i];
+    if(t.identifier===aimTouchId){
+      mouse.x = t.clientX;
+      mouse.y = t.clientY;
+    }
+  }
+},{passive:false});
+
+aimZone && aimZone.addEventListener('touchend', e=>{
+  e.preventDefault();
+  for(let i=0;i<e.changedTouches.length;i++){
+    if(e.changedTouches[i].identifier===aimTouchId){
+      aimTouchId=null; mbShooting=false; mouse.right=false;
+    }
+  }
+},{passive:false});
+
+// SHOOT button hold
+const mbShootBtn = document.getElementById('mbShoot');
+mbShootBtn && mbShootBtn.addEventListener('touchstart', e=>{
+  e.preventDefault(); mouse.right=true;
+},{passive:false});
+mbShootBtn && mbShootBtn.addEventListener('touchend', e=>{
+  e.preventDefault(); mouse.right=false;
+},{passive:false});
+
+// Patch gameLoop to apply joystick each frame
+const _origGameLoop = typeof gameLoop === 'function' ? gameLoop : null;
+
+// Hook into the existing update pipeline — inject joystick movement
+// We do this by patching the update function at call time
+const __nativeUpdate = window.update;
+window.update = function(dt){
+  if(typeof __nativeUpdate==='function') __nativeUpdate(dt);
+  applyJoystickToPlayer();
+};
+
+// Show/hide mobile controls when game starts/ends
+const _origStartGame = window.startGame;
+window.startGame = function(){
+  if(typeof _origStartGame==='function') _origStartGame();
+  showMobileControls(currentPlatform==='mobile');
+};
+
+const _origEndGame = window.endGame;
+window.endGame = function(win){
+  showMobileControls(false);
+  if(typeof _origEndGame==='function') _origEndGame(win);
+};
+
+// Cooldown visual feedback on mobile buttons
+function updateMobileButtonCooldowns(){
+  if(currentPlatform!=='mobile') return;
+  const now=Date.now();
+  // Ability
+  const abBtn=document.getElementById('mbAbility');
+  if(abBtn){
+    const ready=abilityCooldown<=0;
+    abBtn.style.opacity=ready?'1':'0.45';
+    abBtn.style.borderColor=ready?'rgba(199,125,255,0.8)':'rgba(199,125,255,0.3)';
+  }
+  // Dodge
+  const ddBtn=document.getElementById('mbDodge');
+  if(ddBtn){
+    const ready=dodgeCooldown<=0;
+    ddBtn.style.opacity=ready?'1':'0.45';
+    ddBtn.style.borderColor=ready?'rgba(78,205,196,0.8)':'rgba(78,205,196,0.3)';
+  }
+  // Melee
+  const mlBtn=document.getElementById('mbMelee');
+  if(mlBtn){
+    const ready=meleeCooldown<=0;
+    mlBtn.style.opacity=ready?'1':'0.45';
+    mlBtn.style.borderColor=ready?'rgba(168,224,99,0.6)':'rgba(168,224,99,0.2)';
+  }
+}
+
+// Attach to game loop via requestAnimationFrame
+(function mobileCdLoop(){
+  requestAnimationFrame(mobileCdLoop);
+  if(gameState==='playing') updateMobileButtonCooldowns();
+})();
+
+
+// ================================================================
+// MEGA UPDATE — SCREEN SHAKE
+// ================================================================
+function triggerShake(intensity,duration){
+  if(intensity>screenShake.intensity){screenShake.intensity=intensity;screenShake.duration=duration;}
+}
+function updateScreenShake(dt){
+  if(screenShake.duration>0){
+    screenShake.duration=Math.max(0,screenShake.duration-dt);
+    const d=screenShake.intensity*(screenShake.duration/400);
+    screenShake.x=(Math.random()-.5)*d*2;screenShake.y=(Math.random()-.5)*d*2;
+  }else{screenShake.x=0;screenShake.y=0;screenShake.intensity=0;}
+}
+
+// ================================================================
+// MEGA UPDATE — COMBO SYSTEM
+// ================================================================
+function updateCombo(dt){
+  if(comboTimer>0){
+    comboTimer-=dt;
+    if(comboTimer<=0){
+      if(comboCount>=4)showBanner('COMBO x'+comboCount+' — NEREALNO!','#ffd700',2200);
+      comboCount=0;
+      const cb=document.getElementById('comboDisplay');if(cb)cb.style.opacity='0';
+    }
+  }
+}
+function registerComboKill(ex,ey){
+  comboCount++;comboTimer=2800;
+  const cb=document.getElementById('comboDisplay');
+  if(cb){
+    const colors=['#fff','#f4a261','#e63946','#ffd700','#c77dff','#4ecdc4','#ff2d55'];
+    cb.style.color=colors[Math.min(comboCount-1,colors.length-1)];
+    cb.textContent='COMBO x'+comboCount;
+    cb.style.opacity='1';
+    cb.style.transform='scale(1.3)';
+    setTimeout(()=>{if(cb)cb.style.transform='scale(1)';},120);
+  }
+  if(comboCount>=3)triggerShake(comboCount*1.2,120);
+  if(comboCount===5)showBanner('⚡ UNSTOPPABLE! x5','#ffd700',2000);
+  if(comboCount===10)showBanner('☠️ GODLIKE! x10 COMBO','#c77dff',2800);
+}
+
+// ================================================================
+// MEGA UPDATE — XP / LEVEL SYSTEM
+// ================================================================
+function gainXP(amount){
+  if(!player)return;
+  playerXP+=amount;
+  // Float XP text
+  showFloat('+'+amount+' XP',gameCanvas.width/2+rand(-60,60),gameCanvas.height/2-120,'#c77dff');
+  // Update bar
+  const fill=document.getElementById('xpBarFill');
+  if(fill)fill.style.width=Math.min(100,(playerXP/playerXPToNext)*100)+'%';
+  const lvlEl=document.getElementById('xpLevelDisplay');
+  if(lvlEl)lvlEl.textContent='LVL '+playerLevel;
+  // Level up?
+  if(playerXP>=playerXPToNext){
+    playerXP-=playerXPToNext;
+    playerLevel++;
+    playerXPToNext=Math.floor(100*Math.pow(1.4,playerLevel-1));
+    onLevelUp();
+  }
+}
+function onLevelUp(){
+  triggerShake(10,300);
+  spawnParticles(player.x,player.y,40,'#c77dff',0.4);
+  spawnParticles(player.x,player.y,30,'#ffd700',0.3);
+  showBanner('🏆 LEVEL '+playerLevel+'! IZABERI NADOGRADNJU','#c77dff',2500);
+  const lvlEl=document.getElementById('xpLevelDisplay');
+  if(lvlEl){lvlEl.style.color='#ffd700';setTimeout(()=>{if(lvlEl)lvlEl.style.color='#c77dff';},1500);}
+  setTimeout(()=>showLevelUp(),600);
+}
+
+// ================================================================
+// MEGA UPDATE — BLOOD POOLS
+// ================================================================
+function spawnBloodPool(x,y,r){
+  bloodPools.push({x:x+(Math.random()-.5)*18,y:y+(Math.random()-.5)*18,
+    r:r||(10+Math.random()*16),alpha:0.55+Math.random()*0.25});
+  if(bloodPools.length>200)bloodPools.shift();
+}
+function drawBloodPools(){
+  bloodPools.forEach(p=>{
+    ctx.save();
+    ctx.globalAlpha=p.alpha*0.7;
+    // Dark crimson ellipse
+    const grd=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r);
+    grd.addColorStop(0,'rgba(120,0,0,0.9)');
+    grd.addColorStop(0.6,'rgba(80,0,0,0.6)');
+    grd.addColorStop(1,'rgba(40,0,0,0)');
+    ctx.fillStyle=grd;
+    ctx.beginPath();ctx.ellipse(p.x,p.y,p.r,p.r*0.55,Math.random()*0.5,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+  });
+}
+
+// ================================================================
+// MEGA UPDATE — BULLET TRAILS
+// ================================================================
+function updateBulletTrails(dt){
+  bulletTrails=bulletTrails.filter(t=>{t.life-=dt/180;return t.life>0;});
+}
+function drawBulletTrails(){
+  bulletTrails.forEach(t=>{
+    ctx.save();
+    ctx.globalAlpha=t.life*0.55;
+    ctx.strokeStyle=t.color;
+    ctx.lineWidth=2*t.life;
+    ctx.shadowColor=t.color;ctx.shadowBlur=6;
+    ctx.beginPath();
+    ctx.moveTo(t.x,t.y);
+    ctx.lineTo(t.x-Math.cos(t.angle)*t.len*t.life,t.y-Math.sin(t.angle)*t.len*t.life);
+    ctx.stroke();
+    ctx.restore();
+  });
+}
+
+// ================================================================
+// MEGA UPDATE — EXECUTION CHECK
+// ================================================================
+function checkExecution(){
+  if(!player||gameState!=='playing')return;
+  let canExec=false;
+  enemies.forEach(function(e){
+    if(!e.dying&&!e.dead&&dist(e.x,e.y,player.x,player.y)<75&&e.hp/e.maxHp<0.15)canExec=true;
+  });
+  const hint=document.getElementById('execHint');
+  if(hint)hint.style.opacity=canExec?'1':'0';
+}
 
 function switchWeapon(i){
   if(player&&player.weapons[i]){

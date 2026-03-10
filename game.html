@@ -6177,91 +6177,78 @@ let joystickOriginX = 0, joystickOriginY = 0;
 let joystickDx = 0, joystickDy = 0;
 const JOYSTICK_MAX = 50;
 
-const joystickZone = document.getElementById('joystickZone');
 const joystickKnob = document.getElementById('joystickKnob');
-
-function getJoystickRect(){ return joystickZone ? joystickZone.getBoundingClientRect() : null; }
-
-joystickZone && joystickZone.addEventListener('touchstart', e=>{
-  e.preventDefault();
-  const t = e.touches[0];
-  const r = getJoystickRect();
-  joystickOriginX = r.left + r.width/2;
-  joystickOriginY = r.top + r.height/2;
-  joystickActive = true;
-  updateJoystick(t.clientX, t.clientY);
-},{passive:false});
-
-joystickZone && joystickZone.addEventListener('touchmove', e=>{
-  e.preventDefault();
-  if(joystickActive) updateJoystick(e.touches[0].clientX, e.touches[0].clientY);
-},{passive:false});
-
-joystickZone && joystickZone.addEventListener('touchend', e=>{
-  e.preventDefault();
-  joystickActive = false;
-  joystickDx = 0; joystickDy = 0;
-  if(joystickKnob){ joystickKnob.style.left='50px'; joystickKnob.style.top='50px'; }
-},{passive:false});
+let joystickTouchId = null;
+let aimTouchId = null;
+let mbShooting = false;
 
 function updateJoystick(cx, cy){
   const dx = cx - joystickOriginX;
   const dy = cy - joystickOriginY;
-  const dist = Math.sqrt(dx*dx+dy*dy);
-  const clamped = Math.min(dist, JOYSTICK_MAX);
+  const d = Math.sqrt(dx*dx+dy*dy);
+  const clamped = Math.min(d, JOYSTICK_MAX);
   const angle = Math.atan2(dy, dx);
-  joystickDx = Math.cos(angle) * (clamped/JOYSTICK_MAX);
-  joystickDy = Math.sin(angle) * (clamped/JOYSTICK_MAX);
+  joystickDx = Math.cos(angle)*(clamped/JOYSTICK_MAX);
+  joystickDy = Math.sin(angle)*(clamped/JOYSTICK_MAX);
   if(joystickKnob){
-    joystickKnob.style.left = (50 + joystickDx*JOYSTICK_MAX - 30)+'px';
-    joystickKnob.style.top  = (50 + joystickDy*JOYSTICK_MAX - 30)+'px';
+    joystickKnob.style.left=(50+joystickDx*JOYSTICK_MAX-30)+'px';
+    joystickKnob.style.top =(50+joystickDy*JOYSTICK_MAX-30)+'px';
   }
 }
+function resetJoystick(){
+  joystickActive=false;joystickDx=0;joystickDy=0;joystickTouchId=null;
+  if(joystickKnob){joystickKnob.style.left='50px';joystickKnob.style.top='50px';}
+}
 
-// Apply joystick to movement in update() — patched via override
-const _origUpdate = typeof update === 'function' ? update : null;
+// Single global touch handler — left 45% = joystick, right 55% = aim/shoot
+// This prevents ANY overlap between the two thumbs
+const JOYSTICK_SPLIT = ()=> window.innerWidth * 0.45;
 
-// Patch player movement to include joystick input
-// applyJoystickToPlayer — removed, joystick now handled in updatePlayer directly
-
-// ---- MOBILE AIM + SHOOT ----
-let aimTouchId = null;
-let aimTouchOriginX = 0, aimTouchOriginY = 0;
-let mbShooting = false;
-
-const aimZone = document.getElementById('aimZone');
-
-aimZone && aimZone.addEventListener('touchstart', e=>{
-  e.preventDefault();
-  const t = e.changedTouches[0];
-  aimTouchId = t.identifier;
-  aimTouchOriginX = t.clientX;
-  aimTouchOriginY = t.clientY;
-  mbShooting = true;
-  mouse.right = true;
-  mouse.x = t.clientX;
-  mouse.y = t.clientY;
-},{passive:false});
-
-aimZone && aimZone.addEventListener('touchmove', e=>{
-  e.preventDefault();
+document.addEventListener('touchstart', e=>{
+  if(currentPlatform!=='mobile'||gameState!=='playing') return;
   for(let i=0;i<e.changedTouches.length;i++){
     const t=e.changedTouches[i];
-    if(t.identifier===aimTouchId){
-      mouse.x = t.clientX;
-      mouse.y = t.clientY;
+    if(t.clientX < JOYSTICK_SPLIT()){
+      // LEFT THUMB → joystick
+      if(joystickTouchId===null){
+        joystickTouchId=t.identifier;
+        joystickOriginX=t.clientX;
+        joystickOriginY=t.clientY;
+        joystickActive=true;
+        updateJoystick(t.clientX,t.clientY);
+      }
+    } else {
+      // RIGHT THUMB → aim + shoot
+      if(aimTouchId===null){
+        aimTouchId=t.identifier;
+        mouse.x=t.clientX; mouse.y=t.clientY;
+        mouse.right=true; mbShooting=true;
+      }
     }
   }
-},{passive:false});
+},{passive:true});
 
-aimZone && aimZone.addEventListener('touchend', e=>{
-  e.preventDefault();
+document.addEventListener('touchmove', e=>{
+  if(currentPlatform!=='mobile'||gameState!=='playing') return;
   for(let i=0;i<e.changedTouches.length;i++){
-    if(e.changedTouches[i].identifier===aimTouchId){
-      aimTouchId=null; mbShooting=false; mouse.right=false;
-    }
+    const t=e.changedTouches[i];
+    if(t.identifier===joystickTouchId) updateJoystick(t.clientX,t.clientY);
+    else if(t.identifier===aimTouchId){mouse.x=t.clientX;mouse.y=t.clientY;}
   }
-},{passive:false});
+},{passive:true});
+
+document.addEventListener('touchend', e=>{
+  if(currentPlatform!=='mobile') return;
+  for(let i=0;i<e.changedTouches.length;i++){
+    const t=e.changedTouches[i];
+    if(t.identifier===joystickTouchId) resetJoystick();
+    if(t.identifier===aimTouchId){aimTouchId=null;mbShooting=false;mouse.right=false;}
+  }
+},{passive:true});
+
+document.addEventListener('touchcancel',()=>{
+  resetJoystick();aimTouchId=null;mbShooting=false;mouse.right=false;
+},{passive:true});
 
 // SHOOT button hold
 const mbShootBtn = document.getElementById('mbShoot');

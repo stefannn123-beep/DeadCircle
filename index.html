@@ -325,6 +325,21 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="feat-desc sr">Cinematična intro scena, zona dijalozi, companion AI (Sekula, Dubonjac), kill feed.</div>
       <div class="feat-desc en" style="display:none">Cinematic intro, zone dialogues, companion AI (Sekula, Dubonjac), kill feed.</div>
     </div>
+    <div class="feat-card rev" style="--ac:#c77dff"><div class="feat-num">07</div><div class="feat-new">NOVO</div><div class="feat-icon">🏆</div>
+      <div class="feat-title sr">XP / LEVEL SISTEM</div><div class="feat-title en" style="display:none">XP / LEVEL SYSTEM</div>
+      <div class="feat-desc sr">Skupljaj XP za svaki kill. Level up → izaberi nadogradnju. Traka napretka vidljiva tokom igre.</div>
+      <div class="feat-desc en" style="display:none">Earn XP for every kill. Level up → choose an upgrade. Progress bar visible in-game.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#ffd700"><div class="feat-num">08</div><div class="feat-new">NOVO</div><div class="feat-icon">⚡</div>
+      <div class="feat-title sr">COMBO + KRITIČNI HITOVI</div><div class="feat-title en" style="display:none">COMBO + CRITS</div>
+      <div class="feat-desc sr">Ubijaj brzo — gradi COMBO do x10 GODLIKE! 20% šansa na kritični hit: 2.2× damage, zlatni efekat, screen shake.</div>
+      <div class="feat-desc en" style="display:none">Kill fast — build COMBO up to x10 GODLIKE! 20% crit chance: 2.2× damage, golden effect, screen shake.</div>
+    </div>
+    <div class="feat-card rev" style="--ac:#e63946"><div class="feat-num">09</div><div class="feat-new">NOVO</div><div class="feat-icon">☠️</div>
+      <div class="feat-title sr">EXECUCIJA + KRV</div><div class="feat-title en" style="display:none">EXECUTION + BLOOD</div>
+      <div class="feat-desc sr">Neprijatelj &lt;15% HP + F = brutal instant kill. Krvave mrlje ostaju na tlu. Bullet trails za svaki metak.</div>
+      <div class="feat-desc en" style="display:none">Enemy &lt;15% HP + F = brutal instant kill. Blood pools remain on ground. Bullet trails on every shot.</div>
+    </div>
   </div>
 </section>
 
@@ -414,7 +429,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
     <div class="tech-card rev-r" style="--ac:#e63946">
       <div class="tech-card-title">⚙️ <span class="sr">SISTEMI</span><span class="en" style="display:none">SYSTEMS</span></div>
-      <div><span class="tech-tag">Game Loop</span><span class="tech-tag">Camera</span><span class="tech-tag">Collision</span><span class="tech-tag">Enemy AI</span><span class="tech-tag">State Machine</span><span class="tech-tag">Bullet Physics</span><span class="tech-tag">5 Karaktera</span><span class="tech-tag">Q Abilities</span><span class="tech-tag">Zone Sistem</span><span class="tech-tag">Companion AI</span><span class="tech-tag">Day/Night</span><span class="tech-tag">Level-Up</span><span class="tech-tag">Cutscene</span><span class="tech-tag">Minimap</span><span class="tech-tag">Kill Feed</span><span class="tech-tag">Rank Sistem</span><span class="tech-tag">2 Game Modes</span><span class="tech-tag">5 Bossova</span><span class="tech-tag">Particles</span></div>
+      <div><span class="tech-tag">Game Loop</span><span class="tech-tag">Camera</span><span class="tech-tag">Collision</span><span class="tech-tag">Enemy AI</span><span class="tech-tag">State Machine</span><span class="tech-tag">Bullet Physics</span><span class="tech-tag">5 Karaktera</span><span class="tech-tag">Q Abilities</span><span class="tech-tag">Zone Sistem</span><span class="tech-tag">Companion AI</span><span class="tech-tag">Day/Night</span><span class="tech-tag">Level-Up</span><span class="tech-tag">Cutscene</span><span class="tech-tag">Minimap</span><span class="tech-tag">Kill Feed</span><span class="tech-tag">Rank Sistem</span><span class="tech-tag">2 Game Modes</span><span class="tech-tag">5 Bossova</span><span class="tech-tag">Particles</span><span class="tech-tag">XP/Level</span><span class="tech-tag">Combo Sistem</span><span class="tech-tag">Kritični Hitovi</span><span class="tech-tag">Screen Shake</span><span class="tech-tag">Execucija</span><span class="tech-tag">Krvave Mrlje</span><span class="tech-tag">Bullet Trails</span><span class="tech-tag">Mobilne Kontrole</span></div>
     </div>
     <div class="tech-card rev-l" style="--ac:#ffd700">
       <div class="tech-card-title">📐 <span class="sr">ARHITEKTURA</span><span class="en" style="display:none">ARCHITECTURE</span></div>
@@ -422,12 +437,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="hi">game.html — 1 fajl, ~300KB</div>
         <div style="padding-left:16px;">├── CSS — UI, screens</div>
         <div style="padding-left:16px;">├── HTML — 10+ ekrana</div>
-        <div style="padding-left:16px;">└── JS — ~6000 linija</div>
+        <div style="padding-left:16px;">└── JS — ~7500 linija</div>
         <div style="padding-left:32px;">├── Rendering Engine</div>
         <div style="padding-left:32px;">├── Physics &amp; AI</div>
         <div style="padding-left:32px;">├── Story &amp; Zone System</div>
         <div style="padding-left:32px;">├── Rank System</div>
-        <div style="padding-left:32px;">└── 5 Boss Sprites</div>
+        <div style="padding-left:32px;">├── 5 Boss Sprites</div>
+        <div style="padding-left:32px;">├── XP / Level System</div>
+        <div style="padding-left:32px;">├── Combo + Crit Engine</div>
+        <div style="padding-left:32px;">└── Mobile Touch Controls</div>
       </div>
     </div>
     <div class="tech-card rev-r" style="--ac:#c77dff">
@@ -438,6 +456,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <li class="sr">Dizajn priče i zona sistema</li><li class="en" style="display:none">Story and zone system design</li>
         <li class="sr">Balansiranje mehanika</li><li class="en" style="display:none">Balancing game mechanics</li>
         <li>localStorage persistence</li>
+        <li class="sr">Game feel — screen shake, combo flow, execution</li><li class="en" style="display:none">Game feel — screen shake, combo flow, execution</li>
+        <li class="sr">Touch input i mobilni džojstik</li><li class="en" style="display:none">Touch input and mobile joystick</li>
       </ul>
     </div>
   </div>
@@ -477,7 +497,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="tl-title sr">ARENA MODE + RANK SISTEM</div><div class="tl-title en" style="display:none">ARENA MODE + RANKS</div>
       <div class="tl-desc sr">Mode select, Story vs Arena, 8 rankova (Bronza → Vanja), localStorage, AI human sprites sa balaklavama.</div>
       <div class="tl-desc en" style="display:none">Mode select, Story vs Arena, 8 ranks (Bronze → Vanja), localStorage, AI human sprites with balaclavas.</div>
-      <div class="tl-tags"><span class="tl-tag g">2 MODA</span><span class="tl-tag g">RANK SISTEM</span><span class="tl-tag g">AI SPRITES</span><span class="tl-tag w">IN PROGRESS</span></div>
+      <div class="tl-tags"><span class="tl-tag g">2 MODA</span><span class="tl-tag g">RANK SISTEM</span><span class="tl-tag g">AI SPRITES</span><span class="tl-tag g">ZAVRŠENO</span></div>    </div>
+    <div class="tl-entry rev"><div class="tl-dot" style="background:#ffd700;box-shadow:0 0 10px #ffd700;"></div>
+      <div class="tl-date">MAR 2026 — FAZA 05</div>
+      <div class="tl-title sr">MEGA UPDATE — v6.0 FINAL</div><div class="tl-title en" style="display:none">MEGA UPDATE — v6.0 FINAL</div>
+      <div class="tl-desc sr">XP/level sistem, kritični hitovi (2.2×), combo do x10 GODLIKE, screen shake, execucija, krvave mrlje, bullet trails, mobilne kontrole (džojstik). Kraj razvoja.</div>
+      <div class="tl-desc en" style="display:none">XP/level system, critical hits (2.2×), combo up to x10 GODLIKE, screen shake, execution kills, blood pools, bullet trails, mobile controls (joystick). End of development.</div>
+      <div class="tl-tags"><span class="tl-tag g">XP/LEVEL</span><span class="tl-tag g">COMBO x10</span><span class="tl-tag g">CRITS</span><span class="tl-tag g">EXECUCIJA</span><span class="tl-tag g">MOBILNI</span><span class="tl-tag g" style="background:rgba(78,205,196,.15);border-color:rgba(78,205,196,.4);color:#4ecdc4;">v6.0 FINAL ✓</span></div>
     </div>
   </div>
 </section>
@@ -508,11 +534,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
             <div style="font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(199,125,255,.5);margin-top:4px;">LEAD PROGRAMMER · GAME ARCHITECT · SOLO DEVELOPER</div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:10px;line-height:1.8;" class="sr">
               Glavni i jedini programer Dead Circle-a. Sve što vidiš u igri — od prvog piksela do poslednje linije koda — Stefan je napravio sam. 
-              Počeo od praznog HTML fajla i izgradio kompletnu igru sa pričom, AI sistemom, bossovima, rank sistemom i dva game mode-a — za manje od mesec dana.
+              Počeo od praznog HTML fajla i izgradio kompletnu igru sa pričom, AI sistemom, bossovima, rank sistemom, XP/level sistemom, combo mehanikom, execucijom i mobilnim kontrolama — za manje od mesec dana.
             </div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);margin-top:10px;line-height:1.8;display:none;" class="en">
               The sole programmer of Dead Circle. Everything you see in the game — from the first pixel to the last line of code — Stefan built alone.
-              Started from an empty HTML file and built a complete game with story, AI system, bosses, rank system and two game modes — in under a month.
+              Started from an empty HTML file and built a complete game with story, AI, bosses, rank system, XP/level system, combo mechanics, execution kills and mobile controls — in under a month.
             </div>
           </div>
         </div>
@@ -520,12 +546,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <!-- STATS ROW -->
         <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(199,125,255,.08);border:1px solid rgba(199,125,255,.1);margin-bottom:24px;">
           <div style="padding:14px 12px;text-align:center;background:rgba(10,5,22,.9);">
-            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">~6K</div>
+            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">~7.5K</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;" class="sr">LINIJA KODA</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;display:none;" class="en">LINES OF CODE</div>
           </div>
           <div style="padding:14px 12px;text-align:center;background:rgba(10,5,22,.9);">
-            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">30+</div>
+            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">40+</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;" class="sr">SATI RADA</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;display:none;" class="en">DEV HOURS</div>
           </div>

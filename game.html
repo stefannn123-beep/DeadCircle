@@ -253,7 +253,7 @@ canvas{display:block;}
 .cs-skip:hover{color:rgba(255,255,255,.7);}
 
 /* CROSSHAIR */
-#gameCanvas{cursor:none;}
+#gameCanvas{cursor:none;} #crosshairCanvas{cursor:none;}
 #crosshair{position:fixed;pointer-events:none;z-index:15;display:none;}
 
 /* MAP SELECT */
@@ -284,7 +284,8 @@ canvas{display:block;}
 .setting-toggle.on{border-color:#4ecdc4;color:#4ecdc4;}
 #levelUpOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:55;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 #levelUpOverlay.hidden{display:none;}
-.lu-title{font-family:'Bebas Neue',cursive;font-size:52px;letter-spacing:10px;color:#f4a261;margin-bottom:6px;}
+#shopOverlay.hidden{display:none!important;}
+.lu-title{font-family:'Bebas Neue',cursive;font-size:52px;letter-spacing:10px;color:#c77dff;margin-bottom:6px;text-shadow:0 0 30px rgba(199,125,255,0.5);}
 .lu-sub{font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(255,255,255,.35);letter-spacing:4px;margin-bottom:26px;}
 .lu-cards{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
 .lu-card{background:rgba(13,17,23,.9);border:1px solid rgba(255,255,255,.1);padding:22px 18px;width:175px;cursor:pointer;pointer-events:all;transition:all .2s;border-radius:4px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;}
@@ -684,12 +685,12 @@ function switchHelpTab(tab){
         TEHNIČKI PREGLED
         <div style="position:absolute;left:-5%;top:58%;width:110%;height:3px;background:#e63946;transform:rotate(-1deg);box-shadow:0 0 12px #e63946;"></div>
       </div>
-      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:5px;margin-top:14px;">DEAD CIRCLE · STEFAN STANIČIĆ · 2026 · v6.0 FINAL</div>
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);letter-spacing:5px;margin-top:14px;">DEAD CIRCLE · STEFAN STANIČIĆ · 2026 · v7.0</div>
     </div>
 
     <!-- Intro box -->
     <div style="background:rgba(230,57,70,0.07);border:1px solid rgba(230,57,70,0.25);border-radius:6px;padding:14px 18px;margin-bottom:22px;font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;text-align:center;">
-      Web igra pokretna u bilo kom browseru bez instalacije. Jedna HTML datoteka (~280KB) koja sadrži kompletnu igru — engine, AI, grafiku, zvuk, UI, XP sistem, combo mehanika, execucija, krvave mrlje, screen shake i mobilne kontrole. Sve iz nule, bez frameworka.
+      Web igra pokretna u bilo kom browseru bez instalacije. Jedna HTML datoteka (~350KB) koja sadrži kompletnu igru — engine, AI, grafiku, zvuk, UI, XP sistem, combo mehanika, execucija, krvave mrlje, screen shake, mobilne kontrole, 3 detaljne mape. Sve iz nule, bez frameworka. Razvijano uz pomoć Claude AI (Anthropic).
     </div>
 
     <!-- Grid layout -->
@@ -699,7 +700,6 @@ function switchHelpTab(tab){
       <div style="background:rgba(13,17,23,0.92);border:1px solid rgba(78,205,196,0.25);border-left:3px solid #4ecdc4;border-radius:6px;padding:16px 18px;">
         <div style="font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#4ecdc4;margin-bottom:12px;">🛠️ ALATI I TEHNOLOGIJE</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.9;">
-          <div><span style="color:#4ecdc4;font-family:'Share Tech Mono',monospace;">UNITY</span> — razvoj i programiranje igre</div>
           <div><span style="color:#4ecdc4;font-family:'Share Tech Mono',monospace;">HTML5 / CSS3 / JS</span> — bez framework-a, čisti web</div>
           <div><span style="color:#4ecdc4;font-family:'Share Tech Mono',monospace;">Canvas API (2D)</span> — sav rendering: likovi, mapa, efekti</div>
           <div><span style="color:#4ecdc4;font-family:'Share Tech Mono',monospace;">Web Audio API</span> — proceduralni zvučni efekti</div>
@@ -731,7 +731,7 @@ function switchHelpTab(tab){
       <div style="background:rgba(13,17,23,0.92);border:1px solid rgba(230,57,70,0.25);border-left:3px solid #e63946;border-radius:6px;padding:16px 18px;">
         <div style="font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#e63946;margin-bottom:12px;">⚙️ IMPLEMENTIRANO OD NULE</div>
         <div style="display:flex;flex-wrap:wrap;gap:5px;">
-          ${['Custom Game Loop','Camera System','AABB Collision','Enemy State Machine','4 Tipa Neprijatelja','Bullet Physics','5 Karaktera + Sprite','Q Sposobnosti','Dodge Roll','Reload System','Zone Shrink','Companion AI','Particle System','3 Mape (7000×7000)','Day/Night Cycle','Level-Up System','Proceduralni Tereni','Cutscene Engine','Loot Sprites','Minimap','XP/Level Sistem','Kritični Hitovi','Combo Sistem','Screen Shake','Execucija','Krvave Mrlje','Bullet Trails','Mobilne Kontrole'].map(t => 
+          ${['Custom Game Loop','Camera System','AABB Collision','Enemy AI State Machine','5 Tipova Neprijatelja','Bullet Physics','5 Karaktera + Sprite','Q Sposobnosti','Dodge Roll','Reload System','Companion AI','Particle System','3 Mape (7000×7000)','Day/Night Cycle','Level-Up System','Proceduralni Tereni','Cutscene Engine','Loot Sprites','Minimap','XP/Level Sistem','Kritični Hitovi','Combo Sistem','Screen Shake','Execucija','Krvave Mrlje','Bullet Trails','Mobilne Kontrole','Road AI Navigacija','Rank Sistem (8 Rangova)','Kill Feed','Boss Sistem','Mafija Priča','Story vs Arena Mode'].map(t => 
             `<span style="background:rgba(230,57,70,0.1);border:1px solid rgba(230,57,70,0.25);color:rgba(255,255,255,0.65);font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 7px;border-radius:3px;">${t}</span>`
           ).join('')}
         </div>
@@ -741,7 +741,7 @@ function switchHelpTab(tab){
       <div style="background:rgba(13,17,23,0.92);border:1px solid rgba(199,125,255,0.25);border-left:3px solid #c77dff;border-radius:6px;padding:16px 18px;">
         <div style="font-family:'Bebas Neue',cursive;font-size:18px;letter-spacing:4px;color:#c77dff;margin-bottom:12px;">📊 STATISTIKE PROJEKTA</div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-          ${[['~7500','LINIJA KODA'],['~280KB','VELIČINA FAJLA'],['5','EKRANA'],['5','KARAKTERA'],['4+5','NEP+BOSSOVA'],['4','ORUŽJA'],['3','MAPE'],['5','ZONA PRIČE'],['40+','SATI RADA'],['1','HTML FAJL']].map(([val,lbl]) =>
+          ${[['~7600','LINIJA KODA'],['~350KB','VELIČINA FAJLA'],['5','EKRANA'],['5','KARAKTERA'],['5+5','NEP+BOSSOVA'],['4','ORUŽJA'],['3','MAPE'],['5','ZONA PRIČE'],['70+','SATI RADA'],['1','HTML FAJL']].map(([val,lbl]) =>
             `<div style="text-align:center;background:rgba(199,125,255,0.05);border-radius:4px;padding:8px 4px;">
               <div style="font-family:'Bebas Neue',cursive;font-size:22px;color:#c77dff;">${val}</div>
               <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:rgba(255,255,255,0.35);letter-spacing:1px;">${lbl}</div>
@@ -766,6 +766,9 @@ function switchHelpTab(tab){
           <div><span style="color:#a8e063;">10.</span> Rank Sistem — 8 rankova (Bronza → Vanja), localStorage, progress bar</div>
           <div><span style="color:#a8e063;">11.</span> Mega Update — XP/Level sistem, kritični hitovi, combo sistem, screen shake</div>
           <div><span style="color:#a8e063;">12.</span> Execucija mehanika, krvave mrlje, bullet trails, mobilne kontrole (džojstik)</div>
+          <div><span style="color:#a8e063;">13.</span> Mape redesign — detaljna grafika (grad/fabrika/šuma), park sistem, parkovi, životinje</div>
+          <div><span style="color:#a8e063;">14.</span> Road AI navigacija — neprijatelji prate ulični grid, pametno obilaze prepreke</div>
+          <div><span style="color:#a8e063;">15.</span> Spawn sistem — garantovani road spawn za grad, boss spawnovuje u parku</div>
         </div>
       </div>
 
@@ -966,17 +969,13 @@ function switchHelpTab(tab){
         <div class="dev-name">Stefan Staničić</div>
         <div class="dev-role" style="color:#c77dff">Glavni programer &amp; Arhitekta igre</div>
         <div class="dev-role-en">Lead Programmer · Game Engine · AI · UI/UX · All Systems</div>
-        <div class="dev-desc">Projektovao i kodirao kompletnu tehničku osnovu igre od nule — engine, AI, priča, mapa, UI, svi sistemi. Story mod, Arena mod, 5 bossova, rank sistem, XP/level sistem, combo mehanika, execucija, screen shake, krvave mrlje, bullet trails, mobilne kontrole — sve je Stefan.</div>
+        <div class="dev-desc">Projektovao i kodirao kompletnu tehničku osnovu igre od nule — engine, AI, priča, mapa, UI, svi sistemi. Story mod, Arena mod, 5 bossova, rank sistem, XP/level sistem, combo mehanika, road AI navigacija, 3 detaljne mape (grad, fabrika, šuma) — sve je Stefan. Razvijao uz pomoć <strong style="color:#c77dff;">Claude AI (Anthropic)</strong> kao AI programerskog asistenta.</div>
         <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:5px;">
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Game Loop</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Enemy AI</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Game Engine</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Road AI Nav</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">5 Karaktera</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Weapon System</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Q Sposobnosti</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Dodge Roll</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">3 Mape</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Loot Sprites</span>
-          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Zona Shrink</span>
+          <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">XP/Level</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Saveznici AI</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Minimap</span>
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Dan/Noć Ciklus</span>
@@ -1003,7 +1002,7 @@ function switchHelpTab(tab){
           <span style="background:rgba(199,125,255,0.12);border:1px solid rgba(199,125,255,0.3);color:#c77dff;font-family:'Share Tech Mono',monospace;font-size:10px;padding:3px 8px;border-radius:3px;">Mobilne Kontrole</span>
         </div>
         <div style="margin-top:10px;padding:8px 10px;background:rgba(199,125,255,0.06);border-left:3px solid #c77dff;border-radius:2px;font-size:12px;color:rgba(255,255,255,0.5);font-style:italic;">
-          "Od praznog fajla do kompletne igre sa pričom, bossovima, rank sistemom, XP/Level sistemom, combo mehanikom, execucijom, krvavim mrljama i mobilnim kontrolama — 7500+ linija koda, sve sam kodirao sam."
+          "Od praznog fajla do kompletne igre — priča, 5 bossova, rank sistem, XP/Level, combo mehanika, execucija, 3 detaljne mape, road AI navigacija, mobilne kontrole. 7500+ linija koda, razvijano uz Claude AI."
         </div>
       </div>
     </div>
@@ -1051,17 +1050,18 @@ function switchHelpTab(tab){
         <div class="help-key-row"><span class="kbd">MIŠ</span><span class="help-key-desc">Nisanjenje — lik prati kursor</span></div>
         <div class="help-key-row"><span class="kbd">DESNI KLIK</span><span class="help-key-desc">Pucanje</span></div>
         <div class="help-key-row"><span class="kbd">R</span><span class="help-key-desc">Ručno punjenje oružja</span></div>
-        <div class="help-key-row"><span class="kbd">1</span><span class="kbd">2</span><span class="kbd">3</span><span class="help-key-desc">Promena oružja iz inventara</span></div>
-        <div class="help-key-row"><span class="kbd">Q</span><span class="help-key-desc">Aktivacija specijalne sposobnosti</span></div>
-        <div class="help-key-row"><span class="kbd">SPACE</span><span class="help-key-desc">Dodge roll — kotrljaj se da izbegneš</span></div>
-        <div class="help-key-row"><span class="kbd">F</span><span class="help-key-desc">Melee napad — udarac pesnicom</span></div>
+        <div class="help-key-row"><span class="kbd">1</span><span class="kbd">2</span><span class="kbd">3</span><span class="help-key-desc">Promena oružja iz inventara (do 3 oružja)</span></div>
+        <div class="help-key-row"><span class="kbd">Q</span><span class="help-key-desc">Aktivacija specijalne sposobnosti karaktera</span></div>
+        <div class="help-key-row"><span class="kbd">SPACE</span><span class="help-key-desc">Dodge roll — kotrljaj se i izbegni štetu</span></div>
+        <div class="help-key-row"><span class="kbd">F</span><span class="help-key-desc">Melee napad / Execucija (blizu neprijatelja &lt;15% HP)</span></div>
         <div class="help-key-row"><span class="kbd">E</span><span class="help-key-desc">Oslobodi saveznike iz kaveza (samo Vanja)</span></div>
+        <div class="help-key-row"><span class="kbd">TAB</span><span class="help-key-desc">Minimap zoom</span></div>
         <div class="help-key-row"><span class="kbd">ESC</span><span class="help-key-desc">Pauza</span></div>
       </div>
 
       <!-- NOVA MEHANIKA v6.0 -->
       <div class="help-section" style="--sec-color:#c77dff">
-        <h3>🆕 v6.0 — NOVA MEHANIKA</h3>
+        <h3>🆕 NOVE MEHANIKE</h3>
 
         <div style="margin-bottom:14px;">
           <div style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:3px;color:#c77dff;margin-bottom:6px;">🏆 XP I LEVEL SISTEM</div>
@@ -1488,7 +1488,7 @@ function switchHelpTab(tab){
 </div>
 <!-- LEVEL UP -->
 <div id="levelUpOverlay" class="hidden">
-  <div class="lu-title">TALAS ZAVRSEN!</div>
+  <div class="lu-title">LEVEL UP! 🏆</div>
   <div class="lu-sub">IZABERI NADOGRADNJU</div>
   <div class="lu-cards" id="luCards"></div>
 </div>
@@ -1499,6 +1499,8 @@ function switchHelpTab(tab){
   <div class="ability-slot"><span class="key-hint">F</span><span>&#9876;</span><div class="cd-fill" id="meleeCdFill"></div><span class="cd-text" id="meleeCdText"></span></div>
 </div>
 <!-- GAME CANVAS -->
+
+
 <div id="killFeed"></div>
 <div id="comboDisplay" style="position:fixed;top:50%;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',cursive;font-size:32px;letter-spacing:6px;color:#ffd700;z-index:14;opacity:0;transition:opacity 0.3s,transform 0.12s;text-shadow:0 0 20px currentColor;pointer-events:none;"></div>
 <div id="execHint" style="position:fixed;bottom:80px;left:50%;transform:translateX(-50%);font-family:'Bebas Neue',cursive;font-size:16px;letter-spacing:4px;color:#ffd700;z-index:14;opacity:0;transition:opacity 0.2s;text-shadow:0 0 12px #ffd700;pointer-events:none;">⚡ F — EXECUCIJA</div>
@@ -1521,6 +1523,8 @@ function switchHelpTab(tab){
       <div class="inv-slot active" id="slot0"><span class="slot-num">1</span><span class="inv-name">PIŠTOLJ</span><span class="inv-ammo">15</span></div>
       <div class="inv-slot" id="slot1"><span class="slot-num">2</span><span class="inv-name">-</span></div>
       <div class="inv-slot" id="slot2"><span class="slot-num">3</span><span class="inv-name">-</span></div>
+      <div class="inv-slot" id="slot3"><span class="slot-num">4</span><span class="inv-name">-</span></div>
+      <div class="inv-slot" id="slot4"><span class="slot-num">5</span><span class="inv-name">-</span></div>
     </div>
   </div>
   <div id="xpBarWrap" style="position:fixed;bottom:0;left:0;width:100%;height:5px;z-index:12;background:rgba(0,0,0,0.5);">
@@ -1547,7 +1551,7 @@ function switchHelpTab(tab){
   <div id="eventBanner"></div>
   <div id="floatContainer"></div>
 </div>
-<canvas id="crosshairCanvas" style="position:fixed;inset:0;pointer-events:none;z-index:15;display:none;" width="40" height="40"></canvas>
+<canvas id="crosshairCanvas" style="position:fixed;top:0;left:0;pointer-events:none;z-index:15;display:none;"></canvas>
 
 <script>
 // ============================================================
@@ -1784,35 +1788,125 @@ function drawSilhouette(ctx, dir, color){
 // ================================================================
 function generateObstacles(){
   obstacles = [];
-  const count = 220 + Math.floor(wave*3);
-  // Map-specific obstacle themes
-  for(let i=0;i<count;i++){
-    let x,y,w2,h2,tries=0;
-    do{
-      x=rand(80,WORLD_W-80);y=rand(80,WORLD_H-80);
-      w2=rand(30,90);h2=rand(30,90);
-      tries++;
-    }while(tries<20&&dist(x,y,WORLD_W/2,WORLD_H/2)<200);
-    
-    // Avoid spawning on player start
-    if(dist(x,y,WORLD_W/2,WORLD_H/2)<220)continue;
-    
-    obstacles.push({
-      x:x-w2/2,y:y-h2/2,w:w2,h:h2,
-      type:currentMap===0?'crate':currentMap===1?'rock':'debris',
-      color:currentMap===0?'#2a1a0a':currentMap===1?'#2a2a2a':'#1a1a2a'
+  const SAFE = 240; // player start safe zone radius
+
+  if(currentMap === 2){
+    // ═══ GRAD — Čist rebuild ═══
+    // drawMapCity: BLOCK=500, ROAD=72, PAD=18
+    // Zgrada počinje na bx+PAD, završava na bx+(BLOCK-ROAD-PAD)
+    // Ulica je od bx+(BLOCK-ROAD) do bx+BLOCK
+    // Igrač (r=22) mora slobodno proći kroz ulicu širine 72px — ima 72-44=28px slobodno
+    const BLOCK=500, ROAD=72, PAD=18;
+    for(let bx=0;bx<WORLD_W;bx+=BLOCK){
+      for(let by=0;by<WORLD_H;by+=BLOCK){
+        // Zgrada zauzima unutrašnjost bloka — tačno kao vizualni element
+        const zx = bx + PAD;
+        const zy = by + PAD;
+        const zw = BLOCK - ROAD - PAD * 2;  // = 500-72-36 = 392
+        const zh = BLOCK - ROAD - PAD * 2;
+        if(zw < 80 || zh < 80) continue;
+        const cx2 = zx + zw/2, cy2 = zy + zh/2;
+        if(dist(cx2, cy2, WORLD_W/2, WORLD_H/2) < SAFE) continue;
+        // Park blokovi — prolazni, nema obstacle (isti uslov kao drawMapCity)
+        if(((bx/BLOCK+by/BLOCK)%3)===0) continue;
+        obstacles.push({x:zx, y:zy, w:zw, h:zh, type:'wall', color:'#3d4050'});
+      }
+    }
+    // Ulice (72px wide) i trotori su potpuno slobodni za kretanje
+
+  } else if(currentMap === 0){
+    // ═══ FABRIKA — Rezervoari + konvejeri + zidovi ═══
+    // Rezervoari — tačno iste pozicije kao u drawMapFactory
+    const tanks=[
+      {x:600,y:400,r:65},{x:2000,y:900,r:55},{x:3400,y:700,r:72},
+      {x:700,y:2700,r:58},{x:2300,y:2400,r:68},{x:4600,y:1400,r:62},
+      {x:1100,y:3900,r:52},{x:3900,y:3400,r:74},{x:600,y:4900,r:60},
+      {x:4300,y:5400,r:64},{x:2900,y:4700,r:68},{x:1700,y:5700,r:54},
+      {x:5500,y:1000,r:60},{x:5200,y:3500,r:65},{x:400,y:6000,r:58},
+    ];
+    tanks.forEach(tk=>{
+      if(dist(tk.x,tk.y,WORLD_W/2,WORLD_H/2)<SAFE) return;
+      // Collision box = kvadrat oko rezervoara
+      const s=tk.r*1.6;
+      obstacles.push({x:tk.x-s/2, y:tk.y-s/2, w:s, h:s, type:'wall', color:'#555'});
     });
-  }
-  // Some longer walls
-  for(let i=0;i<70;i++){
-    let x=rand(100,WORLD_W-100),y=rand(100,WORLD_H-100);
-    if(dist(x,y,WORLD_W/2,WORLD_H/2)<250)continue;
-    const horiz=Math.random()<.5;
-    obstacles.push({
-      x,y,w:horiz?rand(80,200):rand(20,40),h:horiz?rand(20,40):rand(80,200),
-      type:currentMap===0?'wall':currentMap===1?'log':'concrete',
-      color:currentMap===0?'#1a1a1a':currentMap===1?'#3a2010':'#141420'
+    // Konvejeri kao prepreke (blokira prolaz)
+    const conveyors=[
+      {x:300,y:600,w:700,h:36},{x:1600,y:300,w:600,h:36},
+      {x:900,y:1800,w:800,h:36},{x:3200,y:1100,w:650,h:36},
+      {x:500,y:3200,w:750,h:36},{x:2600,y:2800,w:550,h:36},
+      {x:1300,y:4400,w:700,h:36},{x:4100,y:2400,w:650,h:36},
+      {x:700,y:5400,w:600,h:36},{x:3600,y:4600,w:700,h:36},
+      {x:4500,y:700,w:36,h:600},{x:2000,y:2000,w:36,h:700},
+      {x:5000,y:3000,w:36,h:650},{x:1000,y:4800,w:36,h:550},
+    ];
+    conveyors.forEach(cv=>{
+      if(dist(cv.x+cv.w/2,cv.y+cv.h/2,WORLD_W/2,WORLD_H/2)<SAFE) return;
+      obstacles.push({x:cv.x, y:cv.y, w:cv.w, h:cv.h, type:'wall', color:'#333'});
     });
+    // Cevi/zidovi oko pipelines
+    const pipes=[
+      {x:850,y:140,w:60,h:60},{x:1250,y:240,w:60,h:60},{x:3050,y:390,w:60,h:60},
+      {x:450,y:2050,w:150,h:60},{x:2050,y:2850,w:60,h:250},
+    ];
+    pipes.forEach(p=>{
+      if(dist(p.x+p.w/2,p.y+p.h/2,WORLD_W/2,WORLD_H/2)<SAFE) return;
+      obstacles.push({x:p.x,y:p.y,w:p.w,h:p.h,type:'crate',color:'#404040'});
+    });
+    // Nasumicni industrijski otpad/kutije
+    for(let i=0;i<60;i++){
+      const x=rand(100,WORLD_W-100), y=rand(100,WORLD_H-100);
+      if(dist(x,y,WORLD_W/2,WORLD_H/2)<SAFE) continue;
+      const w2=rand(25,65), h2=rand(25,65);
+      obstacles.push({x:x-w2/2,y:y-h2/2,w:w2,h:h2,type:'crate',color:'#2a1a0a'});
+    }
+
+  } else {
+    // ═══ ŠUMA — Drveca kao prepreke ═══
+    // Drveca — ISTA formula kao drawMapForest
+    for(let i=0;i<120;i++){
+      const seed=((i*2654435761+i*1337)>>>0);
+      const tx=((seed*6271+i*1337)%WORLD_W);
+      const ty=((seed*5839+i*1019)%WORLD_H);
+      if(dist(tx,ty,WORLD_W/2,WORLD_H/2)<SAFE) continue;
+      // tr = rand2(seed,26,50) — ista formula
+      const tr=26+(((seed*2654435761)>>>0)%25);
+      // Collision box = krug oko stabla, solidni
+      const cw=Math.max(18,tr*.55);
+      obstacles.push({x:tx-cw/2, y:ty-cw/2, w:cw, h:cw, type:'log', color:'#3d2510'});
+    }
+    // Bare — blokiraju
+    const ponds=[
+      {x:1300,y:900,rx:130,ry:75},{x:3600,y:1600,rx:110,ry:65},
+      {x:900,y:3100,rx:150,ry:85},{x:4600,y:3600,rx:120,ry:70},
+      {x:2100,y:5100,rx:140,ry:80},{x:5600,y:2100,rx:105,ry:60},
+      {x:1600,y:5600,rx:95,ry:55},{x:4100,y:5900,rx:125,ry:72},
+      {x:2800,y:2800,rx:100,ry:58},{x:5100,y:4800,rx:115,ry:65},
+    ];
+    ponds.forEach(p=>{
+      if(dist(p.x,p.y,WORLD_W/2,WORLD_H/2)<SAFE) return;
+      // Bara = pravougaonik koji aproksimira elipsu
+      obstacles.push({x:p.x-p.rx, y:p.y-p.ry, w:p.rx*2, h:p.ry*2, type:'wall', color:'#1a4a7a'});
+    });
+    // Pecine — blokiraju ulaz
+    const caves=[
+      {x:400,y:600,w:180,h:120},{x:6200,y:1200,w:200,h:140},
+      {x:300,y:3800,w:160,h:110},{x:6400,y:4500,w:190,h:130},
+      {x:1800,y:6400,w:170,h:120},{x:5000,y:6500,w:180,h:125},
+      {x:3500,y:350,w:175,h:115},{x:6300,y:6200,w:165,h:110},
+    ];
+    caves.forEach(cv=>{
+      if(dist(cv.x+cv.w/2,cv.y+cv.h/2,WORLD_W/2,WORLD_H/2)<SAFE)return;
+      // Spoljni zid pecine blokira
+      obstacles.push({x:cv.x,y:cv.y,w:cv.w,h:cv.h,type:'wall',color:'#2a2520'});
+    });
+    // Kamenje / korijenje — mali nasumicni
+    for(let i=0;i<40;i++){
+      const x=rand(150,WORLD_W-150), y=rand(150,WORLD_H-150);
+      if(dist(x,y,WORLD_W/2,WORLD_H/2)<SAFE) continue;
+      const s=rand(20,45);
+      obstacles.push({x:x-s/2,y:y-s/2,w:s,h:s,type:'rock',color:'#404040'});
+    }
   }
 }
 
@@ -1824,81 +1918,23 @@ function collidesWithObstacle(x,y,r){
 }
 
 function drawObstacles(){
+  // Obstacles are invisible — map functions draw the visuals (trees, buildings, tanks)
+  // Only factory crates are drawn here as random debris boxes
   obstacles.forEach(o=>{
+    if(o.type!=='crate') return; // only draw crates, rest handled by map draw
     ctx.save();
-    if(o.type==='crate'){
-      // Factory crate - brown box with metal trim
-      ctx.fillStyle='#3d2208';roundRect(ctx,o.x,o.y,o.w,o.h,3);ctx.fill();
-      ctx.strokeStyle='#8b6020';ctx.lineWidth=2;ctx.stroke();
-      // Wood planks
-      ctx.strokeStyle='rgba(139,96,32,0.4)';ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(o.x,o.y+o.h/3);ctx.lineTo(o.x+o.w,o.y+o.h/3);ctx.stroke();
-      ctx.beginPath();ctx.moveTo(o.x,o.y+o.h*2/3);ctx.lineTo(o.x+o.w,o.y+o.h*2/3);ctx.stroke();
-      // Metal corner brackets
-      ctx.fillStyle='#888';ctx.fillRect(o.x,o.y,8,8);ctx.fillRect(o.x+o.w-8,o.y,8,8);
-      ctx.fillRect(o.x,o.y+o.h-8,8,8);ctx.fillRect(o.x+o.w-8,o.y+o.h-8,8,8);
-    } else if(o.type==='wall'){
-      // Factory wall segment - dark metal
-      ctx.fillStyle='#111416';roundRect(ctx,o.x,o.y,o.w,o.h,2);ctx.fill();
-      ctx.strokeStyle='#f4a261';ctx.lineWidth=1.5;ctx.stroke();
-      // Rivet dots
-      const rx=o.w>o.h;
-      if(rx){for(let i=8;i<o.w;i+=20){ctx.beginPath();ctx.arc(o.x+i,o.y+o.h/2,2,0,Math.PI*2);ctx.fillStyle='#555';ctx.fill();}}
-      else{for(let i=8;i<o.h;i+=20){ctx.beginPath();ctx.arc(o.x+o.w/2,o.y+i,2,0,Math.PI*2);ctx.fillStyle='#555';ctx.fill();}}
-    } else if(o.type==='debris'){
-      // City debris - broken concrete chunks
-      ctx.fillStyle='#1a1a28';
-      ctx.beginPath();
-      ctx.moveTo(o.x+o.w*.2,o.y);ctx.lineTo(o.x+o.w*.9,o.y+o.h*.1);
-      ctx.lineTo(o.x+o.w,o.y+o.h*.6);ctx.lineTo(o.x+o.w*.7,o.y+o.h);
-      ctx.lineTo(o.x+o.w*.1,o.y+o.h*.95);ctx.lineTo(o.x,o.y+o.h*.3);
-      ctx.closePath();ctx.fill();
-      ctx.strokeStyle='#5040a0';ctx.lineWidth=1.5;ctx.stroke();
-      // Rebar sticking out
-      ctx.strokeStyle='rgba(180,140,80,0.6)';ctx.lineWidth=2;
-      ctx.beginPath();ctx.moveTo(o.x+o.w*.5,o.y);ctx.lineTo(o.x+o.w*.5-4,o.y-10);ctx.stroke();
-      ctx.beginPath();ctx.moveTo(o.x+o.w*.8,o.y+o.h*.2);ctx.lineTo(o.x+o.w+6,o.y+o.h*.1);ctx.stroke();
-      // Purple glow
-      ctx.fillStyle='rgba(100,60,200,0.08)';ctx.beginPath();ctx.arc(o.x+o.w/2,o.y+o.h/2,o.w*.6,0,Math.PI*2);ctx.fill();
-    } else if(o.type==='concrete'){
-      // City wall / barrier - concrete slab
-      ctx.fillStyle='#141420';roundRect(ctx,o.x,o.y,o.w,o.h,2);ctx.fill();
-      ctx.strokeStyle='#5040a0';ctx.lineWidth=1.5;ctx.stroke();
-      // Graffiti stripe
-      ctx.fillStyle='rgba(160,80,255,0.12)';ctx.fillRect(o.x,o.y+o.h*.3,o.w,o.h*.15);
-      // Crack
-      ctx.strokeStyle='rgba(255,255,255,0.06)';ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(o.x+o.w*.3,o.y);ctx.lineTo(o.x+o.w*.5,o.y+o.h*.5);ctx.lineTo(o.x+o.w*.4,o.y+o.h);ctx.stroke();
-    } else if(o.type==='rock'){
-      // Forest rock
-      ctx.fillStyle='#2a2a2a';
-      ctx.beginPath();
-      ctx.moveTo(o.x+o.w*.3,o.y);ctx.lineTo(o.x+o.w*.8,o.y+o.h*.1);
-      ctx.lineTo(o.x+o.w,o.y+o.h*.4);ctx.lineTo(o.x+o.w*.9,o.y+o.h*.85);
-      ctx.lineTo(o.x+o.w*.5,o.y+o.h);ctx.lineTo(o.x+o.w*.1,o.y+o.h*.9);
-      ctx.lineTo(o.x,o.y+o.h*.5);ctx.lineTo(o.x+o.w*.1,o.y+o.h*.15);ctx.closePath();
-      ctx.fill();ctx.strokeStyle='#444';ctx.lineWidth=1.5;ctx.stroke();
-      // Highlight
-      ctx.fillStyle='rgba(255,255,255,0.05)';
-      ctx.beginPath();ctx.ellipse(o.x+o.w*.35,o.y+o.h*.3,o.w*.2,o.h*.15,-.3,0,Math.PI*2);ctx.fill();
-    } else if(o.type==='log'){
-      // Forest log
-      ctx.fillStyle='#2d1a08';roundRect(ctx,o.x,o.y,o.w,o.h,4);ctx.fill();
-      ctx.strokeStyle='#5c3d1a';ctx.lineWidth=2;ctx.stroke();
-      // Wood grain
-      ctx.strokeStyle='rgba(92,61,26,0.4)';ctx.lineWidth=1;
-      const steps=o.w>o.h?5:4;
-      for(let i=1;i<steps;i++){
-        if(o.w>o.h){ctx.beginPath();ctx.moveTo(o.x+o.w*i/steps,o.y);ctx.lineTo(o.x+o.w*i/steps,o.y+o.h);ctx.stroke();}
-        else{ctx.beginPath();ctx.moveTo(o.x,o.y+o.h*i/steps);ctx.lineTo(o.x+o.w,o.y+o.h*i/steps);ctx.stroke();}
-      }
-      // Moss
-      ctx.fillStyle='rgba(40,90,20,0.3)';ctx.fillRect(o.x,o.y,o.w,4);
-    }
-    // Shadow under obstacle
-    ctx.fillStyle='rgba(0,0,0,0.25)';
-    ctx.fillRect(o.x+4,o.y+o.h,o.w,5);
+    ctx.beginPath();ctx.rect(o.x,o.y,o.w,o.h);ctx.clip();
+    ctx.fillStyle='#3d2208';ctx.fillRect(o.x,o.y,o.w,o.h);
+    ctx.strokeStyle='#8b6020';ctx.lineWidth=2;ctx.strokeRect(o.x+1,o.y+1,o.w-2,o.h-2);
+    ctx.strokeStyle='rgba(139,96,32,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(o.x,o.y+o.h/3);ctx.lineTo(o.x+o.w,o.y+o.h/3);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(o.x,o.y+o.h*2/3);ctx.lineTo(o.x+o.w,o.y+o.h*2/3);ctx.stroke();
+    ctx.fillStyle='#888';
+    ctx.fillRect(o.x,o.y,6,6);ctx.fillRect(o.x+o.w-6,o.y,6,6);
+    ctx.fillRect(o.x,o.y+o.h-6,6,6);ctx.fillRect(o.x+o.w-6,o.y+o.h-6,6,6);
     ctx.restore();
+    ctx.save();ctx.globalAlpha=0.2;ctx.fillStyle='#000';
+    ctx.fillRect(o.x+4,o.y+o.h,o.w-2,4);ctx.restore();
   });
 }
 
@@ -1967,6 +2003,41 @@ function playSound(type){
         osc.type='sine';osc.frequency.setValueAtTime(60,now);osc.frequency.exponentialRampToValueAtTime(40,now+.15);
         gain.gain.setValueAtTime(.15,now);gain.gain.exponentialRampToValueAtTime(.001,now+.2);
         osc.start(now);osc.stop(now+.2);break;
+      case 'coin':
+        osc.type='sine';
+        osc.frequency.setValueAtTime(880,now);osc.frequency.setValueAtTime(1100,now+.04);osc.frequency.setValueAtTime(1320,now+.08);
+        gain.gain.setValueAtTime(.12,now);gain.gain.exponentialRampToValueAtTime(.001,now+.15);
+        osc.start(now);osc.stop(now+.16);break;
+      case 'buy_gun':
+        // "Chi-ching" — metal click + register
+        for(let i=0;i<2;i++){
+          const o2=audioCtx.createOscillator(),g2=audioCtx.createGain();
+          o2.connect(g2);g2.connect(audioCtx.destination);
+          o2.type='square';o2.frequency.setValueAtTime(i===0?800:1200,now+i*.12);
+          o2.frequency.exponentialRampToValueAtTime(i===0?600:900,now+i*.12+.06);
+          g2.gain.setValueAtTime(.18,now+i*.12);g2.gain.exponentialRampToValueAtTime(.001,now+i*.12+.1);
+          o2.start(now+i*.12);o2.stop(now+i*.12+.12);
+        }return;
+      case 'buy_gear':
+        osc.type='sine';
+        osc.frequency.setValueAtTime(500,now);osc.frequency.setValueAtTime(700,now+.06);osc.frequency.setValueAtTime(900,now+.12);
+        gain.gain.setValueAtTime(.14,now);gain.gain.exponentialRampToValueAtTime(.001,now+.2);
+        osc.start(now);osc.stop(now+.22);break;
+      case 'buy_spell':
+        osc.type='sine';
+        osc.frequency.setValueAtTime(300,now);osc.frequency.setValueAtTime(600,now+.05);osc.frequency.setValueAtTime(900,now+.1);osc.frequency.setValueAtTime(1200,now+.15);
+        gain.gain.setValueAtTime(.15,now);gain.gain.exponentialRampToValueAtTime(.001,now+.25);
+        osc.start(now);osc.stop(now+.26);break;
+      case 'explosion':
+        // Boom sound
+        for(let i=0;i<4;i++){
+          const o2=audioCtx.createOscillator(),g2=audioCtx.createGain();
+          o2.connect(g2);g2.connect(audioCtx.destination);
+          o2.type='sawtooth';o2.frequency.setValueAtTime(120-i*20,now+i*.02);
+          o2.frequency.exponentialRampToValueAtTime(20,now+.5);
+          g2.gain.setValueAtTime(.25-i*.04,now+i*.02);g2.gain.exponentialRampToValueAtTime(.001,now+.6);
+          o2.start(now+i*.02);o2.stop(now+.65);
+        }return;
     }
   }catch(e){}
 }
@@ -1992,10 +2063,11 @@ function updateKillStreak(dt){
 }
 
 function drawCrosshair(){
-  if(gameState!=='playing')return;
+  if(gameState!=='playing'&&gameState!=='levelup')return;
   const cc=document.getElementById('crosshairCanvas');
   if(!cc)return;
-  if(cc.width!==window.innerWidth||cc.height!==window.innerHeight){cc.width=window.innerWidth;cc.height=window.innerHeight;}
+  cc.width=window.innerWidth;
+  cc.height=window.innerHeight;
   const cCtx=cc.getContext('2d');
   cCtx.clearRect(0,0,cc.width,cc.height);
   const x=mouse.x,y=mouse.y;
@@ -2014,7 +2086,14 @@ function drawCrosshair(){
   cCtx.beginPath();cCtx.arc(x,y,size+4,0,Math.PI*2);cCtx.stroke();
 }
 // Crosshair has its own animation loop - works regardless of game state or movement
-(function crosshairLoop(){drawCrosshair();requestAnimationFrame(crosshairLoop);})();
+(function crosshairLoop(){
+  const cc=document.getElementById('crosshairCanvas');
+  if(cc&&(cc.width!==window.innerWidth||cc.height!==window.innerHeight)){
+    cc.width=window.innerWidth;cc.height=window.innerHeight;
+  }
+  drawCrosshair();
+  requestAnimationFrame(crosshairLoop);
+})();
 
 // ================================================================
 // MUSIC
@@ -2029,7 +2108,7 @@ function toggleParticles(){particlesEnabled=!particlesEnabled;var btn=document.g
 // PAUSE
 // ================================================================
 function pauseGame(){if(gameState!=='playing')return;paused=true;gameState='paused';document.getElementById('pauseOverlay').classList.remove('hidden');}
-function resumeGame(){paused=false;gameState='playing';document.getElementById('pauseOverlay').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('open');lastTime=0;gameLoop();}
+function resumeGame(){paused=false;gameState='playing';document.getElementById('pauseOverlay').classList.add('hidden');document.getElementById('settingsPanel').classList.remove('open');lastTime=0;}
 function toggleSettings(){document.getElementById('settingsPanel').classList.toggle('open');}
 // ================================================================
 // LEVEL UP
@@ -2054,7 +2133,7 @@ function showLevelUp(){
   shuffled.forEach(function(u,i){var d=document.createElement('div');d.className='lu-card';d.innerHTML='<div class="lu-icon">'+u.icon+'</div><div class="lu-name">'+u.name+'</div><div class="lu-desc">'+u.desc+'</div>';d.onclick=function(){pickUpgrade(i);};cards.appendChild(d);});
   document.getElementById('levelUpOverlay').classList.remove('hidden');
 }
-function pickUpgrade(i){levelUpOptions[i].apply();levelUpPending=false;document.getElementById('levelUpOverlay').classList.add('hidden');paused=false;gameState='playing';lastTime=0;gameLoop();}
+function pickUpgrade(i){levelUpOptions[i].apply();levelUpPending=false;document.getElementById('levelUpOverlay').classList.add('hidden');paused=false;gameState='playing';lastTime=0;}
 // ================================================================
 // ABILITY
 // ================================================================
@@ -2074,13 +2153,29 @@ function useAbility(){
   else if(selectedChar===3){
     // Uroš - ledena eksplozija, zaledi sve okolo
     abilityActive=true;abilityTimer=500;abilityCooldown=18000;
-    enemies.forEach(function(e){if(!e.dead&&!e.dying&&dist(e.x,e.y,player.x,player.y)<280){e._frozen=3000;e._frozenColor='#a8d8ff';e.hp-=30;spawnParticles(e.x,e.y,10,'#a8d8ff',0.3);if(e.hp<=0&&!e.dying)killEnemy(e);}});
+    let frozenCount=0;
+    enemies.forEach(function(e){
+      if(e.dead||e.dying)return;
+      if(dist(e.x,e.y,player.x,player.y)<380){
+        e._frozen=3500;e._frozenColor='#a8d8ff';
+        e.hp-=30;
+        frozenCount++;
+        spawnParticles(e.x,e.y,15,'#a8d8ff',0.4);
+        spawnParticles(e.x,e.y,8,'#ffffff',0.2);
+        if(e.hp<=0&&!e.dying)killEnemy(e);
+      }
+    });
+    triggerShake(8,200);
+    showBanner('❄️ LEDENA OLUJA! ('+frozenCount+' zaledeno)','#a8d8ff',2000);
     showFloat('❄️ LEDENA OLUJA!',gameCanvas.width/2,gameCanvas.height/2-80,'#a8d8ff');
-    spawnParticles(player.x,player.y,40,'#a8d8ff',0.5);spawnParticles(player.x,player.y,20,'#fff',0.3);playSound('pickup');
+    spawnParticles(player.x,player.y,60,'#a8d8ff',0.5);
+    spawnParticles(player.x,player.y,30,'#fff',0.3);
+    playSound('pickup');
   }
   else if(selectedChar===4){
     // Šimun - berserker, dupli damage 5s
     abilityActive=true;abilityTimer=5000;abilityCooldown=14000;
+    player._preBerserkerMult=(player.damageMult||1);
     player.damageMult=(player.damageMult||1)*2.5;
     player._berserker=true;
     showFloat('💪 BERSERKER!',gameCanvas.width/2,gameCanvas.height/2-80,'#ff8c00');
@@ -2122,7 +2217,7 @@ function updateAbility(dt){
     }
     if(abilityTimer<=0){
       abilityActive=false;
-      if(player._berserker){player._berserker=false;player.damageMult=Math.max(1,(player.damageMult||1)/2.5);showFloat('BERSERKER GOTOV','#aaa');}
+      if(player._berserker){player._berserker=false;player.damageMult=player._preBerserkerMult||1;player._preBerserkerMult=null;showFloat('BERSERKER GOTOV','#aaa');}
       if(player.dinoForm){
         player.dinoForm=false;
         player._soulMaceTimer=0;
@@ -2153,7 +2248,15 @@ function doDodge(){
 }
 function updateDodge(dt){
   dodgeCooldown=Math.max(0,dodgeCooldown-dt);
-  if(dodging){dodgeTimer-=dt;var nx=Math.max(20,Math.min(WORLD_W-20,player.x+dodgeVx)),ny=Math.max(20,Math.min(WORLD_H-20,player.y+dodgeVy));if(!collidesWithObstacle(nx,player.y,12))player.x=nx;if(!collidesWithObstacle(player.x,ny,12))player.y=ny;dodgeVx*=0.85;dodgeVy*=0.85;if(dodgeTimer<=0)dodging=false;}
+  if(dodging){dodgeTimer-=dt;
+  const dnx=Math.max(16,Math.min(WORLD_W-16,player.x+dodgeVx));
+  const dny=Math.max(16,Math.min(WORLD_H-16,player.y+dodgeVy));
+  if(!collidesWithObstacle(dnx,player.y,16))player.x=dnx;
+  else{dodgeVx=0;}
+  if(!collidesWithObstacle(player.x,dny,16))player.y=dny;
+  else{dodgeVy=0;}
+  dodgeVx*=0.85;dodgeVy*=0.85;if(dodgeTimer<=0)dodging=false;
+}
 }
 // ================================================================
 // MELEE
@@ -2213,12 +2316,7 @@ function updateDayNight(dt){
   var el=document.getElementById('dayNightOverlay');
   if(el)el.style.background=a>0?('rgba('+r+','+g+','+b+','+a+')'):'transparent';
 }
-function getDayBrightness(){
-  if(dayNightTime<0.25)return 0.4+dayNightTime/0.25*0.6;
-  if(dayNightTime<0.5)return 1.0;
-  if(dayNightTime<0.75)return 1.0-(dayNightTime-0.5)/0.25*0.35;
-  return 0.65-(dayNightTime-0.75)/0.25*0.2;
-}
+function getDayBrightness(){ return 1.0; }
 function getTimeOfDayStr(){
   if(dayNightTime<0.25)return 'ZORA';if(dayNightTime<0.5)return 'DAN';if(dayNightTime<0.75)return 'SUMRAK';return 'NOC';
 }
@@ -2425,16 +2523,21 @@ document.getElementById('playBtn').addEventListener('click',()=>showScreen('mode
 
 function startStoryMode(){
   gameMode='story';
-  // Force Vanja (idx 0)
+  // Reset zone progress for fresh story run
+  currentZone=0; zonePhase='dialog_before'; bossEnemy=null; bossSpawned=false;
+  zoneWave=0; zoneWaveEnemiesLeft=0; zoneWaveCooldown=0;
   selectChar(0);
   startCutscene();
 }
 function startArenaMode(){
   gameMode='arena';
+  // Reset any leftover story zone state
+  currentZone=0; zonePhase='waves'; bossEnemy=null; bossSpawned=false;
+  zoneWave=0; zoneWaveEnemiesLeft=0; dialogQueue=[]; dialogActive=false;
   showScreen('charScreen');
 }
 document.getElementById('charBackBtn').addEventListener('click',()=>showScreen('menuScreen'));
-document.getElementById('enterArenaBtn').addEventListener('click',()=>startCutscene());
+document.getElementById('enterArenaBtn').addEventListener('click',()=>startGame());
 
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));
@@ -2882,6 +2985,7 @@ const ITEMS = [
 
 let player,enemies=[],bullets=[],loot=[],particles=[],floatTexts=[],trailParticles=[];
 // ---- MEGA UPDATE VARS ----
+
 let screenShake={x:0,y:0,intensity:0,duration:0};
 let bloodPools=[];
 let comboCount=0,comboTimer=0,comboMaxTimer=2800;
@@ -2979,7 +3083,7 @@ function startGame(){
   
   enemies=[];bullets=[];loot=[];particles=[];floatTexts=[];trailParticles=[];gasZones=[];electricZones=[];bloodPools=[];bulletTrails=[];comboCount=0;comboTimer=0;screenShake={x:0,y:0,intensity:0,duration:0};weatherType='clear';weatherRainDrops=[];weatherFogAlpha=0;
   zone={cx:WORLD_W/2,cy:WORLD_H/2,r:WORLD_W*.47,targetR:WORLD_W*.08,shrinkRate:0};
-  zone.shrinkRate=(zone.r-zone.targetR)/(3000*60);
+  zone.shrinkRate=0; // zona iskljucena
   wave=1;kills=0;gameTime=0;lastTime=0;reloading=false;currentWeaponIdx=0;
   waveCooldown=2000;waveEnemiesLeft=0;eventActive=null;gameStartTime=Date.now();
   currentMap = selectedMap===3 ? Math.floor(Math.random()*3) : selectedMap;
@@ -2989,6 +3093,7 @@ function startGame(){
   generateObstacles();
   killStreak=0;killStreakTimer=0;
   playerXP=0;playerLevel=1;playerXPToNext=100;
+
   comboCount=0;comboTimer=0;
   screenShake={x:0,y:0,intensity:0,duration:0};
   bloodPools=[];bulletTrails=[];
@@ -2999,9 +3104,12 @@ function startGame(){
   rivals=[];
   // rivals disabled - no AI characters spawn
   spawnCages();
-  paused=false;levelUpPending=false;abilityCooldown=0;abilityActive=false;dodgeCooldown=0;dodging=false;dayNightTime=Math.random();meleeCooldown=0;
+  paused=false;levelUpPending=false;abilityCooldown=0;abilityActive=false;dodgeCooldown=0;dodging=false;dayNightTime=0.35;meleeCooldown=0;
   document.getElementById('pauseOverlay').classList.add('hidden');document.getElementById('levelUpOverlay').classList.add('hidden');
   var ah=document.getElementById('abilityHud');if(ah)ah.style.display='flex';
+  var cd=document.getElementById('coinDisplay');if(cd)cd.style.display='block';
+
+
   var xpw=document.getElementById('xpBarWrap');if(xpw)xpw.style.display='block';
   var xpl=document.getElementById('xpLevelDisplay');if(xpl){xpl.style.display='block';xpl.textContent='LVL 1';}
   var xpf=document.getElementById('xpBarFill');if(xpf)xpf.style.width='0%';
@@ -3013,8 +3121,8 @@ function startGame(){
 function gameLoop(ts=0){
   if(gameState==='paused')return;
   if(gameState!=='playing'&&gameState!=='levelup')return;
-  if(lastTime===0)lastTime=ts;
-  const dt=Math.min(ts-lastTime,50);lastTime=ts;
+  if(lastTime===0||ts-lastTime>200){lastTime=ts;animFrame=requestAnimationFrame(gameLoop);return;}
+  const dt=Math.min(ts-lastTime,33);lastTime=ts;
   gameTime+=dt;
   update(dt);draw();
   animFrame=requestAnimationFrame(gameLoop);
@@ -3573,9 +3681,11 @@ function drawCompanions(){
 
 // ---- UPDATE ----
 function update(dt){
+  if(paused&&gameState==='playing') return;
   if(paused||gameState==='levelup')return;
   updatePlayer(dt);updateEnemies(dt);updateBullets(dt);updateLoot();updateParticles(dt);updateZone(dt);updateWave(dt);updateEvents(dt);updateKillStreak(dt);
   updateAbility(dt);updateDodge(dt);updateDayNight(dt);updateAlertSystem(dt);
+
   updateScreenShake(dt);updateCombo(dt);updateBulletTrails(dt);checkExecution();
   updateScreenShake(dt);updateCombo(dt);updateBulletTrails(dt);checkExecution();
   updateRivals(dt);
@@ -3588,7 +3698,7 @@ function update(dt){
 function updatePlayer(dt){
   const ch=CHARS[selectedChar];
   let dx=0,dy=0;
-  const spd=player.speed*(keys['ShiftLeft']||keys['ShiftRight']?1.35:1)*2.1;
+  const spd=player.speed*(keys['ShiftLeft']||keys['ShiftRight']?1.3:1);
   if(keys['KeyW']||keys['ArrowUp'])dy-=spd;
   if(keys['KeyS']||keys['ArrowDown'])dy+=spd;
   if(keys['KeyA']||keys['ArrowLeft'])dx-=spd;
@@ -3599,10 +3709,17 @@ function updatePlayer(dt){
     dy += joystickDy * spd;
   }
   if(dx&&dy){dx*=0.707;dy*=0.707;}
-  const nx=Math.max(20,Math.min(WORLD_W-20,player.x+dx));
-  const ny=Math.max(20,Math.min(WORLD_H-20,player.y+dy));
-  if(!collidesWithObstacle(nx,player.y,15))player.x=nx;
-  if(!collidesWithObstacle(player.x,ny,15))player.y=ny;
+  // Stepped collision — move in small increments to prevent tunneling
+  const PR = 22; // collision radius — matches visual sprite size
+  const moveDist = Math.sqrt(dx*dx+dy*dy);
+  const steps = Math.max(1, Math.ceil(moveDist/8));
+  const sx = dx/steps, sy = dy/steps;
+  for(let st=0;st<steps;st++){
+    const nx = Math.max(PR, Math.min(WORLD_W-PR, player.x+sx));
+    if(!collidesWithObstacle(nx, player.y, PR)) player.x=nx;
+    const ny = Math.max(PR, Math.min(WORLD_H-PR, player.y+sy));
+    if(!collidesWithObstacle(player.x, ny, PR)) player.y=ny;
+  }
   
   // Trail + walk animation
   player.isMoving = !!(dx||dy);
@@ -3642,12 +3759,7 @@ function updatePlayer(dt){
     if(prog>=1){reloading=false;const w=player.weapons[player.currentWeapon];w.ammo=w.clipSize;}
   }
   
-  // Zone damage
-  const dx2=player.x-zone.cx,dy2=player.y-zone.cy;
-  if(Math.sqrt(dx2*dx2+dy2*dy2)>zone.r){
-    player._zoneDmgTimer=(player._zoneDmgTimer||0)-dt;
-    if(player._zoneDmgTimer<=0){damagePlayer(8,'zone');player._zoneDmgTimer=500;playSound('zone_damage');}
-  } else {player._zoneDmgTimer=0;}
+  // Zone damage iskljucen (zona iskljucena)
   
   // Gas zones
   let inGas=false;
@@ -3710,21 +3822,76 @@ function updateEnemies(dt){
     e.coverTimer=Math.max(0,e.coverTimer-dt);
     if(!e.alertTimer)e.alertTimer=0;
     if(!e.zigzagTimer)e.zigzagTimer=0;
-    const canSee=dist2<500||(e.alerted&&dist2<900);
-    if(canSee&&e.state==='idle')e.state='alert';
-    if(canSee&&(e.state==='alert'||e.state==='patrol'))e.state='engage';
-    if(!canSee&&e.state==='engage'){e.lastSeenPos={x:player.x,y:player.y};e.state='alert';e.alertTimer+=4000;}
-    if(e.state==='alert'){e.alertTimer-=dt;if(e.alertTimer<=0){e.state='idle';e.patrolTarget={x:rand(100,WORLD_W-100),y:rand(100,WORLD_H-100)};}}
-    const targetX=(e.state==='alert'&&e.lastSeenPos)?e.lastSeenPos.x:player.x;
-    const targetY=(e.state==='alert'&&e.lastSeenPos)?e.lastSeenPos.y:player.y;
+    // Uvek aware — neprijatelji uvek znaju gde je igrac
+    // Na grad mapi prate igraca po ulicama, ne idu pravo kroz zgrade
+    const canSee=true; // uvek engage, nema vise idle
+    e.state='engage';
+    e.alerted=true;
+    // FROZEN (Uroš) or STUNNED (Sava) — skip movement and shooting
+    if(e._frozen>0||e._stunned>0){
+      if(e._frozen>0){e._frozen=Math.max(0,e._frozen-dt);if(e._frozen<=0)e._frozenColor=null;}
+      if(e._stunned>0)e._stunned=Math.max(0,e._stunned-dt);
+      if(e.hitFlash>0)e.hitFlash-=dt;
+      if(e.dying){e.dyingTimer-=dt;e.x+=e.dyingVx||0;e.y+=e.dyingVy||0;if(e.dyingTimer<=0)e.dead=true;}
+      if(e.hp<=0&&!e.dying)killEnemy(e);
+      return;
+    }
+    let targetX=player.x, targetY=player.y;
+
+    if(currentMap===2){
+      // GRAD: uvek navigiraj po road gridu
+      // Road X koordinate (vertikalne ulice), Road Y (horizontalne ulice)
+      const RX=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+      const RY=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+      const nearX=arr=>arr.reduce((a,b)=>Math.abs(b-e.x)<Math.abs(a-e.x)?b:a);
+      const nearY=arr=>arr.reduce((a,b)=>Math.abs(b-e.y)<Math.abs(a-e.y)?b:a);
+      const myRX=nearX(RX), myRY=nearY(RY); // najbliže ulice od mene
+      const plRX=RX.reduce((a,b)=>Math.abs(b-player.x)<Math.abs(a-player.x)?b:a);
+      const plRY=RY.reduce((a,b)=>Math.abs(b-player.y)<Math.abs(a-player.y)?b:a);
+
+      const onVert=Math.abs(e.x-myRX)<38; // na vertikalnoj ulici
+      const onHoriz=Math.abs(e.y-myRY)<38; // na horizontalnoj ulici
+
+      if(!onVert&&!onHoriz){
+        // Nisam na ulici — idi do nearest road (snap)
+        if(Math.abs(e.x-myRX)<Math.abs(e.y-myRY)){
+          targetX=myRX; targetY=e.y; // idi ka vertikalnoj
+        } else {
+          targetX=e.x; targetY=myRY; // idi ka horizontalnoj
+        }
+      } else if(onVert&&!onHoriz){
+        // Na vertikalnoj ulici — idi gore/dole prema igracu
+        if(Math.abs(e.y-player.y)>80){
+          targetX=e.x; targetY=player.y; // idi vertikalno
+        } else {
+          // Blizu Y igraca — skreni na horizontal
+          targetX=plRX; targetY=myRY; // idi do raskrsnice
+        }
+      } else if(onHoriz&&!onVert){
+        // Na horizontalnoj ulici — idi levo/desno
+        if(Math.abs(e.x-player.x)>80){
+          targetX=player.x; targetY=e.y;
+        } else {
+          targetX=plRX; targetY=plRY;
+        }
+      } else {
+        // Na raskrsnici — biraj pravac prema igracu
+        if(Math.abs(player.x-e.x)>Math.abs(player.y-e.y)){
+          targetX=player.x; targetY=e.y;
+        } else {
+          targetX=e.x; targetY=player.y;
+        }
+      }
+    }
+
     let dx=targetX-e.x,dy=targetY-e.y;
     const len=Math.sqrt(dx*dx+dy*dy)||1;dx/=len;dy/=len;
-    e.angle=Math.atan2(targetY-e.y,targetX-e.x);
+    e.angle=Math.atan2(player.y-e.y,player.x-e.x);
     let moveSpd=0;
     switch(e.type){
       case 'grunt':
-        if(e.state==='idle'){const pd=dist(e.x,e.y,e.patrolTarget.x,e.patrolTarget.y);if(pd<40)e.patrolTarget={x:rand(100,WORLD_W-100),y:rand(100,WORLD_H-100)};dx=(e.patrolTarget.x-e.x)/Math.max(pd,1);dy=(e.patrolTarget.y-e.y)/Math.max(pd,1);moveSpd=e.speed*0.25;}
-        else{moveSpd=dist2>110?e.speed:0;if(Date.now()-e.lastShot>Math.max(400,950-wave*40)&&dist2<450&&canSee){fireBullet(e,Object.assign({},WEAPONS[0],{shotCount:1,spread:.13,bulletSpeed:8}),e.id);e.lastShot=Date.now();alertNearbyEnemies(e.x,e.y,280);}}
+        moveSpd=dist2>110?e.speed:0;
+        if(Date.now()-e.lastShot>Math.max(400,950-wave*40)&&dist2<450){fireBullet(e,Object.assign({},WEAPONS[0],{shotCount:1,spread:.13,bulletSpeed:8}),e.id);e.lastShot=Date.now();alertNearbyEnemies(e.x,e.y,280);}
         break;
       case 'heavy':
         if(e.hp<e.maxHp*0.35&&e.coverTimer<=0){e.state='cover';e.coverTimer=2200;e.coverDx=-dy*(Math.random()>.5?1:-1);e.coverDy=dx*(Math.random()>.5?1:-1);}
@@ -3746,15 +3913,89 @@ function updateEnemies(dt){
         moveSpd=dist2>50?e.speed*1.05:0;
         if(Date.now()-e.lastShot>Math.max(120,280-wave*10)&&dist2<200&&canSee){fireBullet(e,Object.assign({},WEAPONS[1],{damage:7,shotCount:1,spread:.25,bulletSpeed:11}),e.id);e.lastShot=Date.now();}
         break;
+      case 'boss':
+        // Boss UVEK ide direktno prema igracu — ignorise road navigaciju
+        {
+          const bdx2=player.x-e.x, bdy2=player.y-e.y;
+          const blen=Math.sqrt(bdx2*bdx2+bdy2*bdy2)||1;
+          dx=bdx2/blen; dy=bdy2/blen;
+          e.angle=Math.atan2(player.y-e.y,player.x-e.x);
+
+          if(dist2>180) moveSpd=e.speed*1.1;
+          else if(dist2>70){
+            // Strafe kruzenje
+            if(!e.strafeDir)e.strafeDir=(Math.random()>.5?1:-1);
+            if(!e.strafeTimer)e.strafeTimer=0;
+            e.strafeTimer-=dt;
+            if(e.strafeTimer<=0){e.strafeDir*=-1;e.strafeTimer=1000+Math.random()*600;}
+            const bsx2=-dy*e.strafeDir*0.5,bsy2=dx*e.strafeDir*0.5;
+            dx=dx*0.5+bsx2;dy=dy*0.5+bsy2;
+            const bsl=Math.sqrt(dx*dx+dy*dy)||1;dx/=bsl;dy/=bsl;
+            moveSpd=e.speed*0.85;
+          } else moveSpd=0;
+
+          // PUCANJE — uvek puca, bez canSee uslova
+          if(!e.burstCount)e.burstCount=0;
+          if(!e.burstTimer)e.burstTimer=0;
+          e.burstTimer-=dt;
+          if(e.burstTimer<=0){
+            fireBullet(e,{damage:18,shotCount:1,spread:0.06+e.burstCount*0.04,bulletSpeed:10,color:e.color||'#ffd700'},e.id);
+            e.burstCount++;
+            if(e.burstCount>=3){e.burstCount=0;e.burstTimer=1200;}
+            else{e.burstTimer=140;}
+          }
+
+          // Faza 2: ispod 50% HP
+          if(e.hp<e.maxHp*0.5){
+            moveSpd*=1.35;
+            if(!e.phase2Banner){e.phase2Banner=true;showBanner('⚠ '+e.name+' — FAZA 2!',e.color||'#ffd700',2000);triggerShake(14,400);}
+            if(!e.phase2Timer)e.phase2Timer=0;
+            e.phase2Timer-=dt;
+            if(e.phase2Timer<=0){
+              const ba=e.angle;
+              for(let bi=0;bi<5;bi++){const sa=ba+(bi-2)*0.3;bullets.push({x:e.x,y:e.y,vx:Math.cos(sa)*8,vy:Math.sin(sa)*8,damage:14,r:5,color:'#ff4400',life:1,owner:e.id});}
+              e.phase2Timer=1800;
+              triggerShake(8,200);
+            }
+          }
+        }
+        break;
     }
     if(moveSpd!==0){
-      const enx=Math.max(20,Math.min(WORLD_W-20,e.x+dx*moveSpd));
-      const eny=Math.max(20,Math.min(WORLD_H-20,e.y+dy*moveSpd));
-      if(!collidesWithObstacle(enx,e.y,e.r*.8))e.x=enx;else{e.coverTimer=0;e.state='engage';}
-      if(!collidesWithObstacle(e.x,eny,e.r*.8))e.y=eny;else{e.coverTimer=0;e.state='engage';}
+      const er=12;
+      // Try direct movement first
+      const enx=Math.max(er,Math.min(WORLD_W-er,e.x+dx*moveSpd));
+      const eny=Math.max(er,Math.min(WORLD_H-er,e.y+dy*moveSpd));
+      const blockedX=collidesWithObstacle(enx,e.y,er);
+      const blockedY=collidesWithObstacle(e.x,eny,er);
+      if(!blockedX)e.x=enx;
+      if(!blockedY)e.y=eny;
+
+      // SMART UNSTUCK — try 8 directions immediately when blocked
+      if(blockedX||blockedY){
+        if(!e._stuckTimer)e._stuckTimer=0;
+        e._stuckTimer+=dt;
+        // After 200ms stuck, actively try alternate directions
+        if(e._stuckTimer>200){
+          const angles=[0.6,-0.6,1.2,-1.2,1.8,-1.8,Math.PI,0.3,-0.3];
+          for(let ai=0;ai<angles.length;ai++){
+            const a=e.angle+angles[ai];
+            const tdx=Math.cos(a),tdy=Math.sin(a);
+            const tx=Math.max(er,Math.min(WORLD_W-er,e.x+tdx*moveSpd));
+            const ty=Math.max(er,Math.min(WORLD_H-er,e.y+tdy*moveSpd));
+            const bx=collidesWithObstacle(tx,e.y,er);
+            const by=collidesWithObstacle(e.x,ty,er);
+            if(!bx){e.x=tx;break;}
+            if(!by){e.y=ty;break;}
+          }
+        }
+        // After 600ms still stuck — reset timer so it keeps trying angles
+        if(e._stuckTimer>600) e._stuckTimer=200;
+      } else {
+        e._stuckTimer=0;
+      }
     }
-    const dzx=e.x-zone.cx,dzy=e.y-zone.cy;
-    if(Math.sqrt(dzx*dzx+dzy*dzy)>zone.r){e._zoneDmgTimer=(e._zoneDmgTimer||0)-dt;if(e._zoneDmgTimer<=0){e.hp-=15;e._zoneDmgTimer=1000;}}else{e._zoneDmgTimer=0;}
+    // enemy zona damage iskljucen
     if(e.hp<=0&&!e.dying){killEnemy(e);}
     if(e.hitFlash>0)e.hitFlash-=dt;
     if(e.dying){e.dyingTimer-=dt;e.x+=e.dyingVx||0;e.y+=e.dyingVy||0;if(e.dyingTimer<=0)e.dead=true;}
@@ -3786,6 +4027,8 @@ function killEnemy(e){
   showWorldFloat('-'+Math.ceil(e.maxHp),e.x,e.y-20,'#e63946');
   playSound('death');
   registerKill();
+
+
 }
 
 function updateBullets(dt){
@@ -3982,7 +4225,8 @@ function updateParticles(dt){
 }
 
 function updateZone(dt){
-  zone.r=Math.max(zone.r-zone.shrinkRate*dt*.5,zone.targetR);
+  // zona iskljucena — nema smanjivanja
+  // zone.r ostaje isti
 }
 
 function updateWave(dt){
@@ -4079,15 +4323,48 @@ function spawnZoneEnemy(zd){
   let type='grunt';
   const r2=Math.random()*w.reduce((a,b)=>a+b,0);let acc=0;
   for(let i=0;i<types.length;i++){acc+=w[i];if(r2<acc){type=types[i];break;}}
-  const td={grunt:{hp:60,speed:1.8,r:14,color:zd.color,shape:'circle'},heavy:{hp:150,speed:1.2,r:20,color:'#9b59b6',shape:'square'},sniper:{hp:42,speed:1.5,r:12,color:'#3498db',shape:'triangle'},rusher:{hp:48,speed:3.0,r:12,color:'#e67e22',shape:'circle'}};
+  const td={grunt:{hp:60,speed:1.1,r:14,color:zd.color,shape:'circle'},heavy:{hp:150,speed:0.75,r:20,color:'#9b59b6',shape:'square'},sniper:{hp:42,speed:0.9,r:12,color:'#3498db',shape:'triangle'},rusher:{hp:48,speed:1.8,r:12,color:'#e67e22',shape:'circle'}};
   const d=td[type];
-  const ang=Math.random()*Math.PI*2,sr=zone.r*.75+rand(50,150);
-  enemies.push({x:Math.max(50,Math.min(WORLD_W-50,zone.cx+Math.cos(ang)*sr)),y:Math.max(50,Math.min(WORLD_H-50,zone.cy+Math.sin(ang)*sr)),hp:d.hp*dm.hpMult*(1+currentZone*.25),maxHp:d.hp*dm.hpMult*(1+currentZone*.25),speed:d.speed*dm.speedMult,r:d.r,color:d.color,shape:d.shape,type,angle:0,lastShot:0,id:'e'+Date.now()+Math.random(),dead:false});
+  // Spawn oko igraca — isti sistem kao spawnEnemy
+  let spx=player.x, spy=player.y;
+  if(currentMap===2){
+    const RX=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+    const RY=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+    const cands2=[];
+    RX.forEach(rx=>{for(let yy=200;yy<6800;yy+=150){const d2=dist(rx,yy,player.x,player.y);if(d2>450&&d2<900)cands2.push({x:rx,y:yy});}});
+    RY.forEach(ry=>{for(let xx=200;xx<6800;xx+=150){const d2=dist(xx,ry,player.x,player.y);if(d2>450&&d2<900)cands2.push({x:xx,y:ry});}});
+    if(cands2.length>0){const p2=cands2[Math.floor(Math.random()*cands2.length)];spx=p2.x;spy=p2.y;}
+    else{const bx=RX.reduce((a,b)=>Math.abs(b-player.x)<Math.abs(a-player.x)?b:a);spx=bx;spy=Math.max(200,Math.min(6800,player.y+350));}
+  } else {
+    let found2=false;
+    for(let i=0;i<40&&!found2;i++){const a=Math.random()*Math.PI*2,r3=450+rand(0,350);const tx=Math.max(80,Math.min(WORLD_W-80,player.x+Math.cos(a)*r3)),ty=Math.max(80,Math.min(WORLD_H-80,player.y+Math.sin(a)*r3));if(!collidesWithObstacle(tx,ty,d.r+8)){spx=tx;spy=ty;found2=true;}}
+    if(!found2){const a=Math.random()*Math.PI*2;spx=Math.max(80,Math.min(WORLD_W-80,player.x+Math.cos(a)*350));spy=Math.max(80,Math.min(WORLD_H-80,player.y+Math.sin(a)*350));}
+  }
+  enemies.push({x:spx,y:spy,hp:d.hp*dm.hpMult*(1+currentZone*.25),maxHp:d.hp*dm.hpMult*(1+currentZone*.25),speed:d.speed*dm.speedMult,r:d.r,color:d.color,shape:d.shape,type,angle:0,lastShot:0,id:'e'+Date.now()+Math.random(),dead:false});
 }
 
 function spawnBoss(zd){
   const dm=diffMult[difficulty];
-  bossEnemy={x:zone.cx+rand(-150,150),y:zone.cy+rand(-150,150),hp:zd.bossHp*dm.hpMult,maxHp:zd.bossHp*dm.hpMult,speed:zd.bossSpeed*dm.speedMult,r:zd.bossSize,color:zd.bossColor,shape:'boss',type:'boss',angle:0,lastShot:0,hitFlash:0,id:'boss'+Date.now(),dead:false,dying:false,name:zd.bossName,isBoss:true};
+  // Boss spawn — u parku ako grad, inace oko igraca
+  let bsx=player.x, bsy=player.y;
+  if(currentMap===2){
+    // Parkovi: blokovi gde (bx/500+by/500)%3===0
+    const BLOCK=500;
+    const parks=[];
+    for(let bx=0;bx<WORLD_W;bx+=BLOCK){for(let by=0;by<WORLD_H;by+=BLOCK){
+      if(((bx/BLOCK+by/BLOCK)%3)===0){
+        const px=bx+BLOCK/2, py=by+BLOCK/2;
+        const d2=dist(px,py,player.x,player.y);
+        if(d2>200&&d2<1200) parks.push({x:px,y:py});
+      }
+    }}
+    if(parks.length>0){const p=parks[Math.floor(Math.random()*parks.length)];bsx=p.x;bsy=p.y;}
+  } else {
+    const a=Math.random()*Math.PI*2;
+    bsx=Math.max(100,Math.min(WORLD_W-100,player.x+Math.cos(a)*400));
+    bsy=Math.max(100,Math.min(WORLD_H-100,player.y+Math.sin(a)*400));
+  }
+  bossEnemy={x:bsx,y:bsy,hp:zd.bossHp*dm.hpMult,maxHp:zd.bossHp*dm.hpMult,speed:zd.bossSpeed*dm.speedMult,r:zd.bossSize,color:zd.bossColor,shape:'boss',type:'boss',angle:0,lastShot:0,hitFlash:0,id:'boss'+Date.now(),dead:false,dying:false,name:zd.bossName,isBoss:true};
   enemies.push(bossEnemy);
   triggerShake(20,800);
   showBanner('💀 BOSS: '+zd.bossName,'#e63946',4000);
@@ -4107,20 +4384,59 @@ function spawnEnemy(){
     for(let i=0;i<types.length;i++){acc+=typeWeights[i];if(rand2<acc){type=types[i];break;}}
   }
   const typeData={
-    grunt:{hp:60,speed:1.8,r:14,color:'#e63946',shape:'circle'},
-    heavy:{hp:150,speed:1.2,r:20,color:'#9b59b6',shape:'square'},
-    sniper:{hp:42,speed:1.5,r:12,color:'#3498db',shape:'triangle'},
-    rusher:{hp:48,speed:3.0,r:12,color:'#e67e22',shape:'circle'}
+    grunt:{hp:60,speed:0.85,r:14,color:'#e63946',shape:'circle'},
+    heavy:{hp:150,speed:0.55,r:20,color:'#9b59b6',shape:'square'},
+    sniper:{hp:42,speed:0.7,r:12,color:'#3498db',shape:'triangle'},
+    rusher:{hp:48,speed:1.3,r:12,color:'#e67e22',shape:'circle'}
   };
   const d=typeData[type];
-  // Spawn at edge of zone
-  const angle2=Math.random()*Math.PI*2;
-  const spawnR=zone.r*.8+rand(50,150);
-  const sx=zone.cx+Math.cos(angle2)*spawnR;
-  const sy=zone.cy+Math.sin(angle2)*spawnR;
+  // ── SPAWN SISTEM ──
+  let sx, sy;
+  if(currentMap===2){
+    // GRAD: tačne road koordinate, BLOCK=500, ROAD=72, center = N*500-36
+    const RX=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+    const RY=[464,964,1464,1964,2464,2964,3464,3964,4464,4964,5464,5964,6464];
+    const cands=[];
+    RX.forEach(rx=>{
+      // Tacke duz vertikalne ulice
+      for(let yy=200;yy<6800;yy+=100){
+        const d2=dist(rx,yy,player.x,player.y);
+        if(d2>600&&d2<1100) cands.push({x:rx,y:yy});
+      }
+    });
+    RY.forEach(ry=>{
+      // Tacke duz horizontalne ulice
+      for(let xx=200;xx<6800;xx+=100){
+        const d2=dist(xx,ry,player.x,player.y);
+        if(d2>600&&d2<1100) cands.push({x:xx,y:ry});
+      }
+    });
+    if(cands.length>0){
+      const p=cands[Math.floor(Math.random()*cands.length)];
+      sx=p.x; sy=p.y;
+    } else {
+      // Fallback: najbliza vertikalna ulica
+      let bx=RX[0];
+      RX.forEach(rx=>{ if(Math.abs(rx-player.x)<Math.abs(bx-player.x)) bx=rx; });
+      sx=bx; sy=Math.max(200,Math.min(6800,player.y+300));
+    }
+  } else {
+    // SUMA / FABRIKA: slobodne pozicije
+    let found=false;
+    for(let i=0;i<50&&!found;i++){
+      const a=Math.random()*Math.PI*2, r2=450+rand(0,350);
+      const tx=Math.max(80,Math.min(WORLD_W-80,player.x+Math.cos(a)*r2));
+      const ty=Math.max(80,Math.min(WORLD_H-80,player.y+Math.sin(a)*r2));
+      if(!collidesWithObstacle(tx,ty,d.r+8)){sx=tx;sy=ty;found=true;}
+    }
+    if(!found){
+      const a=Math.random()*Math.PI*2;
+      sx=Math.max(80,Math.min(WORLD_W-80,player.x+Math.cos(a)*350));
+      sy=Math.max(80,Math.min(WORLD_H-80,player.y+Math.sin(a)*350));
+    }
+  }
   enemies.push({
-    x:Math.max(50,Math.min(WORLD_W-50,sx)),
-    y:Math.max(50,Math.min(WORLD_H-50,sy)),
+    x:sx,y:sy,
     hp:d.hp*dm.hpMult,maxHp:d.hp*dm.hpMult,
     speed:d.speed*dm.speedMult,
     r:d.r,color:d.color,shape:d.shape,
@@ -4171,7 +4487,7 @@ function updateHUD(){
   zt.className='zone-text '+(inZone?'safe':'danger');
   if(weapon){
     document.getElementById('ammoText').textContent=weapon.ammo+' / '+weapon.clipSize;
-    document.getElementById('ammoSub').textContent=weapon.name+(reloading?' [PUNJENJE]':'');
+    const ammoEl=document.getElementById('ammoSub');if(ammoEl&&weapon&&weapon.name)ammoEl.textContent=weapon.name.substring(0,12)+(reloading?' [PUNJENJE]':'');
   }
   document.getElementById('enemiesText').textContent='NEPRIJATELJI: '+enemies.length;
   // Player counter: player + living rivals / total 3
@@ -4181,11 +4497,14 @@ function updateHUD(){
   document.getElementById('timerText').textContent=String(Math.floor(elapsed/60)).padStart(2,'0')+':'+String(elapsed%60).padStart(2,'0');
   
   // Inventory slots
-  for(let i=0;i<3;i++){
+  for(let i=0;i<5;i++){
     const sl=document.getElementById('slot'+i);
+    if(!sl) continue;
     const w=player.weapons[i];
     sl.className='inv-slot'+(i===player.currentWeapon?' active':'');
-    sl.innerHTML=`<span class="slot-num">${i+1}</span>`+(w?`<span class="inv-name">${w.name}</span><span class="inv-ammo">${w.ammo}</span>`:'<span class="inv-name">-</span>');
+    const wname=w&&w.name?w.name.substring(0,10):'-';
+    const wammo=w&&w.ammo!==undefined?w.ammo:'';
+    sl.innerHTML='<span class="slot-num">'+(i+1)+'</span>'+(w?'<span class="inv-name">'+wname+'</span><span class="inv-ammo">'+wammo+'</span>':'<span class="inv-name">-</span>');
   }
 }
 
@@ -4211,6 +4530,8 @@ function draw(){
   drawRivals();
   drawPlayer();
   if(particlesEnabled)drawParticles();
+
+
   drawWorldFloats();
   if(reloading)drawReloadArc();
   if(abilityActive){
@@ -4248,6 +4569,59 @@ function draw(){
   drawMinimap();
 }
 
+
+// ================================================================
+// CITY SHOP & BUILDING DRAW FUNCTIONS
+// ================================================================
+
+
+
+
+
+// ── GEAR SHOP ──
+
+
+
+
+
+// ── SHOP LOCATIONS
+
+
+
+
+
+
+
+// ── OPEN/CLOSE SHOP ──
+
+
+// Expose to window so innerHTML onclick handlers can call them
+
+
+window.renderShopUI=function(){renderShopUI();};
+
+
+
+
+
+
+
+
+
+// ── COIN DROP od neprijatelja ──
+
+// ── RENDER SHOP UI ──
+
+
+// ── DRAW SHOP ICONS NA MAPI ──
+
+// ── DRAW COINS NA MAPI ──
+
+// ── PICKUP COINS ──
+
+
+// ── DRAW SHOP BUILDINGS ON MAP ──
+
 function drawBackground(){
   if(currentMap===0) drawMapFactory();
   else if(currentMap===1) drawMapForest();
@@ -4255,99 +4629,730 @@ function drawBackground(){
 }
 
 
-// MAP 2: Grad - apokalipticni grad
 function drawMapCity(){
-  const bright=getDayBrightness();const bv=Math.floor(7*bright);
-  ctx.fillStyle='rgb('+bv+','+bv+','+Math.floor(bv*1.35)+')';
-  ctx.fillRect(camera.x-gameCanvas.width,camera.y-gameCanvas.height,gameCanvas.width*2,gameCanvas.height*2);
-  const ts=200;
-  for(let x=Math.floor((camera.x-gameCanvas.width/2)/ts)*ts;x<camera.x+gameCanvas.width/2+ts;x+=ts){for(let y=Math.floor((camera.y-gameCanvas.height/2)/ts)*ts;y<camera.y+gameCanvas.height/2+ts;y+=ts){if(x<-ts||x>WORLD_W+ts||y<-ts||y>WORLD_H+ts)continue;const ix=Math.floor(x/ts),iy=Math.floor(y/ts);const dark=(ix+iy)%2===0;const cv=Math.floor((dark?9:14)*bright);ctx.fillStyle='rgb('+cv+','+cv+','+Math.floor(cv*1.4)+')';ctx.fillRect(x,y,ts,ts);ctx.strokeStyle='rgba(80,50,160,'+(0.06*bright)+')';ctx.lineWidth=1;ctx.strokeRect(x,y,ts,ts);}}
-  ctx.fillStyle='rgba(90,0,0,'+(0.35*bright)+')';for(let i=0;i<80;i++){const px=((i*6133)%WORLD_W),py=((i*5237)%WORLD_H);ctx.beginPath();ctx.ellipse(px,py,rand2(i,5,26),rand2(i+1,3,13),rand2(i+2,0,3),0,Math.PI*2);ctx.fill();}
-  const t2=Date.now()/1000;
-  for(let i=0;i<28;i++){const px=((i*7333)%WORLD_W),py=((i*6171)%WORLD_H);const fl=0.35+Math.sin(t2*2.5+i)*.22+Math.sin(t2*7+i*2)*.13;const cols=['rgba(120,50,220','rgba(220,40,80','rgba(40,140,220'];const col=cols[i%3];const grd=ctx.createRadialGradient(px,py,0,px,py,rand2(i,70,150));grd.addColorStop(0,col+','+(fl*0.22*bright)+')');grd.addColorStop(1,'transparent');ctx.fillStyle=grd;ctx.beginPath();ctx.arc(px,py,rand2(i,70,150),0,Math.PI*2);ctx.fill();}
-  ctx.strokeStyle='rgba(80,50,180,'+(0.04*bright)+')';ctx.lineWidth=1;const gs=80;
-  for(let x=Math.floor((camera.x-gameCanvas.width/2)/gs)*gs;x<camera.x+gameCanvas.width/2+gs;x+=gs){ctx.beginPath();ctx.moveTo(x,camera.y-gameCanvas.height/2);ctx.lineTo(x,camera.y+gameCanvas.height/2);ctx.stroke();}
-  for(let y=Math.floor((camera.y-gameCanvas.height/2)/gs)*gs;y<camera.y+gameCanvas.height/2+gs;y+=gs){ctx.beginPath();ctx.moveTo(camera.x-gameCanvas.width/2,y);ctx.lineTo(camera.x+gameCanvas.width/2,y);ctx.stroke();}
-  ctx.fillStyle='rgba(160,100,255,'+(0.5*bright)+')';ctx.font='bold 11px monospace';ctx.textAlign='left';ctx.fillText('[ GRAD ] [ '+getTimeOfDayStr()+' ]',20,20);
-  ctx.strokeStyle='rgba(140,80,220,'+(0.4*bright)+')';ctx.lineWidth=4;ctx.setLineDash([20,10]);ctx.strokeRect(0,0,WORLD_W,WORLD_H);ctx.setLineDash([]);
-}
+  const vl=camera.x-gameCanvas.width/2-100, vt=camera.y-gameCanvas.height/2-100;
+  const vr=camera.x+gameCanvas.width/2+100, vb=camera.y+gameCanvas.height/2+100;
+  const BLOCK=500, ROAD=72, PAD=18;
 
-function getTimeOfDayStr(){if(dayNightTime<0.25)return 'ZORA';if(dayNightTime<0.5)return 'DAN';if(dayNightTime<0.75)return 'SUMRAK';return 'NOC';}
-
-
-// MAP 0: Fabrika
-function drawMapFactory(){
-  const bright=getDayBrightness();const bv=Math.floor(8*bright);
-  ctx.fillStyle='rgb('+bv+','+Math.floor(bv*1.1)+','+Math.floor(bv*1.2)+')';
-  ctx.fillRect(camera.x-gameCanvas.width,camera.y-gameCanvas.height,gameCanvas.width*2,gameCanvas.height*2);
-  const ts=180;
-  for(let x=Math.floor((camera.x-gameCanvas.width/2)/ts)*ts;x<camera.x+gameCanvas.width/2+ts;x+=ts){for(let y=Math.floor((camera.y-gameCanvas.height/2)/ts)*ts;y<camera.y+gameCanvas.height/2+ts;y+=ts){if(x<-ts||x>WORLD_W+ts||y<-ts||y>WORLD_H+ts)continue;const ix=Math.floor(x/ts),iy=Math.floor(y/ts);const dark=(ix+iy)%2===0;const bv2=Math.floor((dark?11:16)*bright);ctx.fillStyle='rgb('+bv2+','+Math.floor(bv2*1.1)+','+Math.floor(bv2*1.15)+')';ctx.fillRect(x,y,ts,ts);ctx.strokeStyle='rgba(255,130,30,'+(0.07*bright)+')';ctx.lineWidth=1;ctx.strokeRect(x+2,y+2,ts-4,ts-4);}}
-  ctx.fillStyle='rgba(40,0,0,'+(0.45*bright)+')';for(let i=0;i<100;i++){const px=((i*7919)%WORLD_W),py=((i*6271)%WORLD_H);ctx.beginPath();ctx.ellipse(px,py,rand2(i,8,35),rand2(i+1,4,18),rand2(i+2,0,3),0,Math.PI*2);ctx.fill();}
-  ctx.save();ctx.globalAlpha=0.06*bright;for(let i=0;i<30;i++){const px=i*200;ctx.fillStyle=i%2===0?'#ff5500':'#111';ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px+120,0);ctx.lineTo(px-140,WORLD_H);ctx.lineTo(px-260,WORLD_H);ctx.fill();}ctx.restore();
-  const t2=Date.now()/1000;for(let i=0;i<22;i++){const px=((i*5839)%WORLD_W),py=((i*4673)%WORLD_H);const fl=0.4+Math.sin(t2*3.5+i*1.7)*.3+Math.sin(t2*9+i*3)*.2;const grd=ctx.createRadialGradient(px,py,0,px,py,130);grd.addColorStop(0,'rgba(255,70,0,'+(fl*0.2*bright)+')');grd.addColorStop(1,'transparent');ctx.fillStyle=grd;ctx.beginPath();ctx.arc(px,py,130,0,Math.PI*2);ctx.fill();}
-  ctx.strokeStyle='rgba(255,100,20,'+(0.04*bright)+')';ctx.lineWidth=1;const gs=80;
-  for(let x=Math.floor((camera.x-gameCanvas.width/2)/gs)*gs;x<camera.x+gameCanvas.width/2+gs;x+=gs){ctx.beginPath();ctx.moveTo(x,camera.y-gameCanvas.height/2);ctx.lineTo(x,camera.y+gameCanvas.height/2);ctx.stroke();}
-  for(let y=Math.floor((camera.y-gameCanvas.height/2)/gs)*gs;y<camera.y+gameCanvas.height/2+gs;y+=gs){ctx.beginPath();ctx.moveTo(camera.x-gameCanvas.width/2,y);ctx.lineTo(camera.x+gameCanvas.width/2,y);ctx.stroke();}
-  ctx.fillStyle='rgba(244,162,97,'+(0.45*bright)+')';ctx.font='bold 11px monospace';ctx.textAlign='left';ctx.fillText('[ FABRIKA ] [ '+getTimeOfDayStr()+' ]',20,20);
-  ctx.strokeStyle='rgba(230,57,70,'+(0.45*bright)+')';ctx.lineWidth=4;ctx.setLineDash([20,10]);ctx.strokeRect(0,0,WORLD_W,WORLD_H);ctx.setLineDash([]);
-}
-
-// MAP 1: Šuma - tamno zelena, zemlja, korijenje, plavkasto-zelena atmosfera
-function drawMapForest(){
-  ctx.fillStyle='#060d06';
-  ctx.fillRect(camera.x-gameCanvas.width,camera.y-gameCanvas.height,gameCanvas.width*2,gameCanvas.height*2);
-  // Ground patches
-  ctx.fillStyle='#0a1208';
-  const seed=77;
-  for(let i=0;i<400;i++){
-    const px=(((i*7919+seed)%WORLD_W+WORLD_W)%WORLD_W);
-    const py=(((i*6271+seed*2)%WORLD_H+WORLD_H)%WORLD_H);
-    ctx.beginPath();ctx.ellipse(px,py,rand2(i,15,55),rand2(i+100,8,30),rand2(i+200,0,Math.PI),0,Math.PI*2);ctx.fill();
+  // 1. Asfalt podloga — tamno sivi sa teksturom
+  const sx0=Math.floor(vl/8)*8, sy0=Math.floor(vt/8)*8;
+  for(let ax=sx0;ax<vr;ax+=8){
+    for(let ay=sy0;ay<vb;ay+=8){
+      const v=30+((ax*3+ay*7)%8);
+      ctx.fillStyle=`rgb(${v},${v},${v})`;
+      ctx.fillRect(ax,ay,8,8);
+    }
   }
-  // Moss patches
-  ctx.fillStyle='rgba(30,80,20,0.18)';
-  for(let i=0;i<80;i++){
-    const px=(((i*4127+seed)%WORLD_W+WORLD_W)%WORLD_W);
-    const py=(((i*3311+seed*3)%WORLD_H+WORLD_H)%WORLD_H);
-    ctx.beginPath();ctx.arc(px,py,rand2(i+50,20,70),0,Math.PI*2);ctx.fill();
+
+  // 2. Blokovi trotoara
+  const bsx=Math.floor(vl/BLOCK)*BLOCK, bsy=Math.floor(vt/BLOCK)*BLOCK;
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      if(bx>WORLD_W||by>WORLD_H) continue;
+      // Trotoar unutar bloka
+      const tx=bx+PAD, ty=by+PAD, tw=BLOCK-ROAD-PAD*2, th=BLOCK-ROAD-PAD*2;
+      if(tw<40||th<40) continue;
+      // Trotoar boja
+      ctx.fillStyle='#4a4840';
+      ctx.fillRect(tx-6,ty-6,tw+12,th+12);
+      // Ivica trotoar
+      ctx.fillStyle='#5a5850';
+      ctx.fillRect(tx-3,ty-3,tw+6,th+6);
+
+      // 3. ZGRADA ili PRODAVNICA — zavisi od bloka
+      const seed=(Math.abs(bx*31+by*17)>>>0)%7;
+      const blockType=(Math.abs(bx/BLOCK*13+by/BLOCK*7))%10; // 0-9
+
+      // Park blokovi — preskoci
+      if(((bx/BLOCK+by/BLOCK)%3)===0){
+        // vec nacrtan kao park iznad
+      } else if(blockType<3){
+        // ── FASTFOOD / PRODAVNICA ──
+        drawCityShop(ctx,bx,by,tx,ty,tw,th,seed,blockType);
+      } else {
+        // ── OBICNA ZGRADA ──
+        drawCityBuilding(ctx,tx,ty,tw,th,seed);
+      }
+    }
   }
-  // Tree stumps / rocks
+
+  // 4. Ulicne linije — žuta isprekidana
+  ctx.strokeStyle='rgba(255,220,0,0.6)';ctx.lineWidth=3;ctx.setLineDash([22,18]);
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){ctx.beginPath();ctx.moveTo(bx+BLOCK-ROAD/2,vt);ctx.lineTo(bx+BLOCK-ROAD/2,vb);ctx.stroke();}
+  for(let by=bsy;by<vb+BLOCK;by+=BLOCK){ctx.beginPath();ctx.moveTo(vl,by+BLOCK-ROAD/2);ctx.lineTo(vr,by+BLOCK-ROAD/2);ctx.stroke();}
+  ctx.setLineDash([]);
+
+  // Bele linije uz ivice ulice
+  ctx.strokeStyle='rgba(255,255,255,0.2)';ctx.lineWidth=1.5;
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    ctx.beginPath();ctx.moveTo(bx+BLOCK-ROAD,vt);ctx.lineTo(bx+BLOCK-ROAD,vb);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(bx+BLOCK,vt);ctx.lineTo(bx+BLOCK,vb);ctx.stroke();
+  }
+  for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+    ctx.beginPath();ctx.moveTo(vl,by+BLOCK-ROAD);ctx.lineTo(vr,by+BLOCK-ROAD);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(vl,by+BLOCK);ctx.lineTo(vr,by+BLOCK);ctx.stroke();
+  }
+
+  // 5. Pešački prelazi (zebra)
+  ctx.fillStyle='rgba(255,255,255,0.22)';
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      // Horizontalni prelaz
+      for(let z=0;z<5;z++) ctx.fillRect(bx+BLOCK-ROAD,by+BLOCK-ROAD-35-z*9,ROAD,6);
+      // Vertikalni prelaz
+      for(let z=0;z<5;z++) ctx.fillRect(bx+BLOCK-ROAD-35-z*9,by+BLOCK-ROAD,6,ROAD);
+    }
+  }
+
+  // 6. Kanalizacioni poklopci
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      const mx=bx+BLOCK-ROAD/2,my=by+BLOCK-ROAD/2;
+      if(Math.abs(mx-camera.x)>gameCanvas.width||Math.abs(my-camera.y)>gameCanvas.height)continue;
+      ctx.fillStyle='#1c1c1c';ctx.beginPath();ctx.arc(mx,my,14,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='#3a3a3a';ctx.lineWidth=2;ctx.beginPath();ctx.arc(mx,my,14,0,Math.PI*2);ctx.stroke();
+      ctx.strokeStyle='#2a2a2a';ctx.lineWidth=1.5;
+      for(let li=0;li<6;li++){
+        const a=li/6*Math.PI;
+        ctx.beginPath();ctx.moveTo(mx+Math.cos(a)*3,my+Math.sin(a)*3);ctx.lineTo(mx+Math.cos(a)*12,my+Math.sin(a)*12);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(mx-Math.cos(a)*3,my-Math.sin(a)*3);ctx.lineTo(mx-Math.cos(a)*12,my-Math.sin(a)*12);ctx.stroke();
+      }
+      ctx.strokeStyle='#333';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(mx,my,8,0,Math.PI*2);ctx.stroke();
+    }
+  }
+
+  // 7. Ulične lampe
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      [[bx+BLOCK-ROAD-8,by+BLOCK-ROAD-8],[bx+BLOCK+8,by+BLOCK-ROAD-8],[bx+BLOCK-ROAD-8,by+BLOCK+8],[bx+BLOCK+8,by+BLOCK+8]].forEach(([lx,ly])=>{
+        if(Math.abs(lx-camera.x)>gameCanvas.width||Math.abs(ly-camera.y)>gameCanvas.height)return;
+        ctx.strokeStyle='#444';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(lx,ly+22);ctx.lineTo(lx,ly+2);ctx.lineTo(lx+8,ly-2);ctx.stroke();
+        ctx.fillStyle='#555';ctx.fillRect(lx+6,ly-5,10,5);
+        const grd=ctx.createRadialGradient(lx+11,ly-2,0,lx+11,ly-2,38);
+        grd.addColorStop(0,'rgba(255,230,100,0.25)');grd.addColorStop(1,'transparent');
+        ctx.fillStyle=grd;ctx.beginPath();ctx.arc(lx+11,ly-2,38,0,Math.PI*2);ctx.fill();
+        ctx.fillStyle='#ffe87a';ctx.beginPath();ctx.arc(lx+11,ly-2,4,0,Math.PI*2);ctx.fill();
+      });
+    }
+  }
+
+  // 8. Parking
+  ctx.strokeStyle='rgba(255,255,255,0.3)';ctx.lineWidth=1.5;
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      const s=((Math.abs(bx/BLOCK*3+by/BLOCK*5))%2);
+      if(s===0){for(let p=0;p<3;p++)ctx.strokeRect(bx+BLOCK-ROAD+2+p*23,by+BLOCK-ROAD+4,20,ROAD-10);}
+      else{for(let p=0;p<3;p++)ctx.strokeRect(bx+BLOCK-ROAD+4,by+BLOCK-ROAD+2+p*23,ROAD-10,20);}
+    }
+  }
+
+  // 9. Parkovske zone (zelene zakrpe između zgrada)
+  for(let bx=bsx;bx<vr+BLOCK;bx+=BLOCK){
+    for(let by=bsy;by<vb+BLOCK;by+=BLOCK){
+      if(((bx/BLOCK+by/BLOCK)%3)===0){
+        const px=bx+PAD,py=by+PAD,pw=BLOCK-ROAD-PAD*2,ph=BLOCK-ROAD-PAD*2;
+        if(pw>60&&ph>60&&px>0&&py>0&&px+pw<WORLD_W&&py+ph<WORLD_H){
+          ctx.fillStyle='#2e5a22';ctx.fillRect(px,py,pw,ph);
+          // Staza u parku
+          ctx.fillStyle='#4a4540';ctx.fillRect(px+pw/2-8,py,16,ph);ctx.fillRect(px,py+ph/2-8,pw,16);
+          // Drveca u ugloviams
+          [[px+20,py+20],[px+pw-20,py+20],[px+20,py+ph-20],[px+pw-20,py+ph-20]].forEach(([tx2,ty2])=>{
+            ctx.fillStyle='rgba(0,0,0,0.2)';ctx.beginPath();ctx.ellipse(tx2+4,ty2+4,14,6,0,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='#1e4018';ctx.beginPath();ctx.arc(tx2,ty2,12,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='#2a5820';ctx.beginPath();ctx.arc(tx2-2,ty2-2,10,0,Math.PI*2);ctx.fill();
+            ctx.fillStyle='rgba(60,180,40,0.2)';ctx.beginPath();ctx.arc(tx2-3,ty2-4,6,0,Math.PI*2);ctx.fill();
+          });
+          // Klupa
+          ctx.fillStyle='#6b4a20';ctx.fillRect(px+pw/2-12,py+12,24,6);
+          ctx.strokeStyle='#8b6a30';ctx.lineWidth=1;ctx.strokeRect(px+pw/2-12,py+12,24,6);
+        }
+      }
+    }
+  }
+
+  // 10. Pukotine na asfaltu
+  ctx.strokeStyle='rgba(0,0,0,0.4)';ctx.lineWidth=1;
   for(let i=0;i<60;i++){
-    const px=(((i*5839+seed*4)%WORLD_W+WORLD_W)%WORLD_W);
-    const py=(((i*4673+seed*5)%WORLD_H+WORLD_H)%WORLD_H);
-    ctx.fillStyle='rgba(20,40,15,0.6)';
-    ctx.beginPath();ctx.arc(px,py,rand2(i+80,6,16),0,Math.PI*2);ctx.fill();
-    ctx.strokeStyle='rgba(50,100,30,0.4)';ctx.lineWidth=1.5;ctx.stroke();
+    const cx2=((i*6133)%WORLD_W),cy2=((i*5237)%WORLD_H);
+    if(Math.abs(cx2-camera.x)>gameCanvas.width||Math.abs(cy2-camera.y)>gameCanvas.height)continue;
+    ctx.beginPath();ctx.moveTo(cx2,cy2);ctx.lineTo(cx2+((i%5)-2)*14,cy2+3+i%10);ctx.stroke();
   }
-  // Roots/vines lines
-  ctx.strokeStyle='rgba(40,90,25,0.12)';ctx.lineWidth=2;
-  for(let i=0;i<30;i++){
-    const px=(((i*6271+seed)%WORLD_W));const py=(((i*5839+seed*2)%WORLD_H));
-    ctx.beginPath();ctx.moveTo(px,py);
-    ctx.bezierCurveTo(px+rand2(i,20,80),py+rand2(i+1,10,60),px+rand2(i+2,40,120),py+rand2(i+3,30,100),px+rand2(i+4,60,180),py+rand2(i+5,50,150));
-    ctx.stroke();
-  }
-  // Foggy green grid
-  ctx.strokeStyle='rgba(50,120,30,0.05)';ctx.lineWidth=1;
-  const gs=100;
-  for(let x=Math.floor((camera.x-gameCanvas.width/2)/gs)*gs;x<camera.x+gameCanvas.width/2+gs;x+=gs){
-    ctx.beginPath();ctx.moveTo(x,camera.y-gameCanvas.height/2);ctx.lineTo(x,camera.y+gameCanvas.height/2);ctx.stroke();
-  }
-  for(let y=Math.floor((camera.y-gameCanvas.height/2)/gs)*gs;y<camera.y+gameCanvas.height/2+gs;y+=gs){
-    ctx.beginPath();ctx.moveTo(camera.x-gameCanvas.width/2,y);ctx.lineTo(camera.x+gameCanvas.width/2,y);ctx.stroke();
-  }
-  // Map label
-  ctx.fillStyle='rgba(168,224,99,0.5)';ctx.font='bold 11px monospace';ctx.textAlign='left';
-  ctx.fillText('[ MAPA: ŠUMA ]',20,20);
-  // World border
-  ctx.strokeStyle='rgba(80,180,50,.35)';ctx.lineWidth=4;ctx.setLineDash([20,10]);
-  ctx.strokeRect(0,0,WORLD_W,WORLD_H);ctx.setLineDash([]);
+
+  ctx.strokeStyle='rgba(255,200,50,0.45)';ctx.lineWidth=5;ctx.setLineDash([25,10]);
+  ctx.strokeRect(2,2,WORLD_W-4,WORLD_H-4);ctx.setLineDash([]);
 }
+
+function getTimeOfDayStr(){return 'DAN';}
+
+function drawMapFactory(){
+  const vl=camera.x-gameCanvas.width/2-100, vt=camera.y-gameCanvas.height/2-100;
+  const vr=camera.x+gameCanvas.width/2+100, vb=camera.y+gameCanvas.height/2+100;
+
+  // 1. Beton sa pukotinama — varijabilne celije
+  const TS=100;
+  const sx0=Math.floor(vl/TS)*TS, sy0=Math.floor(vt/TS)*TS;
+  for(let tx=sx0;tx<vr;tx+=TS){
+    for(let ty=sy0;ty<vb;ty+=TS){
+      if(tx<0||tx>WORLD_W||ty<0||ty>WORLD_H) continue;
+      const idx=((Math.abs(tx/TS*3+ty/TS*7))%6);
+      const shades=[36,32,40,34,38,30];
+      const v=shades[idx];
+      ctx.fillStyle=`rgb(${v},${v},${Math.floor(v*.9)})`;
+      ctx.fillRect(tx+1,ty+1,TS-2,TS-2);
+      if(idx===1||idx===4){
+        ctx.strokeStyle='rgba(0,0,0,0.55)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(tx+15,ty+20);ctx.lineTo(tx+55,ty+75);ctx.lineTo(tx+85,ty+90);ctx.stroke();
+      }
+      if(idx===3){
+        ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(tx+40,ty+10);ctx.lineTo(tx+70,ty+55);ctx.stroke();
+      }
+    }
+  }
+  ctx.strokeStyle='#111';ctx.lineWidth=2.5;
+  for(let tx=sx0;tx<vr;tx+=TS){ctx.beginPath();ctx.moveTo(tx,vt);ctx.lineTo(tx,vb);ctx.stroke();}
+  for(let ty=sy0;ty<vb;ty+=TS){ctx.beginPath();ctx.moveTo(vl,ty);ctx.lineTo(vr,ty);ctx.stroke();}
+
+  // 2. KONVEJERI animirani sa točkovima i labelama
+  const t=Date.now()/300;
+  const conveyors=[
+    {x:300,y:600,w:650,h:38,horiz:true},{x:1600,y:300,w:580,h:38,horiz:true},
+    {x:850,y:1800,w:780,h:38,horiz:true},{x:3150,y:1100,w:630,h:38,horiz:true},
+    {x:500,y:3200,w:720,h:38,horiz:true},{x:2550,y:2800,w:530,h:38,horiz:true},
+    {x:1250,y:4400,w:680,h:38,horiz:true},{x:4050,y:2400,w:630,h:38,horiz:true},
+    {x:680,y:5400,w:580,h:38,horiz:true},{x:3550,y:4600,w:680,h:38,horiz:true},
+    {x:4500,y:700,w:38,h:580,horiz:false},{x:2000,y:2000,w:38,h:680,horiz:false},
+    {x:4950,y:3000,w:38,h:630,horiz:false},{x:1000,y:4800,w:38,h:530,horiz:false},
+    {x:200,y:1400,w:500,h:38,horiz:true},{x:5200,y:1800,w:480,h:38,horiz:true},
+  ];
+  conveyors.forEach(cv=>{
+    if(cv.x+cv.w<vl||cv.x>vr||cv.y+cv.h<vt||cv.y>vb)return;
+    // Okvir konvejera
+    ctx.fillStyle='#1c1c14';ctx.fillRect(cv.x,cv.y,cv.w,cv.h);
+    // Animirane trake unutar
+    ctx.save();ctx.beginPath();ctx.rect(cv.x+4,cv.y+4,cv.w-8,cv.h-8);ctx.clip();
+    const step=28;
+    if(cv.horiz){
+      const off=(t*45)%step;
+      for(let kx=cv.x-step+off;kx<cv.x+cv.w;kx+=step){
+        ctx.fillStyle=((Math.floor((kx-cv.x)/step)%2)===0)?'#2e2e22':'#3a3a2e';
+        ctx.fillRect(kx,cv.y+4,step-2,cv.h-8);
+      }
+    } else {
+      const off=(t*45)%step;
+      for(let ky=cv.y-step+off;ky<cv.y+cv.h;ky+=step){
+        ctx.fillStyle=((Math.floor((ky-cv.y)/step)%2)===0)?'#2e2e22':'#3a3a2e';
+        ctx.fillRect(cv.x+4,ky,cv.w-8,step-2);
+      }
+    }
+    ctx.restore();
+    // Obrub narandžasti
+    ctx.strokeStyle='#d4780a';ctx.lineWidth=2;ctx.strokeRect(cv.x,cv.y,cv.w,cv.h);
+    // Tacke/nitnovi na rubovima
+    ctx.fillStyle='#888';
+    [[cv.x+4,cv.y+4],[cv.x+cv.w-4,cv.y+4],[cv.x+4,cv.y+cv.h-4],[cv.x+cv.w-4,cv.y+cv.h-4]].forEach(([rx,ry])=>{
+      ctx.beginPath();ctx.arc(rx,ry,3,0,Math.PI*2);ctx.fill();
+    });
+    // Tocak s obe strane
+    if(cv.horiz){
+      [cv.x+5,cv.x+cv.w-5].forEach(wx=>{
+        const r=cv.h/2+3;
+        ctx.fillStyle='#2a2a20';ctx.beginPath();ctx.arc(wx,cv.y+cv.h/2,r,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#666';ctx.lineWidth=2;ctx.beginPath();ctx.arc(wx,cv.y+cv.h/2,r,0,Math.PI*2);ctx.stroke();
+        ctx.strokeStyle='#444';ctx.lineWidth=1.5;
+        for(let sp=0;sp<4;sp++){const sa=t+sp*Math.PI/2;ctx.beginPath();ctx.moveTo(wx,cv.y+cv.h/2);ctx.lineTo(wx+Math.cos(sa)*r*.7,cv.y+cv.h/2+Math.sin(sa)*r*.7);ctx.stroke();}
+      });
+    } else {
+      [cv.y+5,cv.y+cv.h-5].forEach(wy=>{
+        const r=cv.w/2+3;
+        ctx.fillStyle='#2a2a20';ctx.beginPath();ctx.arc(cv.x+cv.w/2,wy,r,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#666';ctx.lineWidth=2;ctx.beginPath();ctx.arc(cv.x+cv.w/2,wy,r,0,Math.PI*2);ctx.stroke();
+      });
+    }
+    // Labela
+    ctx.fillStyle='rgba(210,140,20,0.8)';ctx.font='bold 9px monospace';ctx.textAlign='center';
+    ctx.fillText(cv.horiz?'►KONVEJER►':'▼KON▼',cv.x+cv.w/2,cv.y+cv.h/2+3);
+  });
+
+  // 3. REZERVOARI — realistični industrijski
+  const tanks=[
+    {x:600,y:400,r:65},{x:2000,y:900,r:55},{x:3400,y:700,r:72},
+    {x:700,y:2700,r:58},{x:2300,y:2400,r:68},{x:4600,y:1400,r:62},
+    {x:1100,y:3900,r:52},{x:3900,y:3400,r:74},{x:600,y:4900,r:60},
+    {x:4300,y:5400,r:64},{x:2900,y:4700,r:68},{x:1700,y:5700,r:54},
+    {x:5500,y:1000,r:60},{x:5200,y:3500,r:65},{x:400,y:6000,r:58},
+  ];
+  tanks.forEach(tk=>{
+    if(Math.abs(tk.x-camera.x)>gameCanvas.width+200||Math.abs(tk.y-camera.y)>gameCanvas.height+200)return;
+    const r=tk.r;
+    // Platforma ispod
+    ctx.fillStyle='#3a3530';ctx.fillRect(tk.x-r-8,tk.y-r-8,r*2+16,r*2+16);
+    ctx.strokeStyle='#555';ctx.lineWidth=1;ctx.strokeRect(tk.x-r-8,tk.y-r-8,r*2+16,r*2+16);
+    // Stepenice na rezervoaru (sa strane)
+    ctx.strokeStyle='#666';ctx.lineWidth=2;
+    for(let si=0;si<4;si++)ctx.strokeRect(tk.x+r-2,tk.y-r+si*r*.4,6,r*.3);
+    // Sjena
+    ctx.fillStyle='rgba(0,0,0,0.35)';ctx.beginPath();ctx.ellipse(tk.x+7,tk.y+7,r*1.05,r*.42,0,0,Math.PI*2);ctx.fill();
+    // Telo rezervoara
+    const grd=ctx.createRadialGradient(tk.x-r*.3,tk.y-r*.3,r*.05,tk.x,tk.y,r);
+    grd.addColorStop(0,'#8a8a8a');grd.addColorStop(0.3,'#666');grd.addColorStop(0.7,'#444');grd.addColorStop(1,'#222');
+    ctx.fillStyle=grd;ctx.beginPath();ctx.arc(tk.x,tk.y,r,0,Math.PI*2);ctx.fill();
+    // Horizontalni metalni pojasevi
+    ctx.strokeStyle='rgba(100,100,100,0.8)';ctx.lineWidth=3;
+    for(let bi=1;bi<=4;bi++){ctx.beginPath();ctx.arc(tk.x,tk.y,r*bi/5,0,Math.PI*2);ctx.stroke();}
+    // Debeli obrub
+    ctx.strokeStyle='#d4780a';ctx.lineWidth=3;ctx.beginPath();ctx.arc(tk.x,tk.y,r,0,Math.PI*2);ctx.stroke();
+    // Vrh (kapak sa ventilom)
+    const tgrd=ctx.createRadialGradient(tk.x-r*.15,tk.y-r*.15,0,tk.x,tk.y,r*.45);
+    tgrd.addColorStop(0,'#999');tgrd.addColorStop(1,'#555');
+    ctx.fillStyle=tgrd;ctx.beginPath();ctx.ellipse(tk.x,tk.y,r*.45,r*.18,0,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#777';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(tk.x,tk.y,r*.45,r*.18,0,0,Math.PI*2);ctx.stroke();
+    // Ventil
+    ctx.fillStyle='#e63946';ctx.beginPath();ctx.arc(tk.x,tk.y,6,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#fff';ctx.fillRect(tk.x-1,tk.y-7,2,14);ctx.fillRect(tk.x-7,tk.y-1,14,2);
+    // Cev koja izlazi
+    ctx.strokeStyle='#666';ctx.lineWidth=6;
+    ctx.beginPath();ctx.moveTo(tk.x,tk.y+r*.18);ctx.lineTo(tk.x,tk.y+r+20);ctx.stroke();
+    ctx.strokeStyle='#888';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(tk.x-1,tk.y+r*.18);ctx.lineTo(tk.x-1,tk.y+r+20);ctx.stroke();
+    // Natpis
+    ctx.save();ctx.font=`bold ${Math.floor(r*.22)}px monospace`;ctx.textAlign='center';
+    ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillText('⚠',tk.x+1,tk.y+r*.12+1);
+    ctx.fillStyle='rgba(255,220,0,0.95)';ctx.fillText('⚠',tk.x,tk.y+r*.12);
+    ctx.font=`${Math.floor(r*.14)}px monospace`;ctx.fillStyle='rgba(255,200,0,0.8)';
+    ctx.fillText('ZAPALJIVO',tk.x,tk.y+r*.36);ctx.restore();
+  });
+
+  // 4. CEVI sa ventilima i zavrtnjima
+  const pipeGroups=[
+    {pts:[[150,150],[900,150],[900,500]],col:'#686858'},{pts:[[1300,250],[1300,1100],[2200,1100]],col:'#5a6a58'},
+    {pts:[[3100,400],[3100,1600],[4200,1600]],col:'#686058'},{pts:[[500,2100],[1600,2100]],col:'#5e5e68'},
+    {pts:[[2100,2900],[2100,4100],[3200,4100]],col:'#606858'},{pts:[[4200,2900],[4200,5200]],col:'#585868'},
+    {pts:[[1100,4900],[3100,4900]],col:'#646458'},{pts:[[700,5900],[700,4600],[2100,4600]],col:'#5c6058'},
+    {pts:[[4800,800],[4800,2200],[5500,2200]],col:'#5a6860'},{pts:[[5300,3200],[5300,5500]],col:'#606858'},
+    {pts:[[200,3800],[1200,3800]],col:'#686058'},{pts:[[3500,200],[3500,800]],col:'#5a5a68'},
+  ];
+  pipeGroups.forEach(pg=>{
+    const inView=pg.pts.some(p=>Math.abs(p[0]-camera.x)<gameCanvas.width&&Math.abs(p[1]-camera.y)<gameCanvas.height);
+    if(!inView)return;
+    // Sjena cevi
+    ctx.strokeStyle='rgba(0,0,0,0.4)';ctx.lineWidth=12;ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(pg.pts[0][0]+3,pg.pts[0][1]+3);
+    for(let i=1;i<pg.pts.length;i++)ctx.lineTo(pg.pts[i][0]+3,pg.pts[i][1]+3);ctx.stroke();
+    // Telo cevi
+    ctx.strokeStyle=pg.col;ctx.lineWidth=9;
+    ctx.beginPath();ctx.moveTo(pg.pts[0][0],pg.pts[0][1]);
+    for(let i=1;i<pg.pts.length;i++)ctx.lineTo(pg.pts[i][0],pg.pts[i][1]);ctx.stroke();
+    // Highlight
+    ctx.strokeStyle='rgba(255,255,255,0.1)';ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(pg.pts[0][0]-2,pg.pts[0][1]-2);
+    for(let i=1;i<pg.pts.length;i++)ctx.lineTo(pg.pts[i][0]-2,pg.pts[i][1]-2);ctx.stroke();
+    // Zavrtnji duž cevi
+    ctx.fillStyle='#aaa';
+    for(let i=0;i<pg.pts.length-1;i++){
+      const n=4;
+      for(let j=1;j<n;j++){
+        const bx=pg.pts[i][0]+(pg.pts[i+1][0]-pg.pts[i][0])*j/n;
+        const by=pg.pts[i][1]+(pg.pts[i+1][1]-pg.pts[i][1])*j/n;
+        if(Math.abs(bx-camera.x)>gameCanvas.width||Math.abs(by-camera.y)>gameCanvas.height)continue;
+        ctx.beginPath();ctx.arc(bx,by,4,0,Math.PI*2);ctx.fill();
+        ctx.strokeStyle='#888';ctx.lineWidth=1;ctx.beginPath();ctx.arc(bx,by,4,0,Math.PI*2);ctx.stroke();
+      }
+    }
+    // Ventili
+    for(let i=0;i<pg.pts.length-1;i++){
+      const mx=(pg.pts[i][0]+pg.pts[i+1][0])/2, my=(pg.pts[i][1]+pg.pts[i+1][1])/2;
+      if(Math.abs(mx-camera.x)>gameCanvas.width||Math.abs(my-camera.y)>gameCanvas.height)continue;
+      ctx.fillStyle='#c0392b';ctx.beginPath();ctx.arc(mx,my,7,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='#fff';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(mx,my,7,0,Math.PI*2);ctx.stroke();
+      ctx.fillStyle='#fff';ctx.fillRect(mx-1,my-8,2,16);ctx.fillRect(mx-8,my-1,16,2);
+    }
+    ctx.lineCap='butt';
+  });
+
+  // 5. INDUSTRIJSKA OSVETLJENJA — neonske lampe na plafonu (vizuelno)
+  for(let i=0;i<30;i++){
+    const lx=((i*2137)%WORLD_W), ly=((i*3719)%WORLD_H);
+    if(Math.abs(lx-camera.x)>gameCanvas.width||Math.abs(ly-camera.y)>gameCanvas.height)continue;
+    const flicker=0.6+Math.sin(Date.now()/400+i*1.7)*0.15;
+    const grd=ctx.createRadialGradient(lx,ly,0,lx,ly,50);
+    grd.addColorStop(0,`rgba(255,200,100,${flicker*0.2})`);grd.addColorStop(1,'transparent');
+    ctx.fillStyle=grd;ctx.beginPath();ctx.arc(lx,ly,50,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=`rgba(255,230,150,${flicker*0.9})`;ctx.fillRect(lx-12,ly-3,24,6);
+    ctx.strokeStyle='rgba(200,160,60,0.5)';ctx.lineWidth=1;ctx.strokeRect(lx-12,ly-3,24,6);
+  }
+
+  // 6. ISKRE na spojevima cevi
+  const t2=Date.now()/100;
+  [[900,500],[1100,2100],[2100,1100],[3200,4100],[700,4600],[4800,2200]].forEach((sp,si)=>{
+    if(Math.abs(sp[0]-camera.x)>gameCanvas.width||Math.abs(sp[1]-camera.y)>gameCanvas.height)return;
+    for(let sk=0;sk<5;sk++){
+      const sa=(t2*.05+si*1.1+sk*1.26)%(Math.PI*2);
+      const sd=8+Math.sin(t2*.3+sk)*7;
+      ctx.fillStyle=`rgba(255,${130+Math.floor(Math.sin(t2*.08+sk)*80)},0,${0.6+Math.sin(t2*.1+sk)*.3})`;
+      ctx.beginPath();ctx.arc(sp[0]+Math.cos(sa)*sd,sp[1]+Math.sin(sa)*sd,1.5,0,Math.PI*2);ctx.fill();
+    }
+    ctx.fillStyle='rgba(255,210,80,0.95)';ctx.beginPath();ctx.arc(sp[0],sp[1],3.5,0,Math.PI*2);ctx.fill();
+  });
+
+  // 7. HAZARD ZONE — dijagonalne crno-žute pruge
+  ctx.save();ctx.globalAlpha=0.1;
+  [[200,200,280,280],[2500,1500,240,240],[4000,3000,280,280],[600,5000,250,250],[3000,400,260,260]].forEach(hz=>{
+    if(Math.abs(hz[0]+hz[2]/2-camera.x)>gameCanvas.width)return;
+    ctx.save();ctx.beginPath();ctx.rect(hz[0],hz[1],hz[2],hz[3]);ctx.clip();
+    ctx.strokeStyle='#f4a261';ctx.lineWidth=9;
+    for(let d=-hz[3];d<hz[2]+hz[3];d+=24){ctx.beginPath();ctx.moveTo(hz[0]+d,hz[1]);ctx.lineTo(hz[0]+d+hz[3],hz[1]+hz[3]);ctx.stroke();}
+    ctx.restore();
+    ctx.strokeStyle='#f4a261';ctx.lineWidth=2;ctx.strokeRect(hz[0],hz[1],hz[2],hz[3]);
+  });
+  ctx.restore();
+
+  ctx.strokeStyle='rgba(244,100,20,0.55)';ctx.lineWidth=5;ctx.setLineDash([20,8]);
+  ctx.strokeRect(2,2,WORLD_W-4,WORLD_H-4);ctx.setLineDash([]);
+}
+
+function drawMapForest(){
+  const vl=camera.x-gameCanvas.width/2-120, vt=camera.y-gameCanvas.height/2-120;
+  const vr=camera.x+gameCanvas.width/2+120, vb=camera.y+gameCanvas.height/2+120;
+
+  // ── 1. TRAVA PODLOGA — 40px celije, 10 nijansi ──
+  const TS=40;
+  const sx0=Math.floor(vl/TS)*TS, sy0=Math.floor(vt/TS)*TS;
+  for(let tx=sx0;tx<vr;tx+=TS){
+    for(let ty=sy0;ty<vb;ty+=TS){
+      if(tx<0||tx>WORLD_W||ty<0||ty>WORLD_H)continue;
+      const idx=((Math.abs(tx/TS*7+ty/TS*11))%10);
+      const g=['#1e3318','#203a1a','#1c301a','#243d20','#1a2e16','#263818','#1f341c','#223a1e','#1d3016','#253c1a'];
+      ctx.fillStyle=g[idx];ctx.fillRect(tx,ty,TS,TS);
+    }
+  }
+
+  // ── 2. TRAVA VLASOVI — gusti ──
+  ctx.lineWidth=1.5;
+  for(let i=0;i<500;i++){
+    const gx=((i*2137+13)%WORLD_W),gy=((i*1979+7)%WORLD_H);
+    if(Math.abs(gx-camera.x)>gameCanvas.width+60||Math.abs(gy-camera.y)>gameCanvas.height+60)continue;
+    const gh=4+((i*3)%9),ang=((i*0.4)%0.8)-0.4;
+    ctx.strokeStyle=((i*7)%5)!==0?'rgba(65,168,52,0.55)':'rgba(35,110,28,0.45)';
+    ctx.beginPath();ctx.moveTo(gx,gy);ctx.lineTo(gx+Math.sin(ang)*gh,gy-gh);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(gx+3,gy);ctx.lineTo(gx+3+Math.sin(ang+.3)*gh,gy-gh+1);ctx.stroke();
+    if(i%3===0){ctx.beginPath();ctx.moveTo(gx-2,gy);ctx.lineTo(gx-2+Math.sin(ang-.2)*gh,gy-gh+1);ctx.stroke();}
+  }
+
+  // ── 3. MOCVARNE ZONE ──
+  for(let i=0;i<25;i++){
+    const mx=((i*3491+5)%WORLD_W),my=((i*2897+3)%WORLD_H);
+    if(Math.abs(mx-camera.x)>gameCanvas.width+120||Math.abs(my-camera.y)>gameCanvas.height+120)continue;
+    const mr=rand2(i+20,35,80);
+    ctx.fillStyle='rgba(12,26,10,0.45)';ctx.beginPath();ctx.ellipse(mx,my,mr,mr*.5,0,0,Math.PI*2);ctx.fill();
+  }
+
+  // ── 4. SENKE DRVECA ──
+  for(let i=0;i<120;i++){
+    const tx=((i*7331+3)%WORLD_W),ty=((i*6173+9)%WORLD_H);
+    if(Math.abs(tx-camera.x)>gameCanvas.width+150||Math.abs(ty-camera.y)>gameCanvas.height+150)continue;
+    const tr=rand2(i,28,58);
+    ctx.fillStyle='rgba(0,0,0,0.22)';ctx.beginPath();ctx.ellipse(tx+tr*.3,ty+tr*.18,tr*1.35,tr*.5,0.4,0,Math.PI*2);ctx.fill();
+  }
+
+  // ── 5. KORIJENJE ──
+  for(let i=0;i<120;i++){
+    const rx=((i*6271+5)%WORLD_W),ry=((i*5839+11)%WORLD_H);
+    if(Math.abs(rx-camera.x)>gameCanvas.width||Math.abs(ry-camera.y)>gameCanvas.height)continue;
+    const alpha=0.3+((i*7)%10)*.04;
+    ctx.strokeStyle=`rgba(52,28,10,${alpha})`;ctx.lineWidth=1.5+((i*3)%3)*.5;
+    const ang=(i*.7)%(Math.PI*2);
+    ctx.beginPath();ctx.moveTo(rx,ry);
+    ctx.bezierCurveTo(rx+Math.cos(ang)*32,ry+Math.sin(ang)*20,rx+Math.cos(ang+.5)*62,ry+Math.sin(ang+.5)*40,rx+Math.cos(ang+1)*92,ry+Math.sin(ang+1)*60);ctx.stroke();
+    ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(rx+Math.cos(ang)*32,ry+Math.sin(ang)*20);ctx.lineTo(rx+Math.cos(ang-.9)*55,ry+Math.sin(ang-.9)*38);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(rx+Math.cos(ang+.5)*62,ry+Math.sin(ang+.5)*40);ctx.lineTo(rx+Math.cos(ang+1.2)*75,ry+Math.sin(ang+1.2)*50);ctx.stroke();
+  }
+
+  // ── 6. PECINE — kamene pecine uz ivicu mape ──
+  const caves=[
+    {x:400,y:600,w:180,h:120},{x:6200,y:1200,w:200,h:140},
+    {x:300,y:3800,w:160,h:110},{x:6400,y:4500,w:190,h:130},
+    {x:1800,y:6400,w:170,h:120},{x:5000,y:6500,w:180,h:125},
+    {x:3500,y:350,w:175,h:115},{x:6300,y:6200,w:165,h:110},
+  ];
+  caves.forEach(cv=>{
+    if(Math.abs(cv.x+cv.w/2-camera.x)>gameCanvas.width+200||Math.abs(cv.y+cv.h/2-camera.y)>gameCanvas.height+200)return;
+    // Kamena osnova
+    ctx.fillStyle='#2a2520';ctx.beginPath();ctx.ellipse(cv.x+cv.w/2,cv.y+cv.h/2,cv.w/2+12,cv.h/2+10,0,0,Math.PI*2);ctx.fill();
+    // Kamene ploce
+    for(let ci=0;ci<5;ci++){
+      const cang=ci/5*Math.PI*2, cr=cv.w/2*.8;
+      const cx2=cv.x+cv.w/2+Math.cos(cang)*cr*.7,cy2=cv.y+cv.h/2+Math.sin(cang)*cr*.4;
+      const cg=ctx.createRadialGradient(cx2-5,cy2-5,0,cx2,cy2,25);
+      cg.addColorStop(0,'#5a5248');cg.addColorStop(.5,'#3d3830');cg.addColorStop(1,'#252220');
+      ctx.fillStyle=cg;ctx.beginPath();ctx.ellipse(cx2,cy2,20+ci*4,14+ci*2,cang*.5,0,Math.PI*2);ctx.fill();
+      ctx.strokeStyle='rgba(0,0,0,0.4)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(cx2,cy2,20+ci*4,14+ci*2,cang*.5,0,Math.PI*2);ctx.stroke();
+    }
+    // Ulaz u pecinu — tamna rupa
+    ctx.fillStyle='#080604';ctx.beginPath();ctx.ellipse(cv.x+cv.w/2,cv.y+cv.h/2,cv.w/4,cv.h/3,0,0,Math.PI*2);ctx.fill();
+    // Sjajna ivica ulaza
+    ctx.strokeStyle='rgba(80,60,40,0.6)';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(cv.x+cv.w/2,cv.y+cv.h/2,cv.w/4,cv.h/3,0,0,Math.PI*2);ctx.stroke();
+    // Stalaktiti na ulazu
+    ctx.fillStyle='#2a2520';
+    for(let si=0;si<5;si++){
+      const sx=cv.x+cv.w/2-cv.w/4+si*(cv.w/2/4);
+      ctx.beginPath();ctx.moveTo(sx-5,cv.y+cv.h/2-cv.h/3);ctx.lineTo(sx+5,cv.y+cv.h/2-cv.h/3);ctx.lineTo(sx,cv.y+cv.h/2-cv.h/3+10+si%3*5);ctx.closePath();ctx.fill();
+    }
+    // Labela
+    ctx.fillStyle='rgba(180,140,80,0.7)';ctx.font='bold 10px monospace';ctx.textAlign='center';
+    ctx.fillText('PEĆINA',cv.x+cv.w/2,cv.y+cv.h/2+cv.h/3+14);
+  });
+
+  // ── 7. DRVECA — depth sorted, detaljan crtez ──
+  const treeData=[];
+  for(let i=0;i<120;i++){
+    const seed=((i*2654435761+i*1337)>>>0);
+    const tx=((seed*6271+i*1337)%WORLD_W);
+    const ty=((seed*5839+i*1019)%WORLD_H);
+    treeData.push({tx,ty,seed,i});
+  }
+  treeData.sort((a,b)=>a.ty-b.ty);
+  treeData.forEach(({tx,ty,seed,i})=>{
+    if(Math.abs(tx-camera.x)>gameCanvas.width+130||Math.abs(ty-camera.y)>gameCanvas.height+130)return;
+    const tr=rand2(seed,26,50),th=rand2(seed+1,48,85);
+    const ttype=seed%10;
+    const leafC=['#2d5a1e','#335c22','#2a5420','#3a6028','#306024','#285018','#3e641e','#2c5820','#385e26','#325a1c'][ttype];
+    const darkC=['#1e3c12','#223e16','#1a3814','#26421c','#1e4018','#1a3410','#263010','#1c3c14','#24401a','#1e3c10'][ttype];
+    const lightC=['#4a8030','#528436','#487a2e','#5a8840','#4e8038','#46782c','#5c8c32','#4a7e30','#567e3c','#4e8028'][ttype];
+
+    // Korijenje
+    ctx.strokeStyle='rgba(50,26,8,0.5)';ctx.lineWidth=2;
+    for(let ri=0;ri<4;ri++){
+      const ra=ri*1.57+seed*.3;
+      ctx.beginPath();ctx.moveTo(tx+Math.cos(ra)*5,ty+Math.sin(ra)*3);
+      ctx.lineTo(tx+Math.cos(ra)*(tr*.65),ty+Math.sin(ra)*(tr*.3));ctx.stroke();
+    }
+
+    // Trup — konicni
+    const trW=Math.max(7,tr*.3);
+    const tgrad=ctx.createLinearGradient(tx-trW,ty-th*.35,tx+trW,ty);
+    tgrad.addColorStop(0,'#4a2e10');tgrad.addColorStop(.4,'#3d2408');tgrad.addColorStop(1,'#2a1a04');
+    ctx.fillStyle=tgrad;
+    ctx.beginPath();ctx.moveTo(tx-trW/2,ty+4);ctx.lineTo(tx+trW/2,ty+4);ctx.lineTo(tx+trW*.38,ty-th*.38);ctx.lineTo(tx-trW*.38,ty-th*.38);ctx.closePath();ctx.fill();
+    // Kora — vertikalne linije
+    ctx.strokeStyle='rgba(18,8,0,0.4)';ctx.lineWidth=1;
+    for(let li=0;li<5;li++){const lf=li/4;ctx.beginPath();ctx.moveTo(tx-trW*.4+lf*trW*.8,ty+2);ctx.lineTo(tx-trW*.3+lf*trW*.6,ty-th*.3);ctx.stroke();}
+    // Horizontalne kore linije
+    ctx.strokeStyle='rgba(18,8,0,0.2)';
+    for(let ki=1;ki<4;ki++){const kp=ki/4;ctx.beginPath();ctx.moveTo(tx-trW*.4,ty-th*.38*kp);ctx.lineTo(tx+trW*.4,ty-th*.38*kp);ctx.stroke();}
+
+    // Zadnja krosnja — najsira
+    ctx.fillStyle=darkC;ctx.beginPath();ctx.ellipse(tx,ty-th*.14,tr*1.08,tr*.92,0,0,Math.PI*2);ctx.fill();
+    // Bocne krune
+    ctx.fillStyle=leafC;
+    ctx.beginPath();ctx.ellipse(tx-tr*.42,ty-th*.1,tr*.78,tr*.70,-.22,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.ellipse(tx+tr*.42,ty-th*.1,tr*.78,tr*.70,.22,0,Math.PI*2);ctx.fill();
+    // Srednja kruna
+    ctx.beginPath();ctx.ellipse(tx,ty-th*.24,tr*.92,tr*.80,0,0,Math.PI*2);ctx.fill();
+    // Gornja kruna
+    ctx.fillStyle=lightC;ctx.beginPath();ctx.ellipse(tx,ty-th*.38,tr*.65,tr*.58,0,0,Math.PI*2);ctx.fill();
+    // Vrh
+    ctx.fillStyle=lightC;ctx.beginPath();ctx.ellipse(tx,ty-th*.5,tr*.38,tr*.40,0,0,Math.PI*2);ctx.fill();
+    // Zraci sunca kroz krosnaju
+    const lg=ctx.createRadialGradient(tx-tr*.28,ty-th*.45,0,tx,ty-th*.25,tr);
+    lg.addColorStop(0,'rgba(120,240,80,0.3)');lg.addColorStop(.55,'transparent');lg.addColorStop(1,'transparent');
+    ctx.fillStyle=lg;ctx.beginPath();ctx.ellipse(tx,ty-th*.24,tr*.92,tr*.80,0,0,Math.PI*2);ctx.fill();
+    // Ivica
+    ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.lineWidth=1.5;ctx.beginPath();ctx.ellipse(tx,ty-th*.24,tr*.92,tr*.80,0,0,Math.PI*2);ctx.stroke();
+  });
+
+  // ── 8. BARE ──
+  const ponds=[
+    {x:1300,y:900,rx:130,ry:75},{x:3600,y:1600,rx:110,ry:65},
+    {x:900,y:3100,rx:150,ry:85},{x:4600,y:3600,rx:120,ry:70},
+    {x:2100,y:5100,rx:140,ry:80},{x:5600,y:2100,rx:105,ry:60},
+    {x:1600,y:5600,rx:95,ry:55},{x:4100,y:5900,rx:125,ry:72},
+    {x:2800,y:2800,rx:100,ry:58},{x:5100,y:4800,rx:115,ry:65},
+  ];
+  ponds.forEach(p=>{
+    if(Math.abs(p.x-camera.x)>gameCanvas.width+200||Math.abs(p.y-camera.y)>gameCanvas.height+200)return;
+    ctx.fillStyle='rgba(38,24,10,0.55)';ctx.beginPath();ctx.ellipse(p.x,p.y,p.rx+18,p.ry+12,0,0,Math.PI*2);ctx.fill();
+    const pg=ctx.createRadialGradient(p.x-p.rx*.25,p.y-p.ry*.25,0,p.x,p.y,Math.max(p.rx,p.ry));
+    pg.addColorStop(0,'rgba(55,110,175,0.94)');pg.addColorStop(.45,'rgba(40,85,145,0.9)');pg.addColorStop(1,'rgba(22,55,95,0.85)');
+    ctx.fillStyle=pg;ctx.beginPath();ctx.ellipse(p.x,p.y,p.rx,p.ry,0,0,Math.PI*2);ctx.fill();
+    const tw=Date.now()/2200;
+    ctx.strokeStyle='rgba(120,190,255,0.14)';ctx.lineWidth=1.5;
+    for(let ri=0;ri<4;ri++){const ra=tw+ri*1.57;ctx.beginPath();ctx.ellipse(p.x+Math.cos(ra)*p.rx*.22,p.y+Math.sin(ra)*p.ry*.18,p.rx*(0.18+ri*.12),p.ry*(0.1+ri*.07),ra*.4,0,Math.PI*2);ctx.stroke();}
+    ctx.fillStyle='rgba(150,210,255,0.12)';ctx.beginPath();ctx.ellipse(p.x-p.rx*.3,p.y-p.ry*.3,p.rx*.33,p.ry*.18,-.4,0,Math.PI*2);ctx.fill();
+    // Lopoci
+    ctx.fillStyle='rgba(45,115,35,0.75)';
+    for(let li=0;li<6;li++){const la=(li*1.05+tw*.25)%(Math.PI*2);const lx=p.x+Math.cos(la)*p.rx*.62,ly=p.y+Math.sin(la)*p.ry*.62;ctx.beginPath();ctx.arc(lx,ly,4+li%3,0,Math.PI*2);ctx.fill();}
+    // Trstika
+    ctx.strokeStyle='rgba(120,175,65,0.75)';ctx.lineWidth=2;
+    for(let ri=0;ri<16;ri++){
+      const ra=ri/16*Math.PI*2;const rx2=p.x+Math.cos(ra)*(p.rx+3),ry2=p.y+Math.sin(ra)*(p.ry+3);
+      ctx.beginPath();ctx.moveTo(rx2,ry2);ctx.lineTo(rx2+Math.cos(ra)*11,ry2+Math.sin(ra)*11-17);ctx.stroke();
+      ctx.fillStyle='#6b4a1a';ctx.beginPath();ctx.ellipse(rx2+Math.cos(ra)*11,ry2+Math.sin(ra)*11-17,3,7,ra,0,Math.PI*2);ctx.fill();
+    }
+    ctx.strokeStyle='rgba(50,110,60,0.65)';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(p.x,p.y,p.rx,p.ry,0,0,Math.PI*2);ctx.stroke();
+  });
+
+  // ── 9. GLJIVE ──
+  for(let i=0;i<70;i++){
+    const mx=((i*4127+3)%WORLD_W),my=((i*3719+7)%WORLD_H);
+    if(Math.abs(mx-camera.x)>gameCanvas.width||Math.abs(my-camera.y)>gameCanvas.height)continue;
+    const ms=0.75+((i*3)%6)*.12;
+    const mc=['#c0392b','#e67e22','#8e44ad','#c0392b','#e74c3c','#d35400','#6c3483'][i%7];
+    ctx.fillStyle='rgba(0,0,0,0.18)';ctx.beginPath();ctx.ellipse(mx+2,my+2,8*ms,3*ms,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle=mc;ctx.beginPath();ctx.ellipse(mx,my-5*ms,9*ms,5.5*ms,0,Math.PI,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.ellipse(mx,my-5*ms,9*ms,5.5*ms,0,Math.PI,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='#e8d5b7';ctx.fillRect(mx-2*ms,my-5*ms,4*ms,7*ms);
+    ctx.strokeStyle='rgba(120,90,40,0.4)';ctx.lineWidth=1;ctx.strokeRect(mx-2*ms,my-5*ms,4*ms,7*ms);
+    ctx.fillStyle='rgba(255,255,255,0.65)';
+    [[mx-4*ms,my-8*ms,1.5],[mx+3*ms,my-7.5*ms,1.2],[mx-1*ms,my-9.5*ms,1],[mx+1.5*ms,my-7*ms,.9]].forEach(([dx,dy,dr])=>{ctx.beginPath();ctx.arc(dx,dy,dr*ms,0,Math.PI*2);ctx.fill();});
+    if(i%4===0){ctx.fillStyle=mc;ctx.beginPath();ctx.ellipse(mx+13*ms,my-2*ms,5*ms,3.5*ms,0,Math.PI,Math.PI*2);ctx.fill();ctx.fillStyle='#e8d5b7';ctx.fillRect(mx+11*ms,my-2*ms,2.5*ms,5*ms);}
+  }
+
+  // ── 10. KAMENJE ──
+  for(let i=0;i<90;i++){
+    const rx=((i*5381+9)%WORLD_W),ry=((i*4673+3)%WORLD_H);
+    if(Math.abs(rx-camera.x)>gameCanvas.width||Math.abs(ry-camera.y)>gameCanvas.height)continue;
+    const rr=rand2(i+10,5,18);
+    ctx.fillStyle='rgba(0,0,0,0.18)';ctx.beginPath();ctx.ellipse(rx+rr*.3,ry+rr*.2,rr*1.2,rr*.45,.3,0,Math.PI*2);ctx.fill();
+    const sg=ctx.createRadialGradient(rx-rr*.2,ry-rr*.2,0,rx,ry,rr);
+    sg.addColorStop(0,'#888');sg.addColorStop(.6,'#555');sg.addColorStop(1,'#333');
+    ctx.fillStyle=sg;ctx.beginPath();ctx.arc(rx,ry,rr,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.lineWidth=1;ctx.beginPath();ctx.arc(rx,ry,rr,0,Math.PI*2);ctx.stroke();
+    ctx.fillStyle='rgba(255,255,255,0.1)';ctx.beginPath();ctx.ellipse(rx-rr*.3,ry-rr*.3,rr*.35,rr*.2,-.5,0,Math.PI*2);ctx.fill();
+  }
+
+  // ── 11. ZIVOTINJE — zec, medved, vuk ──
+  const at=Date.now()/1000;
+  // ZECEVI — beli/sivi, sitni
+  const rabbits=[{sx:2500,sy:1200},{sx:4100,sy:2700},{sx:1800,sy:4300},{sx:5200,sy:1800},{sx:3300,sy:5600},{sx:800,sy:2100}];
+  rabbits.forEach((rp,ri)=>{
+    const rx=rp.sx+Math.sin(at*.8+ri*2.1)*40,ry=rp.sy+Math.cos(at*.6+ri*1.7)*20;
+    if(Math.abs(rx-camera.x)>gameCanvas.width||Math.abs(ry-camera.y)>gameCanvas.height)return;
+    const hop=Math.abs(Math.sin(at*4+ri))*5;
+    // Tijelo
+    ctx.fillStyle='#d8d0c8';ctx.beginPath();ctx.ellipse(rx,ry-hop,9,7,0,0,Math.PI*2);ctx.fill();
+    // Glava
+    ctx.beginPath();ctx.ellipse(rx+8,ry-12-hop,6,5.5,-.3,0,Math.PI*2);ctx.fill();
+    // Usi
+    ctx.fillStyle='#c0b8b0';ctx.fillRect(rx+6,ry-22-hop,3,10);ctx.fillRect(rx+10,ry-21-hop,3,9);
+    ctx.fillStyle='#ffb0b0';ctx.fillRect(rx+6.5,ry-21-hop,2,8);ctx.fillRect(rx+10.5,ry-20-hop,2,7);
+    // Nos
+    ctx.fillStyle='#ff9090';ctx.beginPath();ctx.arc(rx+14,ry-12-hop,1.5,0,Math.PI*2);ctx.fill();
+    // Rep
+    ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(rx-8,ry-2-hop,4,0,Math.PI*2);ctx.fill();
+    // Oko
+    ctx.fillStyle='#333';ctx.beginPath();ctx.arc(rx+13,ry-14-hop,1.2,0,Math.PI*2);ctx.fill();
+  });
+
+  // MEDVEDI — veliki smedi, spori
+  const bears=[{sx:3200,sy:800},{sx:1000,sy:5500},{sx:5800,sy:3200},{sx:2500,sy:4800}];
+  bears.forEach((bp,bi)=>{
+    const bx=bp.sx+Math.sin(at*.25+bi*3.1)*60,by=bp.sy+Math.cos(at*.2+bi*2.5)*35;
+    if(Math.abs(bx-camera.x)>gameCanvas.width+80||Math.abs(by-camera.y)>gameCanvas.height+80)return;
+    // Sjena
+    ctx.fillStyle='rgba(0,0,0,0.22)';ctx.beginPath();ctx.ellipse(bx+4,by+4,22,10,0,0,Math.PI*2);ctx.fill();
+    // Tijelo
+    const bg=ctx.createRadialGradient(bx-5,by-5,0,bx,by,22);
+    bg.addColorStop(0,'#8B5E3C');bg.addColorStop(.5,'#6B4226');bg.addColorStop(1,'#4A2C14');
+    ctx.fillStyle=bg;ctx.beginPath();ctx.ellipse(bx,by,20,16,0,0,Math.PI*2);ctx.fill();
+    // Glava
+    const hg=ctx.createRadialGradient(bx+18,by-18,0,bx+18,by-16,14);
+    hg.addColorStop(0,'#9B6E4C');hg.addColorStop(1,'#5A3220');
+    ctx.fillStyle=hg;ctx.beginPath();ctx.ellipse(bx+18,by-16,13,12,-.2,0,Math.PI*2);ctx.fill();
+    // Usi
+    ctx.fillStyle='#6B4226';ctx.beginPath();ctx.arc(bx+10,by-26,5,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(bx+22,by-26,5,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#8B5E3C';ctx.beginPath();ctx.arc(bx+10,by-26,3,0,Math.PI*2);ctx.fill();
+    ctx.beginPath();ctx.arc(bx+22,by-26,3,0,Math.PI*2);ctx.fill();
+    // Njuska
+    ctx.fillStyle='#C89060';ctx.beginPath();ctx.ellipse(bx+27,by-12,6,4,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#1a0a04';ctx.beginPath();ctx.arc(bx+28,by-13,1.5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(bx+26,by-13,1.5,0,Math.PI*2);ctx.fill();
+    // Oci
+    ctx.fillStyle='#0a0604';ctx.beginPath();ctx.arc(bx+14,by-20,2,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(bx+22,by-20,2,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,0.4)';ctx.beginPath();ctx.arc(bx+15,by-21,0.8,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(bx+23,by-21,0.8,0,Math.PI*2);ctx.fill();
+    // Sape
+    ctx.fillStyle='#4A2C14';
+    [[-15,14],[0,18],[15,14]].forEach(([ox,oy])=>{ctx.beginPath();ctx.ellipse(bx+ox,by+oy,7,5,.2,0,Math.PI*2);ctx.fill();});
+    // Sape detalji
+    ctx.fillStyle='#2a1408';
+    for(let cl=0;cl<3;cl++){ctx.beginPath();ctx.arc(bx-15+cl*3,by+16,1,0,Math.PI*2);ctx.fill();}
+  });
+
+  // VUKOVI — sivi, agresivni izgled, krece se brze
+  const wolves=[{sx:1500,sy:1800},{sx:4800,sy:800},{sx:600,sy:4900},{sx:5500,sy:5000},{sx:3000,sy:3400}];
+  wolves.forEach((wp,wi)=>{
+    const wsp=at*.6+wi*2.5;
+    const wx=wp.sx+Math.sin(wsp)*80,wy=wp.sy+Math.cos(wsp*.7)*45;
+    if(Math.abs(wx-camera.x)>gameCanvas.width||Math.abs(wy-camera.y)>gameCanvas.height)return;
+    const walkPhase=Math.sin(at*5+wi);
+    // Tijelo
+    const wg=ctx.createRadialGradient(wx-3,wy-3,0,wx,wy,16);
+    wg.addColorStop(0,'#888890');wg.addColorStop(.5,'#606068');wg.addColorStop(1,'#404048');
+    ctx.fillStyle=wg;ctx.beginPath();ctx.ellipse(wx,wy,16,10,Math.atan2(Math.cos(wsp*.7),Math.sin(wsp)),0,Math.PI*2);ctx.fill();
+    // Rep
+    const tailAng=Math.atan2(Math.cos(wsp*.7),Math.sin(wsp))+Math.PI+Math.sin(at*3)*0.4;
+    ctx.strokeStyle='#505058';ctx.lineWidth=4;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(wx-Math.cos(Math.atan2(Math.cos(wsp*.7),Math.sin(wsp)))*14,wy-Math.sin(Math.atan2(Math.cos(wsp*.7),Math.sin(wsp)))*10);
+    ctx.lineTo(wx-Math.cos(Math.atan2(Math.cos(wsp*.7),Math.sin(wsp)))*14+Math.cos(tailAng)*18,wy-Math.sin(Math.atan2(Math.cos(wsp*.7),Math.sin(wsp)))*10+Math.sin(tailAng)*18);
+    ctx.stroke();ctx.lineCap='butt';
+    // Glava
+    const ha=Math.atan2(Math.cos(wsp*.7),Math.sin(wsp));
+    const hx=wx+Math.cos(ha)*14,hy=wy+Math.sin(ha)*9;
+    ctx.fillStyle='#707078';ctx.beginPath();ctx.ellipse(hx,hy,9,7,ha,0,Math.PI*2);ctx.fill();
+    // Njuska
+    ctx.fillStyle='#505058';ctx.beginPath();ctx.ellipse(hx+Math.cos(ha)*7,hy+Math.sin(ha)*5,5,3.5,ha,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='#1a1a20';ctx.beginPath();ctx.arc(hx+Math.cos(ha)*10,hy+Math.sin(ha)*7,1.5,0,Math.PI*2);ctx.fill();
+    // Oci — zute
+    const eyeOff=ha+Math.PI/2;
+    [[1,-1],[-1,-1]].forEach(([s])=>{
+      const ex=hx+Math.cos(ha)*5+Math.cos(eyeOff)*4*s,ey=hy+Math.sin(ha)*4+Math.sin(eyeOff)*4*s;
+      ctx.fillStyle='#d4a017';ctx.beginPath();ctx.arc(ex,ey,2,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='#0a0a0a';ctx.beginPath();ctx.arc(ex,ey,1,0,Math.PI*2);ctx.fill();
+    });
+    // Noge
+    ctx.strokeStyle='#505058';ctx.lineWidth=3;ctx.lineCap='round';
+    [[-8,0],[0,2],[8,0],[-4,0]].forEach(([lox,loy],li)=>{
+      const lp=walkPhase*(li%2===0?1:-1)*8;
+      ctx.beginPath();ctx.moveTo(wx+lox,wy+loy+8);ctx.lineTo(wx+lox+(li%2===0?lp:-lp)*.3,wy+loy+8+Math.abs(lp)*.3+5);ctx.stroke();
+    });
+    ctx.lineCap='butt';
+  });
+
+  // ── 12. STAZE ──
+  const paths=[
+    [[0,WORLD_H/2],[WORLD_W*.12,WORLD_H/2+200],[WORLD_W*.28,WORLD_H/2-100],[WORLD_W*.44,WORLD_H/2+80],[WORLD_W*.6,WORLD_H/2-120],[WORLD_W*.78,WORLD_H/2+150],[WORLD_W,WORLD_H/2]],
+    [[WORLD_W/2,0],[WORLD_W/2+140,WORLD_H*.18],[WORLD_W/2-80,WORLD_H*.36],[WORLD_W/2+60,WORLD_H*.52],[WORLD_W/2-100,WORLD_H*.7],[WORLD_W/2+80,WORLD_H*.86],[WORLD_W/2,WORLD_H]],
+  ];
+  ctx.lineCap='round';ctx.lineJoin='round';
+  paths.forEach(pts=>{
+    ctx.lineWidth=26;ctx.strokeStyle='rgba(48,30,10,0.38)';
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.stroke();
+    ctx.lineWidth=20;ctx.strokeStyle='rgba(92,60,26,0.52)';
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.stroke();
+    ctx.lineWidth=10;ctx.strokeStyle='rgba(118,85,42,0.22)';
+    ctx.beginPath();ctx.moveTo(pts[0][0],pts[0][1]);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i][0],pts[i][1]);ctx.stroke();
+  });
+  ctx.lineCap='butt';
+
+  // ── 13. ZRACI SUNCA ──
+  ctx.save();ctx.globalAlpha=0.042;ctx.fillStyle='#a8ff60';
+  for(let ri=0;ri<18;ri++){
+    const rx=((ri*2234+7)%WORLD_W),ry=((ri*1678+3)%WORLD_H);
+    if(Math.abs(rx-camera.x)>gameCanvas.width||Math.abs(ry-camera.y)>gameCanvas.height)continue;
+    ctx.beginPath();ctx.moveTo(rx-14,ry-180);ctx.lineTo(rx-26,ry+220);ctx.lineTo(rx+26,ry+220);ctx.lineTo(rx+14,ry-180);ctx.closePath();ctx.fill();
+  }
+  ctx.restore();
+
+  ctx.strokeStyle='rgba(60,180,40,0.45)';ctx.lineWidth=5;ctx.setLineDash([15,10]);
+  ctx.strokeRect(2,2,WORLD_W-4,WORLD_H-4);ctx.setLineDash([]);
+}
+
 
 function rand2(seed,min,max){return min+(((seed*2654435761)>>>0)%(max-min+1));}
 
 function drawZone(){
-  // Dark overlay outside zone (composite trick)
+  return; // zona iskljucena
   ctx.save();
   ctx.beginPath();
   // Big rect covering view
@@ -4425,7 +5430,6 @@ function drawBullets(){
 
 function drawEnemies(){
   enemies.forEach(e=>{
-    if(e._frozen>0){e._frozen-=dt;if(e._frozen<=0){e._frozen=0;e._frozenColor=null;}}
     ctx.save();ctx.translate(e.x,e.y);
     
     // Death animation
@@ -4450,6 +5454,19 @@ function drawEnemies(){
     else if(e.type==='sniper') drawSniperEnemy(ctx,e);
     else if(e.type==='rusher') drawRusherEnemy(ctx,e);
     
+    // Frozen overlay — blue tint when Uroš ability active
+    if(e._frozen>0){
+      ctx.globalAlpha=0.45+Math.sin(Date.now()/80)*0.1;
+      ctx.fillStyle='#a8d8ff';
+      ctx.beginPath();ctx.arc(0,0,e.r+3,0,Math.PI*2);ctx.fill();
+      // Ice crystals
+      ctx.globalAlpha=0.7;
+      for(let ic=0;ic<6;ic++){
+        const ia=ic/6*Math.PI*2;
+        ctx.strokeStyle='#ffffff';ctx.lineWidth=1.5;
+        ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(Math.cos(ia)*(e.r+6),Math.sin(ia)*(e.r+6));ctx.stroke();
+      }
+    }
     // Hit flash white overlay
     if(e.hitFlash>0&&!e.dying){
       ctx.globalAlpha=(e.hitFlash/120)*.6;
@@ -5633,6 +6650,8 @@ function drawReloadArc(){
 function drawLoot(){
   loot.forEach(l=>{
     if(l.picked)return;
+    if(l.isCoin)return; // coins drawn in drawCoins()
+    if(!l.color)return; // skip invalid loot
     ctx.save();ctx.translate(l.x,l.y);
     const bob=Math.sin(Date.now()/600+l.x)*2.5;
     ctx.translate(0,bob);
@@ -5656,6 +6675,7 @@ function drawLoot(){
 }
 
 function hexToRgb(hex){
+  if(!hex||typeof hex!=='string'||hex[0]!=='#') return '200,200,200';
   const r=parseInt(hex.slice(1,3),16)||200;
   const g=parseInt(hex.slice(3,5),16)||200;
   const b=parseInt(hex.slice(5,7),16)||200;
@@ -5807,7 +6827,6 @@ function spawnLoot(count){
     const x=rand(150,WORLD_W-150),y=rand(150,WORLD_H-150);
     spawnLootAt(x,y);
   }
-  // Spawn some weapons
   for(let i=1;i<WEAPONS.length;i++){
     spawnWeaponLoot(rand(150,WORLD_W-150),rand(150,WORLD_H-150),i);
   }
@@ -5991,6 +7010,9 @@ function endGame(won){
   var xpw=document.getElementById('xpBarWrap');if(xpw)xpw.style.display='none';
   var xpl=document.getElementById('xpLevelDisplay');if(xpl)xpl.style.display='none';
   var cd=document.getElementById('comboDisplay');if(cd)cd.style.opacity='0';
+  var coinD=document.getElementById('coinDisplay');if(coinD)coinD.style.display='none';
+
+
   var eh=document.getElementById('execHint');if(eh)eh.style.opacity='0';
   const cch=document.getElementById('crosshairCanvas');if(cch)cch.style.display='none';
   const elapsed=Math.floor((Date.now()-gameStartTime)/1000);
@@ -5999,9 +7021,9 @@ function endGame(won){
   // Story mode win
   if(gameMode==='story'&&won) setStoryCompleted();
 
-  // Award rank points (arena only, or story win)
+  // Award rank points — ARENA ONLY
   let rankResult=null;
-  if(gameMode==='arena'||(gameMode==='story'&&won)){
+  if(gameMode==='arena'){
     const diff=document.querySelector('.diff-btn.active')?.dataset?.diff||'normal';
     const earned=calcSessionPoints(kills,wave,elapsed,diff);
     rankResult=addPoints(earned);
@@ -6063,10 +7085,16 @@ document.addEventListener('keydown',e=>{
   if(e.code==='KeyQ')useAbility();
   if(e.code==='Space'){doDodge();e.preventDefault();}
   if(e.code==='KeyF')doMelee();
-  if(e.code==='KeyE')tryUnlockCage();
+  if(e.code==='KeyE')tryUnlockCage()
+
+
+
+
   if(e.code==='Digit1')switchWeapon(0);
   if(e.code==='Digit2')switchWeapon(1);
   if(e.code==='Digit3')switchWeapon(2);
+
+
   // NEVER preventDefault on WASD/arrows - breaks mouse event delivery
 });
 

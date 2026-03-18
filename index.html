@@ -165,6 +165,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:48px;text-align:center
 .foot-line{width:60px;height:1px;background:rgba(230,57,70,.2);margin:16px auto;}
 .foot-sub{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.1);}
 .rev{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s;}
+.rev.visible,.rev-l.visible,.rev-r.visible{opacity:1;transform:translate(0,0) !important;}
 .rev.vis{opacity:1;transform:none;}
 .rev-l{opacity:0;transform:translateX(-18px);transition:opacity .7s,transform .7s;}
 .rev-l.vis{opacity:1;transform:none;}
@@ -185,7 +186,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </style>
 </head>
 <body>
-<div id="cur"></div><div id="curR"></div>
+<div id="cur" style="opacity:0"></div><div id="curR" style="opacity:0"></div>
 
 <nav>
   <a href="#" class="nav-logo">DEAD <span>CIRCLE</span></a>
@@ -232,13 +233,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 
 <div class="stats-strip rev">
-  <div class="stat-item"><div class="stat-n">~6K</div><div class="stat-l sr">LINIJA KODA</div><div class="stat-l en" style="display:none">LINES OF CODE</div></div>
+  <div class="stat-item"><div class="stat-n">~7.6K</div><div class="stat-l sr">LINIJA KODA</div><div class="stat-l en" style="display:none">LINES OF CODE</div></div>
   <div class="stat-item"><div class="stat-n">5</div><div class="stat-l sr">KARAKTERA</div><div class="stat-l en" style="display:none">FIGHTERS</div></div>
   <div class="stat-item"><div class="stat-n">5</div><div class="stat-l sr">ZONA PRIČE</div><div class="stat-l en" style="display:none">STORY ZONES</div></div>
   <div class="stat-item"><div class="stat-n">5</div><div class="stat-l sr">BOSSOVA</div><div class="stat-l en" style="display:none">BOSSES</div></div>
   <div class="stat-item"><div class="stat-n">8</div><div class="stat-l sr">RANKOVA</div><div class="stat-l en" style="display:none">RANKS</div></div>
   <div class="stat-item"><div class="stat-n">3</div><div class="stat-l sr">MAPE</div><div class="stat-l en" style="display:none">MAPS</div></div>
-  <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l sr">SATI RADA</div><div class="stat-l en" style="display:none">DEV HOURS</div></div>
+  <div class="stat-item"><div class="stat-n">70+</div><div class="stat-l sr">SATI RADA</div><div class="stat-l en" style="display:none">DEV HOURS</div></div>
   <div class="stat-item"><div class="stat-n">1</div><div class="stat-l">HTML</div></div>
 </div>
 
@@ -312,30 +313,30 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
     <div class="feat-card rev" style="--ac:#c77dff"><div class="feat-num">04</div><div class="feat-icon">🤖</div>
       <div class="feat-title">ENEMY AI</div>
-      <div class="feat-desc sr">4 AI tipa: Grunt, Heavy, Sniper, Rusher. 5 unikatnih boss sprite-ova sa posebnim napadima.</div>
-      <div class="feat-desc en" style="display:none">4 AI types: Grunt, Heavy, Sniper, Rusher. 5 unique boss sprites with special attacks.</div>
+      <div class="feat-desc sr">4 AI tipa + Road navigacija — prate ulice, obilaze zgrade. 5 unikatnih bossova sa posebnim napadima i fazom 2.</div>
+      <div class="feat-desc en" style="display:none">4 AI types + Road navigation — follow streets, avoid buildings. 5 unique bosses with phase 2 attacks.</div>
     </div>
     <div class="feat-card rev" style="--ac:#f4a261"><div class="feat-num">05</div><div class="feat-icon">🗺️</div>
       <div class="feat-title sr">3 MAPE · 7000×7000</div><div class="feat-title en" style="display:none">3 MAPS · 7000×7000</div>
-      <div class="feat-desc sr">Fabrika, Šuma, Grad. Proceduralne prepreke, minimap, kompas, dinamičan dan/noć.</div>
-      <div class="feat-desc en" style="display:none">Factory, Forest, City. Procedural obstacles, minimap, compass, dynamic day/night.</div>
+      <div class="feat-desc sr">Fabrika, Šuma, Grad — svaka detaljna po GTA stilu. Grad ima brendovane prodavnice, šuma životinje i pećine, fabrika industrijski tereni.</div>
+      <div class="feat-desc en" style="display:none">Factory, Forest, City — each detailed in GTA top-down style. City has branded stores, Forest has animals and caves, Factory has industrial terrain.</div>
     </div>
     <div class="feat-card rev" style="--ac:#a8e063"><div class="feat-num">06</div><div class="feat-icon">🎬</div>
       <div class="feat-title sr">PRIČA + CUTSCENE</div><div class="feat-title en" style="display:none">STORY + CUTSCENE</div>
       <div class="feat-desc sr">Cinematična intro scena, zona dijalozi, companion AI (Sekula, Dubonjac), kill feed.</div>
       <div class="feat-desc en" style="display:none">Cinematic intro, zone dialogues, companion AI (Sekula, Dubonjac), kill feed.</div>
     </div>
-    <div class="feat-card rev" style="--ac:#c77dff"><div class="feat-num">07</div><div class="feat-new">NOVO</div><div class="feat-icon">🏆</div>
+    <div class="feat-card rev" style="--ac:#c77dff"><div class="feat-num">07</div><div class="feat-icon">🏆</div>
       <div class="feat-title sr">XP / LEVEL SISTEM</div><div class="feat-title en" style="display:none">XP / LEVEL SYSTEM</div>
       <div class="feat-desc sr">Skupljaj XP za svaki kill. Level up → izaberi nadogradnju. Traka napretka vidljiva tokom igre.</div>
       <div class="feat-desc en" style="display:none">Earn XP for every kill. Level up → choose an upgrade. Progress bar visible in-game.</div>
     </div>
-    <div class="feat-card rev" style="--ac:#ffd700"><div class="feat-num">08</div><div class="feat-new">NOVO</div><div class="feat-icon">⚡</div>
+    <div class="feat-card rev" style="--ac:#ffd700"><div class="feat-num">08</div><div class="feat-icon">⚡</div>
       <div class="feat-title sr">COMBO + KRITIČNI HITOVI</div><div class="feat-title en" style="display:none">COMBO + CRITS</div>
       <div class="feat-desc sr">Ubijaj brzo — gradi COMBO do x10 GODLIKE! 20% šansa na kritični hit: 2.2× damage, zlatni efekat, screen shake.</div>
       <div class="feat-desc en" style="display:none">Kill fast — build COMBO up to x10 GODLIKE! 20% crit chance: 2.2× damage, golden effect, screen shake.</div>
     </div>
-    <div class="feat-card rev" style="--ac:#e63946"><div class="feat-num">09</div><div class="feat-new">NOVO</div><div class="feat-icon">☠️</div>
+    <div class="feat-card rev" style="--ac:#e63946"><div class="feat-num">09</div><div class="feat-icon">☠️</div>
       <div class="feat-title sr">EXECUCIJA + KRV</div><div class="feat-title en" style="display:none">EXECUTION + BLOOD</div>
       <div class="feat-desc sr">Neprijatelj &lt;15% HP + F = brutal instant kill. Krvave mrlje ostaju na tlu. Bullet trails za svaki metak.</div>
       <div class="feat-desc en" style="display:none">Enemy &lt;15% HP + F = brutal instant kill. Blood pools remain on ground. Bullet trails on every shot.</div>
@@ -503,7 +504,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="tl-title sr">MEGA UPDATE — v6.0 FINAL</div><div class="tl-title en" style="display:none">MEGA UPDATE — v6.0 FINAL</div>
       <div class="tl-desc sr">XP/level sistem, kritični hitovi (2.2×), combo do x10 GODLIKE, screen shake, execucija, krvave mrlje, bullet trails, mobilne kontrole (džojstik). Kraj razvoja.</div>
       <div class="tl-desc en" style="display:none">XP/level system, critical hits (2.2×), combo up to x10 GODLIKE, screen shake, execution kills, blood pools, bullet trails, mobile controls (joystick). End of development.</div>
-      <div class="tl-tags"><span class="tl-tag g">XP/LEVEL</span><span class="tl-tag g">COMBO x10</span><span class="tl-tag g">CRITS</span><span class="tl-tag g">EXECUCIJA</span><span class="tl-tag g">MOBILNI</span><span class="tl-tag g" style="background:rgba(78,205,196,.15);border-color:rgba(78,205,196,.4);color:#4ecdc4;">v6.0 FINAL ✓</span></div>
+      <div class="tl-tags"><span class="tl-tag g">XP/LEVEL</span><span class="tl-tag g">COMBO x10</span><span class="tl-tag g">CRITS</span><span class="tl-tag g">EXECUCIJA</span><span class="tl-tag g">MOBILNI</span><span class="tl-tag g" style="background:rgba(78,205,196,.15);border-color:rgba(78,205,196,.4);color:#4ecdc4;">v6.0 ✓</span></div>
+    </div>
+    <div class="tl-entry rev"><div class="tl-dot" style="background:#c77dff;box-shadow:0 0 10px #c77dff;"></div>
+      <div class="tl-date">MAR 2026 — FAZA 06</div>
+      <div class="tl-title sr">MAPA REDESIGN + ROAD AI — v7.0</div><div class="tl-title en" style="display:none">MAP REDESIGN + ROAD AI — v7.0</div>
+      <div class="tl-desc sr">Potpuni redizajn svih 3 mapa u GTA top-down stilu. Grad ima brendovane prodavnice (McDonald's, KFC, Walmart...), šuma ima životinje (zečevi, medvedi, vukovi), pećine i bare, fabrika industriska oprema. Road AI — neprijatelji prate ulice i obilaze zgrade. Razvijano uz Claude AI (Anthropic).</div>
+      <div class="tl-desc en" style="display:none">Complete redesign of all 3 maps in GTA top-down style. City has branded stores (McDonald's, KFC, Walmart...), Forest has animals (rabbits, bears, wolves), caves and ponds, Factory has industrial equipment. Road AI — enemies follow streets and avoid buildings. Developed with Claude AI (Anthropic).</div>
+      <div class="tl-tags"><span class="tl-tag g">3 MAPE REDESIGN</span><span class="tl-tag g">ROAD AI</span><span class="tl-tag g">ŽIVOTINJE</span><span class="tl-tag g">BRENDOVI</span><span class="tl-tag g" style="background:rgba(199,125,255,.15);border-color:rgba(199,125,255,.4);color:#c77dff;">v7.0 LIVE 🔥</span></div>
     </div>
   </div>
 </section>
@@ -551,7 +559,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;display:none;" class="en">LINES OF CODE</div>
           </div>
           <div style="padding:14px 12px;text-align:center;background:rgba(10,5,22,.9);">
-            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">40+</div>
+            <div style="font-family:'Bebas Neue',cursive;font-size:28px;color:#c77dff;line-height:1;">60+</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;" class="sr">SATI RADA</div>
             <div style="font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:rgba(199,125,255,.4);margin-top:3px;display:none;" class="en">DEV HOURS</div>
           </div>
@@ -746,7 +754,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="social-grid rev">
     <a href="https://www.instagram.com/game_circle2/" target="_blank" class="soc-card ig"><div class="soc-icon">📸</div><div class="soc-name">INSTAGRAM</div><div class="soc-handle">@game_circle2</div></a>
     <a href="https://www.tiktok.com/@gamecircle445" target="_blank" class="soc-card tt"><div class="soc-icon">🎵</div><div class="soc-name">TIKTOK</div><div class="soc-handle">@gamecircle445</div></a>
-    <a href="mailto:gamecircle999@gmail.com" class="soc-card em"><div class="soc-icon">✉️</div><div class="soc-name">EMAIL</div><div class="soc-handle">gamecircle999@gmail.com</div></a>
+    <a href="/cdn-cgi/l/email-protection#5f383e323a3c362d3c333a6666661f38323e3633713c3032" class="soc-card em"><div class="soc-icon">✉️</div><div class="soc-name">EMAIL</div><div class="soc-handle"><span class="__cf_email__" data-cfemail="4d2a2c20282e243f2e21287474740d2a202c2421632e2220">[email&#160;protected]</span></div></a>
     <a href="game.html" class="soc-card pl"><div class="soc-icon">🎮</div><div class="soc-name sr">IGRAJ SADA</div><div class="soc-name en" style="display:none">PLAY NOW</div><div class="soc-handle">game.html</div></a>
   </div>
 </section>
@@ -758,9 +766,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="foot-sub en" style="display:none">© 2026 STEFAN STANIČIĆ · ALL RIGHTS RESERVED · ONE ARENA. NO ESCAPE.</div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
-document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';curR.style.left=e.clientX+'px';curR.style.top=e.clientY+'px';});
+document.addEventListener('mousemove',e=>{
+  cur.style.opacity='1';curR.style.opacity='1';
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  curR.style.left=e.clientX+'px';curR.style.top=e.clientY+'px';
+});
 document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';curR.style.transform='translate(-50%,-50%) scale(1.4)';curR.style.borderColor='rgba(230,57,70,.9)';});
   el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';curR.style.transform='translate(-50%,-50%) scale(1)';curR.style.borderColor='rgba(230,57,70,.6)';});
@@ -771,7 +783,7 @@ function setLang(l){
   document.querySelectorAll('.en').forEach(e=>e.style.display=l==='en'?'':'none');
 }
 const hc=document.getElementById('hCvs');let hT=0;
-const hPts=Array.from({length:130},()=>({x:Math.random()*2000,y:Math.random()*1000,vx:(Math.random()-.5)*.35,vy:-Math.random()*.6-.1,r:Math.random()*2.2+.3,a:Math.random()*.45+.08,col:Math.random()<.6?'230,57,70':Math.random()<.5?'78,205,196':'200,160,255',p:Math.random()*6.28}));
+const hPts=Array.from({length:130},()=>({x:Math.random()*2000,y:Math.random()*1000,vx:(Math.random()-.5)*.4,vy:-(Math.random()*.5+.1),r:Math.random()*1.5+.4,a:Math.random()*.6+.1,col:Math.random()<.7?'230,57,70':Math.random()<.5?'78,205,196':'200,200,255',p:Math.random()*Math.PI*2}));
 (function animHero(){
   requestAnimationFrame(animHero);
   const W=window.innerWidth,H=window.innerHeight;hc.width=W;hc.height=H;
@@ -794,8 +806,19 @@ const hPts=Array.from({length:130},()=>({x:Math.random()*2000,y:Math.random()*10
   const bg=ctx.createLinearGradient(0,H*.6,0,H);bg.addColorStop(0,'transparent');bg.addColorStop(1,'rgba(230,57,70,'+(0.04+Math.sin(hT*1.5)*.015)+')');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
   for(let y=0;y<H;y+=3){ctx.fillStyle='rgba(0,0,0,.018)';ctx.fillRect(0,y,W,1);}
 })();
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.08});
-document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el=>obs.observe(el));
+
+// ── SCROLL REVEAL ──
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.07});
+document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el=>io.observe(el));
+// Show elements already visible on load
+setTimeout(()=>{
+  document.querySelectorAll('.rev,.rev-l,.rev-r').forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top<window.innerHeight+100) el.classList.add('visible');
+  });
+},100);
 </script>
 </body>
 </html>

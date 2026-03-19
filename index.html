@@ -149,7 +149,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:cen
 .lead-quote{margin-top:12px;padding:8px 12px;background:rgba(199,125,255,.05);border-left:2px solid var(--purple);font-size:11px;color:rgba(255,255,255,.32);font-style:italic;line-height:1.7;}
 .tm-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
 .tm-tag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;border-radius:2px;border:1px solid rgba(199,125,255,.25);color:var(--purple);background:rgba(199,125,255,.06);}
-.social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.social-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
 .soc-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);padding:28px 24px;text-align:center;text-decoration:none;transition:all .3s;cursor:none;display:block;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));}
 .soc-card:hover{transform:translateY(-4px);}
 .soc-card.ig:hover{border-color:rgba(230,57,70,.5);background:rgba(230,57,70,.07);}
@@ -179,7 +179,7 @@ footer{border-top:1px solid rgba(255,255,255,.05);padding:48px;text-align:center
   .story-inner,.tech-2col,.team-grid{grid-template-columns:1fr;}
   .feat-grid{grid-template-columns:1fr 1fr;}.chars-row,.bosses-grid{grid-template-columns:repeat(2,1fr);}
   .rank-grid{grid-template-columns:repeat(2,1fr);}.rank-vanja{grid-column:span 1;}
-  .social-grid{grid-template-columns:repeat(2,1fr);}.tm-lead .tm-body{flex-direction:column;}
+  .social-grid{grid-template-columns:repeat(2,1fr);}.tm-lead .tm-body{flex-direction:column;}.soc-card.yt:hover{border-color:rgba(255,0,0,.5);background:rgba(255,0,0,.07);}
   .stats-strip{grid-template-columns:repeat(4,1fr);}
 }
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.22;}
@@ -194,6 +194,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <a href="#story" class="sr">PRIČA</a><a href="#story" class="en" style="display:none">STORY</a>
     <a href="#chars" class="sr">KARAKTERI</a><a href="#chars" class="en" style="display:none">FIGHTERS</a>
     <a href="#rank" class="sr">RANKOVI</a><a href="#rank" class="en" style="display:none">RANKS</a>
+    <a href="#trailer" class="sr">TRAILER</a><a href="#trailer" class="en" style="display:none">TRAILER</a>
     <a href="#devlog">DEVLOG</a>
     <a href="#team" class="sr">TIM</a><a href="#team" class="en" style="display:none">TEAM</a>
   </div>
@@ -218,8 +219,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="hero-btns">
       <a href="game.html" class="btn-primary sr">🎮 PRIDRUŽI SE IGRI</a>
       <a href="game.html" class="btn-primary en" style="display:none">🎮 JOIN THE GAME</a>
-      <a href="#story" class="btn-outline sr">SAZNAJ VIŠE</a>
-      <a href="#story" class="btn-outline en" style="display:none">LEARN MORE</a>
+      <a href="https://youtu.be/lu8FzbhQu6E" target="_blank" class="btn-outline sr" style="border-color:rgba(230,57,70,.5);color:var(--red);">▶ GLEDAJ TRAILER</a>
+      <a href="https://youtu.be/lu8FzbhQu6E" target="_blank" class="btn-outline en" style="display:none;border-color:rgba(230,57,70,.5);color:var(--red);">▶ WATCH TRAILER</a>
     </div>
     <div class="hero-modes">
       <div class="hero-mode story">📖 PRIČA MODE</div>
@@ -760,6 +761,34 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 <div class="div-full"></div>
 
+<div class="div-full"></div>
+
+<section id="trailer" class="sec" style="text-align:center;">
+  <div class="sec-head rev" style="margin-bottom:32px;">
+    <div class="sec-label sr" style="justify-content:center;">OFFICIAL TRAILER</div>
+    <div class="sec-label en" style="display:none;justify-content:center;">OFFICIAL TRAILER</div>
+    <div class="sec-title sr">GLEDAJ TRAILER</div>
+    <div class="sec-title en" style="display:none">WATCH TRAILER</div>
+    <div class="sec-sub sr" style="margin:0 auto;text-align:center;">Jedna arena. Nema bekstva. Zemun 2009.</div>
+    <div class="sec-sub en" style="display:none;margin:0 auto;text-align:center;">One arena. No escape. Zemun 2009.</div>
+  </div>
+  <div class="rev" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:900px;margin:0 auto;border:1px solid rgba(230,57,70,0.25);box-shadow:0 0 60px rgba(230,57,70,0.12);">
+    <iframe
+      src="https://www.youtube.com/embed/lu8FzbhQu6E"
+      title="Dead Circle — Official Trailer"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="position:absolute;top:0;left:0;width:100%;height:100%;">
+    </iframe>
+  </div>
+  <div style="margin-top:20px;opacity:0;animation:fadeIn 1s 0.5s forwards;">
+    <a href="https://youtu.be/lu8FzbhQu6E" target="_blank" style="font-family:'Bebas Neue',cursive;font-size:14px;letter-spacing:4px;color:rgba(230,57,70,0.6);text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#e63946'" onmouseout="this.style.color='rgba(230,57,70,0.6)'">▶ OTVORI NA YOUTUBE →</a>
+  </div>
+</section>
+
+<div class="div-full"></div>
+
 <section id="social" class="sec" style="text-align:center;">
   <div class="sec-head rev">
     <div class="sec-label sr" style="justify-content:center;">KONTAKT</div>
@@ -772,6 +801,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <a href="https://www.instagram.com/game_circle2/" target="_blank" class="soc-card ig"><div class="soc-icon">📸</div><div class="soc-name">INSTAGRAM</div><div class="soc-handle">@game_circle2</div></a>
     <a href="https://www.tiktok.com/@gamecircle445" target="_blank" class="soc-card tt"><div class="soc-icon">🎵</div><div class="soc-name">TIKTOK</div><div class="soc-handle">@gamecircle445</div></a>
     <a href="/cdn-cgi/l/email-protection#5f383e323a3c362d3c333a6666661f38323e3633713c3032" class="soc-card em"><div class="soc-icon">✉️</div><div class="soc-name">EMAIL</div><div class="soc-handle"><span class="__cf_email__" data-cfemail="4d2a2c20282e243f2e21287474740d2a202c2421632e2220">[email&#160;protected]</span></div></a>
+    <a href="https://youtu.be/lu8FzbhQu6E" target="_blank" class="soc-card yt"><div class="soc-icon">🎬</div><div class="soc-name sr">TRAILER</div><div class="soc-name en" style="display:none">TRAILER</div><div class="soc-handle">youtube.com</div></a>
     <a href="game.html" class="soc-card pl"><div class="soc-icon">🎮</div><div class="soc-name sr">IGRAJ SADA</div><div class="soc-name en" style="display:none">PLAY NOW</div><div class="soc-handle">game.html</div></a>
   </div>
 </section>

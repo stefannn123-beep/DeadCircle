@@ -4659,19 +4659,31 @@ function drawMapCity(){
       ctx.fillStyle='#5a5850';
       ctx.fillRect(tx-3,ty-3,tw+6,th+6);
 
-      // 3. ZGRADA ili PRODAVNICA — zavisi od bloka
+      // 3. ZGRADA — inline draw
       const seed=(Math.abs(bx*31+by*17)>>>0)%7;
-      const blockType=(Math.abs(bx/BLOCK*13+by/BLOCK*7))%10; // 0-9
-
-      // Park blokovi — preskoci
-      if(((bx/BLOCK+by/BLOCK)%3)===0){
-        // vec nacrtan kao park iznad
-      } else if(blockType<3){
-        // ── FASTFOOD / PRODAVNICA ──
-        drawCityShop(ctx,bx,by,tx,ty,tw,th,seed,blockType);
-      } else {
-        // ── OBICNA ZGRADA ──
-        drawCityBuilding(ctx,tx,ty,tw,th,seed);
+      if(((bx/BLOCK+by/BLOCK)%3)!==0){
+        const facades=['#5c4a38','#3d4858','#4a5c3d','#5a3c3c','#3d3d56','#584e3c','#3c4a50'];
+        const roofColors=['#4a3c2e','#303a48','#3c4a2e','#4a2e2e','#302e4a','#483e2e','#2e3c40'];
+        ctx.fillStyle=facades[seed];ctx.fillRect(tx,ty,tw,th);
+        ctx.strokeStyle='rgba(0,0,0,0.18)';ctx.lineWidth=2;
+        const ps=Math.floor(tw/4);
+        for(let pi=1;pi<4;pi++){ctx.beginPath();ctx.moveTo(tx+pi*ps,ty);ctx.lineTo(tx+pi*ps,ty+th);ctx.stroke();}
+        const wW=14,wH=18,wPX=9,wPY=10;
+        const cols=Math.max(1,Math.floor((tw-wPX*2)/(wW+wPX)));
+        const rows=Math.max(1,Math.floor((th-wPY*2-30)/(wH+wPY)));
+        for(let wr=0;wr<rows;wr++){for(let wc2=0;wc2<cols;wc2++){
+          const wx=tx+wPX+wc2*(wW+wPX),wy=ty+wPY+wr*(wH+wPY);
+          const lit=((seed*3+wr*5+wc2*7)%9)!==0;
+          ctx.fillStyle='#1a1208';ctx.fillRect(wx-2,wy-2,wW+4,wH+4);
+          ctx.fillStyle=lit?'rgba(255,230,140,0.9)':'rgba(10,14,28,0.95)';ctx.fillRect(wx,wy,wW,wH);
+        }}
+        ctx.fillStyle=roofColors[seed];ctx.fillRect(tx,ty,tw,8);
+        ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fillRect(tx,ty,tw,4);
+        const dW=20,dH=28,dx2=tx+tw/2-dW/2,dy2=ty+th-dH;
+        ctx.fillStyle='#0e0a04';ctx.fillRect(dx2,dy2,dW,dH);
+        ctx.strokeStyle='#a07828';ctx.lineWidth=2;ctx.strokeRect(dx2,dy2,dW,dH);
+        ctx.fillStyle='#5a5248';ctx.fillRect(dx2-4,dy2+dH-4,dW+8,4);
+        ctx.strokeStyle='rgba(0,0,0,0.5)';ctx.lineWidth=2;ctx.strokeRect(tx,ty,tw,th);
       }
     }
   }
